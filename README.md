@@ -13,10 +13,11 @@
 2. You should have jre7 installed and marked
 3. You also need jre6 for some of the projects. Install it, click "Add.." locate the jre6 folder on your disk.
 
-### Configurations
+### Server Configurations
 1. Set up TomCat Server. Window -> Show View -> Other -> Servers
 2. Click "new server wizard"
 3. Choose "Tomcat v6.0 Server". If you are missing tomcat server. You can find a .zip file inside the ProjectTemplate. Just extract the content under C:/ for example. Then locate it in the wizard..
+4. You may locate the Runtime Environments from: Window -> Preferences -> Server -> Runtime Environments
 
 
 -- The database
