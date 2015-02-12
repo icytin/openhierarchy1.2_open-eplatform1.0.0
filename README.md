@@ -34,6 +34,9 @@
 #### What does "The project was not built since its build path is incomplete. Cannot find the class file for javax.servlet.http.HttpServletRequest..." means?
 Check properties of the project and make sure the tomcat is selected for that project
 
+#### Cannot resolve getParentLogger of the OpenHierarchy-project?
+Check project properties -> Java Build Path -> Libraries. Check if you have jre7, in this case you may try to downgrade to jre6.
+
 ....
 
 
