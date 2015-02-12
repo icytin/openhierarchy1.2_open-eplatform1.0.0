@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<xs:schema xmlns="http://www.openhierarchy.org/version/1.0/schemas/config"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.openhierarchy.org/version/1.0/schemas/config"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xs:element name="Config" type="HierarchyConfig"/>
+
+	<xs:complexType name="HierarchyConfig">
+		<xs:all>		
+			<xs:element name="StyleSheets" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="StyleSheet" type="StyleSheet" minOccurs="1" maxOccurs="unbounded" />
+					</xs:sequence>				
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CoreDAOFactory" minOccurs="1" maxOccurs="1" type="xs:string"/>
+			<xs:element name="DataSource" minOccurs="1" maxOccurs="1" type="DataSourceConfig" />			
+			<xs:element name="SystemXMLDebug" type="xs:boolean" minOccurs="1" maxOccurs="1" />
+			<xs:element name="SystemXMLDebugFile" type="xs:string" minOccurs="0" />
+			<xs:element name="ModuleXMLDebug" type="xs:boolean" minOccurs="1" maxOccurs="1" />
+			<xs:element name="ModuleXMLDebugFile" type="xs:string" minOccurs="0" />
+			<xs:element name="BackgroundModuleXMLDebug" type="xs:boolean" minOccurs="1" maxOccurs="1" />
+			<xs:element name="BackgroundModuleXMLDebugFile" type="xs:string" minOccurs="0" />
+			<xs:element name="Encoding" type="xs:string" minOccurs="1" maxOccurs="1" />
+			<xs:element name="DefaultLanguage" type="Language" minOccurs="1" maxOccurs="1" />
+		</xs:all>
+	</xs:complexType>
+
+	<xs:complexType name="DataSourceConfig">
+		<xs:all>
+			<xs:element name="Type" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="ContainerManaged"/>
+						<xs:enumeration value="SystemManaged"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Url" type="xs:string" minOccurs="1" maxOccurs="1" />
+			<xs:element name="Driver" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="Username" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="Password" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="LogAbandoned" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+			<xs:element name="RemoveAbandoned" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+			<xs:element name="RemoveAbandonedTimeout" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+			<xs:element name="TestOnBorrow" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+			<xs:element name="ValidationQuery" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="MaxActive" type="xs:int" minOccurs="0" maxOccurs="1" />
+			<xs:element name="MaxIdle" type="xs:int" minOccurs="0" maxOccurs="1" />
+			<xs:element name="MinIdle" type="xs:int" minOccurs="0" maxOccurs="1" />
+			<xs:element name="MaxWait" type="xs:int" minOccurs="0" maxOccurs="1" />
+		</xs:all>
+	</xs:complexType>
+	
+	<xs:simpleType name="StringType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	
+	<xs:complexType name="StyleSheet">
+		<xs:simpleContent>
+			<xs:extension base="StringType">
+				<xs:attribute name="name" type="xs:string" use="required"/>
+				<xs:attribute name="default" type="xs:boolean" use="optional"/>
+				<xs:attribute name="fullMenu" type="xs:boolean" use="optional"/>
+				<xs:attribute name="language" type="xs:string" use="required"/>
+				<xs:attribute name="pathtype" type="PathType" use="optional"/>			
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:simpleType name="PathType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Full"/>
+			<xs:enumeration value="Relative"/>
+		</xs:restriction>
+	</xs:simpleType>
+		
+	<xs:simpleType name="Language">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Abkhaz"/>
+			<xs:enumeration value="Afar"/>
+			<xs:enumeration value="Afrikaans"/>
+			<xs:enumeration value="Akan"/>
+			<xs:enumeration value="Albanian"/>
+			<xs:enumeration value="Amharic"/>
+			<xs:enumeration value="Arabic"/>
+			<xs:enumeration value="Aragonese"/>
+			<xs:enumeration value="Armenian"/>
+			<xs:enumeration value="Assamese"/>
+			<xs:enumeration value="Avaric"/>
+			<xs:enumeration value="Avestan"/>
+			<xs:enumeration value="Aymara"/>
+			<xs:enumeration value="Azerbaijani"/>
+			<xs:enumeration value="Bambara"/>
+			<xs:enumeration value="Bashkir"/>
+			<xs:enumeration value="Basque"/>
+			<xs:enumeration value="Belarusian"/>
+			<xs:enumeration value="Bengali"/>
+			<xs:enumeration value="Bihari"/>
+			<xs:enumeration value="Bislama"/>
+			<xs:enumeration value="Bosnian"/>
+			<xs:enumeration value="Breton"/>
+			<xs:enumeration value="Bulgarian"/>
+			<xs:enumeration value="Burmese"/>
+			<xs:enumeration value="Catalan_Valencian"/>
+			<xs:enumeration value="Chamorro"/>
+			<xs:enumeration value="Chechen"/>
+			<xs:enumeration value="Chichewa_Chewa_Nyanja"/>
+			<xs:enumeration value="Chinese"/>
+			<xs:enumeration value="Chuvash"/>
+			<xs:enumeration value="Cornish"/>
+			<xs:enumeration value="Corsican"/>
+			<xs:enumeration value="Cree"/>
+			<xs:enumeration value="Croatian"/>
+			<xs:enumeration value="Czech"/>
+			<xs:enumeration value="Danish"/>
+			<xs:enumeration value="Divehi_Dhivehi_Maldivian"/>
+			<xs:enumeration value="Dutch"/>
+			<xs:enumeration value="Dzongkha"/>
+			<xs:enumeration value="English"/>
+			<xs:enumeration value="Esperanto"/>
+			<xs:enumeration value="Estonian"/>
+			<xs:enumeration value="Ewe"/>
+			<xs:enumeration value="Faroese"/>
+			<xs:enumeration value="Fijian"/>
+			<xs:enumeration value="Finnish"/>
+			<xs:enumeration value="French"/>
+			<xs:enumeration value="Fula_Fulah_Pulaar_Pular"/>
+			<xs:enumeration value="Galician"/>
+			<xs:enumeration value="Georgian"/>
+			<xs:enumeration value="German"/>
+			<xs:enumeration value="Greek_Modern"/>
+			<xs:enumeration value="Guarani"/>
+			<xs:enumeration value="Gujarati"/>
+			<xs:enumeration value="Haitian_Haitian_Creole"/>
+			<xs:enumeration value="Hausa"/>
+			<xs:enumeration value="Hebrew_modern"/>
+			<xs:enumeration value="Herero"/>
+			<xs:enumeration value="Hindi"/>
+			<xs:enumeration value="Hiri_Motu"/>
+			<xs:enumeration value="Hungarian"/>
+			<xs:enumeration value="Interlingua"/>
+			<xs:enumeration value="Indonesian"/>
+			<xs:enumeration value="Interlingue"/>
+			<xs:enumeration value="Irish"/>
+			<xs:enumeration value="Igbo"/>
+			<xs:enumeration value="Inupiaq"/>
+			<xs:enumeration value="Ido"/>
+			<xs:enumeration value="Icelandic"/>
+			<xs:enumeration value="Italian"/>
+			<xs:enumeration value="Inuktitut"/>
+			<xs:enumeration value="Japanese"/>
+			<xs:enumeration value="Javanese"/>
+			<xs:enumeration value="Kalaallisut_Greenlandic"/>
+			<xs:enumeration value="Kannada"/>
+			<xs:enumeration value="Kanuri"/>
+			<xs:enumeration value="Kashmiri"/>
+			<xs:enumeration value="Kazakh"/>
+			<xs:enumeration value="Khmer"/>
+			<xs:enumeration value="Kikuyu_Gikuyu"/>
+			<xs:enumeration value="Kinyarwanda"/>
+			<xs:enumeration value="Kirghiz_Kyrgyz"/>
+			<xs:enumeration value="Komi"/>
+			<xs:enumeration value="Kongo"/>
+			<xs:enumeration value="Korean"/>
+			<xs:enumeration value="Kurdish"/>
+			<xs:enumeration value="Kwanyama_Kuanyama"/>
+			<xs:enumeration value="Latin"/>
+			<xs:enumeration value="Luxembourgish_Letzeburgesch"/>
+			<xs:enumeration value="Luganda"/>
+			<xs:enumeration value="Limburgish_Limburgan_Limburger"/>
+			<xs:enumeration value="Lingala"/>
+			<xs:enumeration value="Lao"/>
+			<xs:enumeration value="Lithuanian"/>
+			<xs:enumeration value="Luba_Katanga"/>
+			<xs:enumeration value="Latvian"/>
+			<xs:enumeration value="Manx"/>
+			<xs:enumeration value="Macedonian"/>
+			<xs:enumeration value="Malagasy"/>
+			<xs:enumeration value="Malay"/>
+			<xs:enumeration value="Malayalam"/>
+			<xs:enumeration value="Maltese"/>
+			<xs:enumeration value="Maori"/>
+			<xs:enumeration value="Marathi"/>
+			<xs:enumeration value="Marshallese"/>
+			<xs:enumeration value="Mongolian"/>
+			<xs:enumeration value="Nauru"/>
+			<xs:enumeration value="Navajo_Navaho"/>
+			<xs:enumeration value="Norwegian_Bokmål"/>
+			<xs:enumeration value="North_Ndebele"/>
+			<xs:enumeration value="Nepali"/>
+			<xs:enumeration value="Ndonga"/>
+			<xs:enumeration value="Norwegian_Nynorsk"/>
+			<xs:enumeration value="Norwegian"/>
+			<xs:enumeration value="Nuosu"/>
+			<xs:enumeration value="South_Ndebele"/>
+			<xs:enumeration value="Occitan_after_1500"/>
+			<xs:enumeration value="Ojibwa"/>
+			<xs:enumeration value="Old_Church_Slavonic_Church_Slavic_Church_Slavonic_Old_Bulgarian_Old_Slavonic"/>
+			<xs:enumeration value="Oromo"/>
+			<xs:enumeration value="Oriya"/>
+			<xs:enumeration value="Ossetian_Ossetic"/>
+			<xs:enumeration value="Panjabi_Punjabi"/>
+			<xs:enumeration value="Pali"/>
+			<xs:enumeration value="Persian"/>
+			<xs:enumeration value="Polish"/>
+			<xs:enumeration value="Pashto_Pushto"/>
+			<xs:enumeration value="Portuguese"/>
+			<xs:enumeration value="Quechua"/>
+			<xs:enumeration value="Romansh"/>
+			<xs:enumeration value="Kirundi"/>
+			<xs:enumeration value="Romanian_Moldavian_Moldovan"/>
+			<xs:enumeration value="Russian"/>
+			<xs:enumeration value="Sanskrit"/>
+			<xs:enumeration value="Sardinian"/>
+			<xs:enumeration value="Sindhi"/>
+			<xs:enumeration value="Northern_Sami"/>
+			<xs:enumeration value="Samoan"/>
+			<xs:enumeration value="Sango"/>
+			<xs:enumeration value="Serbian"/>
+			<xs:enumeration value="Scottish_Gaelic_Gaelic"/>
+			<xs:enumeration value="Shona"/>
+			<xs:enumeration value="Sinhala_Sinhalese"/>
+			<xs:enumeration value="Slovak"/>
+			<xs:enumeration value="Slovene"/>
+			<xs:enumeration value="Somali"/>
+			<xs:enumeration value="Southern_Sotho"/>
+			<xs:enumeration value="Spanish_Castilian"/>
+			<xs:enumeration value="Sundanese"/>
+			<xs:enumeration value="Swahili"/>
+			<xs:enumeration value="Swati"/>
+			<xs:enumeration value="Swedish"/>
+			<xs:enumeration value="Tamil"/>
+			<xs:enumeration value="Telugu"/>
+			<xs:enumeration value="Tajik"/>
+			<xs:enumeration value="Thai"/>
+			<xs:enumeration value="Tigrinya"/>
+			<xs:enumeration value="Tibetan_Standard_Tibetan_Central"/>
+			<xs:enumeration value="Turkmen"/>
+			<xs:enumeration value="Tagalog"/>
+			<xs:enumeration value="Tswana"/>
+			<xs:enumeration value="Tonga_Tonga_Islands"/>
+			<xs:enumeration value="Turkish"/>
+			<xs:enumeration value="Tsonga"/>
+			<xs:enumeration value="Tatar"/>
+			<xs:enumeration value="Twi"/>
+			<xs:enumeration value="Tahitian"/>
+			<xs:enumeration value="Uighur_Uyghur"/>
+			<xs:enumeration value="Ukrainian"/>
+			<xs:enumeration value="Urdu"/>
+			<xs:enumeration value="Uzbek"/>
+			<xs:enumeration value="Venda"/>
+			<xs:enumeration value="Vietnamese"/>
+			<xs:enumeration value="Volapük"/>
+			<xs:enumeration value="Walloon"/>
+			<xs:enumeration value="Welsh"/>
+			<xs:enumeration value="Wolof"/>
+			<xs:enumeration value="Western_Frisian"/>
+			<xs:enumeration value="Xhosa"/>
+			<xs:enumeration value="Yiddish"/>
+			<xs:enumeration value="Yoruba"/>
+			<xs:enumeration value="Zhuang_Chuang"/>
+			<xs:enumeration value="Zulu"/>
+		</xs:restriction>
+	</xs:simpleType> 
+
+</xs:schema>

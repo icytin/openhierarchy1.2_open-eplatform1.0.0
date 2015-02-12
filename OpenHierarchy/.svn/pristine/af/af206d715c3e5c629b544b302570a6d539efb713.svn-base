@@ -1,0 +1,55 @@
+<Config xmlns="http://www.openhierarchy.org/version/1.0/schemas/config"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.openhierarchy.org/version/1.0/schemas/config config.xsd">
+		
+	<!-- Datasource configuration -->
+	<DataSource>
+		<!-- ContainerManaged or SystemManaged -->
+		<Type>SystemManaged</Type> 
+		
+		<!-- ContainerManaged example "jdbc/foo" -->
+		<!-- SystemManaged example "jdbc:mysql://localhost:3306/foo" -->
+		<Url>jdbc:mysql://localhost:3306/foo</Url>
+		
+		<!-- The settings below are only necessary in SystemManaged mode-->
+		<Driver>com.mysql.jdbc.Driver</Driver>
+		<Username>user</Username>
+		<Password>password</Password>
+		<LogAbandoned>true</LogAbandoned>
+		<RemoveAbandoned>true</RemoveAbandoned>
+		<RemoveAbandonedTimeout>30</RemoveAbandonedTimeout>
+		<TestOnBorrow>true</TestOnBorrow>
+		<ValidationQuery>SELECT 1</ValidationQuery>
+		<MaxActive>30</MaxActive>
+		<MaxIdle>10</MaxIdle>
+		<MinIdle>0</MinIdle>
+		<MaxWait>10000</MaxWait>
+	</DataSource>		
+	
+	<!-- All paths below are set relative from the WEB-INF directory -->
+	
+	<!-- System XSL design -->
+	<StyleSheets>
+			<StyleSheet name="Design one" language="English" default="true">xsl/design.xsl</StyleSheet>
+			<StyleSheet name="Design two" language="English">xsl/design2.xsl</StyleSheet>
+	</StyleSheets>
+	
+	<!-- System XML debug parameters -->
+	<SystemXMLDebug>true</SystemXMLDebug>
+	<SystemXMLDebugFile>system_xmldebug.xml</SystemXMLDebugFile>
+	
+	<!-- Foreground Module XML debug parameters -->
+	<ModuleXMLDebug>true</ModuleXMLDebug>
+	<ModuleXMLDebugFile>module_xmldebug.xml</ModuleXMLDebugFile>
+
+	<!-- Background Module XML debug parameters -->
+	<BackgroundModuleXMLDebug>true</BackgroundModuleXMLDebug>
+	<BackgroundModuleXMLDebugFile>bgmodule_debug.xml</BackgroundModuleXMLDebugFile>
+
+	<!-- Character enconding -->
+	<Encoding>ISO-8859-1</Encoding>
+	
+	<DefaultLanguage>English</DefaultLanguage>
+	
+	<CoreDAOFactory>se.unlogic.hierarchy.core.daos.implementations.mysql.MySQLCoreDAOFactory</CoreDAOFactory>
+</Config>

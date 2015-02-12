@@ -1,0 +1,69 @@
+.panel-wrapper {
+	background: #cacaca;
+	
+	&.official {
+		position: absolute;
+		top: 60px;
+		z-index: 101;
+		width: 100%;
+	}
+
+	.inner {
+		max-width: 1280px;
+		margin-left: auto;
+		margin-right: auto;
+
+		.buttons {
+			@extend .clearfix;
+			padding: 10px 4.0625% 0;
+
+			.btn {
+				float: left;
+				margin: 0 10px 10px 0;
+
+				span {
+			
+					&::before {
+						margin-top: 1px;
+					}
+
+					&::after {
+						margin-top: 2px;
+					}
+				}
+			}
+		}
+	}
+
+	&.edit-indicator {
+		background: #fffae1;
+
+		.inner {
+			padding: 14px 0;
+			text-align: center;
+		}
+	}
+}
+
+/* ========== MOBILE ========== */
+
+@include media($mobile) {
+	.panel-wrapper {
+
+		.inner {
+
+			.buttons {
+				padding: 10px 0 0 4px;
+
+				.btn {
+					padding: 10px 9px 9px;
+					margin: 0 4px 10px 0;
+
+					&:hover {
+						padding: 9px 9px 9px;
+					}
+				}
+			}
+		}
+	}
+}

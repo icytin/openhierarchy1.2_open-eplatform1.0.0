@@ -1,0 +1,76 @@
+<DBScripts>
+	<Script version="1">
+		<Query>
+			<![CDATA[
+				ALTER TABLE `galleries` MODIFY COLUMN `description` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+				 CHANGE COLUMN `url` `directory` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+				 CHANGE COLUMN `anonymousAccess` `allowsAnonymousAccess` TINYINT(1) UNSIGNED NOT NULL,
+				 CHANGE COLUMN `userAccess` `allowsUserAccess` TINYINT(1) UNSIGNED NOT NULL,
+				 CHANGE COLUMN `adminAccess` `allowsAdminAccess` TINYINT(1) UNSIGNED NOT NULL;
+			]]>
+		</Query>
+		<Query>
+			<![CDATA[
+				ALTER TABLE `gallerygroups` RENAME TO `gallery_groups`;
+			]]>
+		</Query>
+		<Query>
+			<![CDATA[
+				ALTER TABLE `galleryusers` RENAME TO `gallery_users`;
+			]]>
+		</Query>
+		<Query>
+			<![CDATA[
+				ALTER TABLE `galleryuploadgroups` RENAME TO `gallery_upload_groups`;
+			]]>
+		</Query>
+		<Query>
+			<![CDATA[
+				ALTER TABLE `galleryuploadusers` RENAME TO `gallery_upload_users`;
+			]]>
+		</Query>
+		<Query>
+			<![CDATA[
+				ALTER TABLE `pictures` RENAME TO `gallery_images`,
+				 MODIFY COLUMN `smallThumb` BLOB DEFAULT NULL,
+				 MODIFY COLUMN `mediumThumb` MEDIUMBLOB DEFAULT NULL,
+				 ADD COLUMN `lastModified` INTEGER UNSIGNED NOT NULL AFTER `galleryID`;	
+			]]>
+		</Query>
+		<Query>
+			<![CDATA[
+				ALTER TABLE `gallery_images` CHANGE COLUMN `pictureID` `imageID` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+				 DROP PRIMARY KEY,
+				 ADD PRIMARY KEY  USING BTREE(`imageID`);
+			]]>
+		</Query>
+		<Query>
+			<![CDATA[
+				ALTER TABLE `picturecomments` RENAME TO `gallery_image_comments`,
+				 CHANGE COLUMN `pictureID` `imageID` INT(10) UNSIGNED NOT NULL,
+				 CHANGE COLUMN `comment` `message` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+				 CHANGE COLUMN `date` `posted` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+				 CHANGE COLUMN `userID` `poster` INT(10) UNSIGNED DEFAULT NULL,
+				 ADD COLUMN `updated` TIMESTAMP AFTER `poster`,
+				 ADD COLUMN `editor` INTEGER UNSIGNED NOT NULL AFTER `updated`,
+				 DROP INDEX `FK_pictureComments_1`,
+				 ADD INDEX `FK_pictureComments_1` USING BTREE(`imageID`);	
+			]]>
+		</Query>
+		<Query>
+			<![CDATA[
+				ALTER TABLE gallery_image_comments MODIFY COLUMN `posted` TIMESTAMP NULL;
+			]]>
+		</Query>
+		<Query>
+			<![CDATA[
+				ALTER TABLE gallery_image_comments MODIFY COLUMN `updated` TIMESTAMP NULL;
+			]]>
+		</Query>
+		<Query>
+			<![CDATA[
+				ALTER TABLE `gallery_images` MODIFY COLUMN `filename` VARCHAR(255) BINARY CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+			]]>
+		</Query>								
+	</Script>
+</DBScripts>

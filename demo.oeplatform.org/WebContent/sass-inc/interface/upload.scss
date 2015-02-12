@@ -1,0 +1,153 @@
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `::before` to contain the top-margins of child elements.
+ */
+
+.clearfix::before,
+.clearfix::after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix::after {
+    clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+    *zoom: 1;
+}
+
+.upload {
+	background: #fff;
+	border: 2px dashed #cacaca;
+	padding: 36px 0;
+	text-align: center;
+
+	h3 {
+		font-size: 18px;
+		color: #cacaca;
+		padding: 0 0 11px;
+	}
+
+	.btn-upload {
+		display: inline-block;
+		margin: 0 auto 6px;
+	}
+
+	span {
+		display: block;
+		font-size: 14px;
+	}
+
+
+	&.active, &:hover {
+		background: #f3f8ff;
+		border-color: #2969bf;
+	}
+}
+
+.files {
+	list-style: none;
+	padding: 0;
+	margin: $gutter 0 0;
+	clear: both;
+
+	li {
+		@extend .clearfix;
+		padding: 0 0 0;
+		margin: 0 0 5px;
+		background: #fff;
+
+		.file {
+			@extend .clearfix;
+
+			span, a {
+				line-height: 1;
+				font-size: 16px;
+				color: #cacaca;
+
+				&.name {
+					padding: 15px 0 13px 10px;
+					float: left;
+					font-weight: 600;
+				}
+
+				&.italic {
+					float: left;
+					padding: 15px 0 13px 2px;
+				}
+
+				&.progress {
+					float: right;
+					padding: 16px 21px 14px 0;
+					font-style: italic;
+					overflow: hidden;
+					font-weight: 700;
+					font-size: 14px;
+					color: #2969bf;
+
+					&::after {
+						margin-top: 2px;
+					}
+				}
+			}
+		}
+
+		.progressbar {
+			background: #cacaca;
+			height: 4px;
+
+			.innerbar {
+				background: #2969bf;
+				height: 4px;
+			}
+		}
+
+		&.finished {
+
+			.file {
+
+				span, a {
+					color: $mainForegroundColor;
+
+					&.progress {
+						font-style: normal;
+						color: $mainForegroundColor;
+
+						&:hover {
+							color: $mainAccentColor;
+						}
+					}
+				}
+			}
+
+			.progressbar {
+
+				.innerbar {
+					background: #29bf4c;
+				}
+			}
+		}
+	}
+
+	&.preview {
+		li {
+
+			.btn {
+				margin: 5px 0 5px 5px;
+			}
+		}
+	}
+}

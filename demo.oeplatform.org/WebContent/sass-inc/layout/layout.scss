@@ -1,0 +1,597 @@
+.container {
+  @include outer-container;
+}
+
+html,body {
+	height: 100%;
+	background: $mainBackgroundColor;
+}
+
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+	-webkit-font-smoothing: antialiased;
+	color: $mainForegroundColor;
+}
+
+h1, h2, h3, h4 {
+	margin: 0;
+	font-weight: 600;
+
+	b {
+		font-size: inherit;
+		font-weight: 400;
+	}
+
+	strong {
+		font-weight: 700;
+	}
+
+	&::before {
+		margin-top: 7px;
+	}
+}
+
+h1 {
+	font-size: 20px;
+	@include pad(16px $padLR);
+	text-transform: uppercase;
+
+	&.search-results-title {
+		font-size: 22px;
+		text-transform: none;
+		@include pad(0 $padLR 8px);
+
+		span {
+			color: $mainAccentColor;
+		}
+	}
+
+	&.xl {
+		font-size: 32px;
+		text-transform: none;
+		font-weight: 700;
+	}
+}
+
+h2 {
+	font-size: 18px;
+	padding: 0 0 7px 0;
+	line-height: 1;
+
+	&.bordered {
+		line-height: 1.4;
+		border-bottom: 1px solid $mainBorderColor;
+		padding: 20px 0;
+		text-align: center;
+		text-transform: uppercase;
+	}
+
+	&.required {
+
+		&::after {
+			margin-left: 1px;
+			content: "*";
+		}
+	}
+
+	&.h1 {
+		@extend h1;
+		line-height: 1.4;
+	}
+}
+
+b {
+	font-size: 14px;
+	font-weight: 400;
+	color: #9e9e9e;
+}
+
+a {
+	cursor: pointer;
+	color: $mainForegroundColor;
+	text-decoration: none;
+
+	&:hover {
+		color: $mainAccentColor;
+	}
+}
+
+span {
+
+	&.italic {
+		font-style: italic;
+	}
+
+	&.tip {
+		padding-left: 20px;
+		font-style: italic;
+	}
+}
+
+strong {
+	font-weight: 600;
+
+	&.block {
+		font-size: 16px;
+		display: block;
+	}
+}
+
+.main {
+	@extend .clearfix;
+	position: relative;
+	z-index: 100;
+
+	&.official {
+		padding-top: 53px;
+	}
+}
+
+.content {
+	@include span-columns(9);
+	padding-bottom: $gutter;
+
+	&.omega {
+		@include omega;
+	}
+}
+
+.content-wide {
+	@include span-columns(12);
+	@include omega;
+	padding-bottom: $gutter;
+	overflow-x: hidden;
+}
+section {
+	@extend .clearfix;
+	position: relative;
+	background: #fff;
+	margin-top: $gutter;
+	min-height: 20px;
+	border-right: 1px solid $mainShadowColor;
+	border-bottom: 1px solid $mainShadowColor;
+	padding: 0 0 40px 0;
+
+	.inner {
+		@include pad(0 $padLR);
+	}
+
+	&.child {
+		margin-top: 0;
+	}
+}
+
+aside {
+	@include span-columns(3);
+	@include omega;
+	min-height: 100px;
+
+	&.first {
+		margin-right: 1.25%;
+	}
+
+	h2 {
+		&.bordered {
+			line-height: 1;
+			padding: 16px 0;
+		}
+	}
+
+	.inner {
+
+		a {
+			font-weight: 600;
+		}
+	}
+
+	section {
+		padding-bottom: 30px;
+
+		&.user-menu {
+			
+		}
+	}
+}
+
+.heading-wrapper {
+	@extend .clearfix;
+	position: relative;
+
+	h1, h2, h3, h4, label {
+		float: left;
+	}
+
+	&.nowrap {
+		@include pad(18px $padLR*1.76 7px);
+	}
+
+	.help, .close, .edit {
+		float: right;
+		font-weight: 700;
+		font-size: 14px;
+
+		i {
+			padding-left: 4px;
+			font-weight: 400;
+		}
+	}
+
+	.heading {
+		overflow: hidden;
+	}
+}
+
+.icon {
+	font-family: 'riges-icons';
+	font-style: normal;
+	font-size: 11px;
+	line-height: 1;
+	margin-left: 2px;
+
+	a {
+		color: $mainForegroundColor;
+		text-decoration: none;
+	}
+
+	.popover {
+		right: -16px;
+		bottom: 18px;
+	}
+}
+
+.divider {
+	clear: both;
+	width: 100%;
+	height: 1px;
+	background: $mainBorderColor;
+	margin: 30px 0 12px;
+
+	&.preview {
+		margin: 40px 0 20px;
+	}
+
+	&.errands {
+		margin: 30px 0;
+	}
+}
+
+.help {
+	position: relative;
+}
+
+.help-box {
+	display: none;
+	@extend .clearfix;
+	width: 330px;
+	position: absolute;
+	bottom: 26px;
+	right: -41px;
+	padding: 15px 0;
+	border-radius: 3px;
+	background: #303030;
+	color: #fff;
+	z-index: 102;
+
+	img {
+		float: left;
+		margin-right: 10px;
+	}
+
+	span {
+		float: left;
+		display: block;
+		padding: 0 15px;
+		font-weight: 400;
+		font-size: 14px;
+
+		strong {
+			display: block;
+
+			&::before {
+				color: #fff;
+			}
+		}
+
+		a {
+			font-weight: 700;
+			color: #fff;
+			display: inline-block;
+			line-height: 1;
+			margin-top: 6px;
+
+			&.close {
+				position: absolute;
+				margin: 0;
+				top: 6px;
+				right: 10px;
+				color: #fff;
+
+				&:hover {
+					border: 0;
+				}
+			}
+
+			&::after {
+				color: #fff;
+			}
+
+			&:hover {
+				color: #cccccc;
+				border-bottom: 1px dotted #cccccc;
+
+				&::after {
+					color: #cccccc;
+				}
+			}
+		}
+	}
+
+	.marker {
+		*display: none;
+		position: absolute;
+		bottom: -6px;
+		right: 49px;
+		@include transform(rotate(45deg));
+		width: 12px;
+		height: 12px;
+		background: #303030;
+		z-index: 101;
+	}
+}
+
+/* 
+  !! FLYTTA TILL NY FIL NÄR DU VET VILKEN:
+*/
+
+.current {
+	position: absolute;
+	width: 101px;
+	height: 103px;
+	background: url(../images/sprite.png);
+	background-position: 0 0;
+	left: -1px;
+	top: -1px;
+	text-indent: -9999px;
+	z-index: 100;
+	*z-index: -1;
+
+	&.blue {
+		background-position: 0 -103px;
+	}
+}
+
+.center {
+	text-align: center;
+	padding: 40px 45px;
+	
+	figure {
+		width: 63px;
+		height: 63px;
+		border: 1px solid $mainBorderColor;
+		overflow: hidden;
+		border-radius: 3px;
+		margin: 0 auto 12px;
+	}
+
+	h2 {
+		i {
+			vertical-align: 1px;
+		}
+	}
+}
+
+.favourite {
+	cursor: pointer;
+
+	&::after, &::before {
+		display: inline-block;
+		width: 13px;
+		height: 13px;
+		margin-top: 2px;
+		text-indent: -9999px;
+		background: url(../images/favourite.png);
+		background-position: 0 0;
+	}
+
+	&.gray {
+
+		&::after, &::before {
+			display: none;
+			background-position: 0 -13px;
+		}
+
+		&:hover {
+
+			&::after, &::before {
+				display: inline-block;
+			}
+		}
+	}
+
+	&.xl {
+		&::after, &::before {
+			vertical-align: top;
+			display: inline-block;
+			width: 25px;
+			height: 25px;
+			margin-top: 5px;
+			text-indent: -9999px;
+			background: url(../images/favourite_xl.png);
+			background-position: 0 0;
+		}
+
+		&.gray {
+
+			&::after, &::before {
+				background-position: 0 -25px;
+			}
+		}
+	}
+
+	.only-mobile {
+		display: none;
+	}
+}
+
+/* ========== TABLET ========== */
+
+@include media($tablet) {
+	.content, .content-wide {
+		@include span-columns(8);
+		@include omega;
+	}
+
+	aside {
+		@include span-columns(8);
+		@include omega;
+
+		section {
+			@include span-columns(4 of 8);
+			border: 0;
+			box-shadow: inset -1px -1px 0 $mainShadowColor;
+
+			&:nth-child(2n) {
+				@include omega;
+			}
+		}
+	}
+
+	.favourite {
+
+		&.gray {
+
+			&::after, &::before {
+				display: inline-block;
+			}
+		}
+	}
+}
+
+/* ========== MOBILE ========== */
+
+@include media($mobile) {
+
+	.content, .content-wide {
+		@include span-columns(4);
+		@include omega;
+	}
+
+	aside {
+		@include span-columns(4);
+		@include omega;
+
+		section {
+			@include span-columns(4 of 4);
+			@include omega;
+			border: 0;
+			box-shadow: inset -1px -1px 0 $mainShadowColor;
+		}
+	}
+
+	span {
+
+		&.tip {
+			padding: 0;
+		}
+	}
+
+	.help-box {
+		display: none;
+		@extend .clearfix;
+		position: absolute;
+		width: 100%;
+		bottom: 39px;
+		left: 0;
+		padding: 15px 0;
+		border-radius: 3px;
+		background: $mainForegroundColor;
+		color: #fff;
+		z-index: 102;
+
+		img {
+			float: left;
+			margin-right: 10px;
+		}
+
+		span {
+			float: left;
+			display: block;
+			padding: 0 15px;
+			font-weight: 400;
+			font-size: 14px;
+
+			strong {
+				display: block;
+
+				&::before {
+					color: #fff;
+				}
+			}
+
+			a {
+				font-weight: 700;
+				color: #fff;
+				display: inline-block;
+				line-height: 1;
+				margin-top: 6px;
+
+				&.close {
+					position: absolute;
+					margin: 0;
+					top: 6px;
+					right: 10px;
+					color: #fff;
+
+					&:hover {
+						border: 0;
+					}
+				}
+
+				&::after {
+					color: #fff;
+				}
+
+				&:hover {
+					color: #cccccc;
+					border-bottom: 1px dotted #cccccc;
+
+					&::after {
+						color: #cccccc;
+					}
+				}
+			}
+		}
+
+		.marker {
+			*display: none;
+			position: absolute;
+			bottom: -6px;
+			right: 14px;
+			@include transform(rotate(45deg));
+			width: 12px;
+			height: 12px;
+			background: $mainForegroundColor;
+			z-index: 101;
+		}
+	}
+
+	.favourite {
+
+		&.gray {
+
+			&::after, &::before {
+				display: inline-block;
+			}
+		}
+	}
+
+	.hide-mobile {
+		display: none;
+	}
+
+	.only-mobile {
+		display: block;
+	}
+}

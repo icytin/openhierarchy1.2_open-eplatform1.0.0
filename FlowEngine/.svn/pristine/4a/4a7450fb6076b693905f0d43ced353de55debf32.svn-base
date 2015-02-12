@@ -1,0 +1,12 @@
+package com.nordicpeak.flowengine.enums;
+
+public enum EventType {
+	UPDATED,
+	SUBMITTED, 
+	STATUS_UPDATED, 
+	MANAGERS_UPDATED, 
+	CUSTOMER_NOTIFICATION_SENT, 
+	CUSTOMER_MESSAGE_SENT,
+	MANAGER_MESSAGE_SENT,
+	OTHER_EVENT
+}

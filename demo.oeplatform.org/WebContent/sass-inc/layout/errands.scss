@@ -1,0 +1,223 @@
+.errands-wrapper {
+	margin: 0 $padLR $gutter;
+	@include pad(16px 2.1134594% 19px);
+	background: #f5f5f5;
+	border: 1px solid #e0e0e0;
+
+	&.makeup {
+		border: 1px solid #c7c2a9;
+		background: #fffae1;
+
+		td, th {
+			border-right: 1px solid #fffae1;
+		}
+		tbody {
+			td {
+				background: #fff;
+				border-bottom: 5px solid #fffae1;
+
+				&.icon {
+					background: #deecff;
+				}
+			}
+		}
+	}
+
+	.heading-wrapper {
+		padding-bottom: 10px;
+
+		h2 {
+			padding-top: 9px;
+		}
+		.btn {
+			float: right;
+		}
+	}
+
+	&.draft {
+		tbody {
+			td {
+
+				&.icon {
+					background: #ffef9f;
+				}
+			} 
+		}
+	}
+
+	h2 {
+		font-size: 16px;
+
+		span {
+			color: $mainAccentColor;
+
+			&.guide {
+				color: #29bf4c;
+			}
+		}
+	}
+
+	table {
+		width: 100%;
+		
+		tbody {
+			tr {
+				
+				&.odd {
+					td {
+						background: #ffffff;
+					}
+				}
+				
+				td {
+					border-bottom: 5px solid #f5f5f5;
+				}
+				
+				&.disabled {
+					.icon {
+
+						&:hover {
+
+							i {
+
+								&::before {
+									color: $mainForegroundColor;
+								}
+							}
+						}
+					}
+					.link {
+						text-align: right;
+						color: #cacaca;
+					}
+				}
+
+				&.unread {
+					td {
+
+						&.icon {
+							background: #deecff;
+							color: $mainAccentColor;
+						}
+					}
+				}
+			}
+		}
+
+		td, th {
+			background: #ffffff;
+			text-align: left;
+			padding: 13px 10px;
+			border-right: 1px solid #f5f5f5;
+			font-weight: 600;
+
+			&.icon {
+				//width: 3.7166086%;
+				text-align: center;
+				width: 15px;
+
+				i {
+					width: 11px;
+					padding: 0;
+					margin: 0;
+
+					&::before {
+						margin: 0;
+					}
+				}
+			}
+
+			&.service {
+				//width: 27.526132%;
+			}
+
+			&.errandno {
+				//width: 16.957027%;
+			}
+
+			&.status {
+				//width: 17.537747%
+			}
+
+			&.date {
+				//width: 19.628339%;
+			}
+
+			&.link {
+				//width: 14.053426%;
+				padding: 4px 12px 4px 0;
+				text-align: right;
+				max-width: 80px;
+
+				.btn {
+					display: inline-block;
+				}
+
+				a {
+
+					&::before {
+						margin-right: 0;
+					}
+				}
+			}
+		}
+
+		thead {
+
+			th {
+				@extend .clearfix;
+				background: transparent;
+				padding: 6px 10px;
+				font-size: 16px;
+
+				span {
+					float: left;
+
+					&::after {
+						display: none;
+					}
+				}
+
+			}
+
+			&.errand {
+				th {
+					background: $mainForegroundColor;
+					color: #f5f5f5;
+				}
+			}
+
+			&.sortable {
+				th {
+					background: #e7e7e7;
+					color: $mainForegroundColor;
+					border-bottom: 5px solid #f5f5f5;
+					font-size: 16px;
+
+					span {
+						display: block;
+						width: 100%;
+
+						&::after {
+							display: none;
+							float: right;
+							margin-top: 5px;
+						}
+					}
+
+					&.active {
+						background: #cacaca;
+
+						span {
+
+							&::after {
+
+								display: inline-block;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

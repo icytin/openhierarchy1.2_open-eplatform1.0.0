@@ -1,0 +1,372 @@
+@CHARSET "ISO-8859-1";
+
+/* ~~~~~ OpenHieararchy Standard Css Inside Contentitem ~~~~*/
+
+.contentitem { 
+	clear: both;
+}
+
+.contentitem h1 {
+	padding: 0 0 5px;
+}
+
+.contentitem section h1 {
+	padding: 16px 27px;
+}
+
+/* ~~~~~ Backgrounds ~~~~~ */
+.contentitem .background { background-color: #7b7b7b; color: #FFFFFF; }
+.contentitem .lightbackground { background-color: #fffbff; }
+
+/* ~~~~~ Container width classes ~~~~~ */
+.contentitem .ten { width: 10%; }
+.contentitem .twenty { width: 20%; }
+.contentitem .thirty { width: 30%; }
+.contentitem .forty { width: 40%; }
+.contentitem .half { width: 50%; }
+.contentitem .fifty { width: 50%; }
+.contentitem .sixty { width: 60%; }
+.contentitem .seventy { width: 70%; }
+.contentitem .eighty { width: 80%; }
+.contentitem .ninety { width: 90%; }
+.contentitem .hundred { width: 100%; }
+.contentitem .full { width: 100%; }
+
+/* ~~~~~ Margin classes ~~~~~ */
+.contentitem .nomargin { margin: 0; }
+.contentitem .margin { margin: 5px; }
+.contentitem .margintop { margin-top: 5px; }
+.contentitem .marginbottom { margin-bottom: 5px; }
+.contentitem .marginright { margin-right: 5px; }
+.contentitem .marginleft { margin-left: 5px; }
+.contentitem .bigmargin { margin: 10px; }
+.contentitem .bigmargintop { margin-top: 10px; }
+.contentitem .bigmarginbottom { margin-bottom: 10px; }
+.contentitem .bigmarginleft { margin-left: 10px; }
+.contentitem .bigmarginright { margin-right: 10px; }
+
+/* ~~~~~ Padding classes ~~~~~ */
+.nopadding, table.nopadding, table.nopaddings, table.nopaddings th, table.nopaddings tr, table.nopaddings td { padding: 0 !important; }
+.contentitem .padding { padding: 5px; }
+.contentitem .paddingtop { padding-top: 5px; }
+.contentitem .paddingbottom { padding-bottom: 5px; }
+.contentitem .paddingright { padding-right: 5px; }
+.contentitem .paddingleft { padding-left: 5px; }
+.contentitem .bigpadding { padding: 10px; }
+.contentitem .bigpaddingtop { padding-top: 10px; }
+.contentitem .bigpaddingbottom { padding-bottom: 10px; }
+.contentitem .bigpaddingright { padding-right: 10px; }
+.contentitem .bigpaddingleft { padding-left: 10px; }
+
+/* ~~~~~ Border classes ~~~~~ */ 
+.contentitem .bordertop { border-top: 1px solid #e7e6e6; }
+.contentitem .borderbottom { border-bottom: 1px solid #e7e6e6; }
+
+/* ~~~~~ Textarea classes ~~~~~ */
+.contentitem textarea.small { display: block; height: 45px; margin: 0 auto; width: 99%; }
+.contentitem textarea.medium { display: block; height: 90px; }
+.contentitem textarea.large { display: block; height: 180px; }
+
+/* ~~~~~ Table styles ~~~~~*/
+
+.contentitem table th { border: none;  }
+.contentitem table th a { border: none; }
+.contentitem table th, td { text-align: left; /*display: table-cell; margin: 0; padding: 4px; vertical-align: middle; text-align: left;*/ }
+/*.contentitem table.border { margin-bottom: 10px; margin-top: 5px; }*/
+.contentitem table.border, table.border td { border: 1px solid #e7e6e6; /*border-collapse: collapse;*/ }
+.contentitem table.border tr { /*display:table-row;*/ }
+.contentitem table.border th { /*border: none;*/ }
+
+/* ~~~~~ Container behaviour classes ~~~~~ */
+.floatright{ float: right; }
+.floatleft { float: left; }
+.clearboth { clear: both; }
+.display-inline-block { display: inline-block; zoom: 1; *display: inline; }
+.display-inline { display: inline; }
+.display-block { display: block; }
+
+/* ~~~~~ Paragraph classes ~~~~~ */
+.contentitem p.error, .contentitem label.error { color: #c32929; margin: 2px 0 2px 0; }
+.contentitem p.success { color: green; }
+.contentitem .bold { font-weight: bold; }
+
+/* ~~~~~ Text classes ~~~~~ */
+.contentitem .text-align-right { text-align: right; }
+.contentitem .text-align-left { text-align: left; }
+.contentitem .text-align-center { text-align: center; }
+.contentitem .text-align-justify { text-align: justify; }
+.contentitem .text-align-inherit { text-align: inherit; }
+.contentitem .text-decoration-none { text-decoration: none; }
+.contentitem .pointer { cursor: pointer; }
+.contentitem .cursor-move { cursor: move; }
+.contentitem .required { color: red; }
+.contentitem .required { color: red; }
+.contentitem .tiny  { font-size: 90%; margin: 0px !important; padding: 0px; text-align: left; }
+
+/* ~~~~~ Align classes ~~~~~ */
+.contentitem .vertical-align-middle { vertical-align: middle; }
+.contentitem .vertical-align-top { vertical-align: top; }
+.contentitem .vertical-align-bottom { vertical-align: bottom; }
+
+/* ~~~~~ Image classes ~~~~~ */
+.contentitem img { border: 0; margin: 0; padding: 0; }
+.contentitem img.alignbottom { vertical-align: bottom; }
+.contentitem img.alignmiddle { vertical-align: middle; }
+.contentitem img.aligntop { vertical-align: top; }
+
+/* ~~~~~ Misc ~~~~~ */
+.contentitem .hover:hover { background-color: #f7f7f7; color: #393939; }
+.contentitem .border { border: 1px solid #ECECEC; }
+.contentitem .hidden { display: none; visibility: visible; }
+.contentitem .disabledtext { color: gray; }
+.contentitem div.scrolllist { overflow-x:hidden; overflow-y:scroll; height: 120px; padding-right: 3px;padding-right: 20px !ie-only; }
+
+/* ~~~~~ Content containers ~~~~~ */
+.content-box { border: 1px solid #ECECEC; float: left; margin-bottom: 15px; padding: 0px; text-align: left; width: 100%; border-radius: 4px; }
+.content-box > h1 { background: url("../images/content_header_bg.png") repeat-x scroll left center #7B7B7B !important; color: #FFFFFF !important; font-size: 115%; margin-bottom: 5px; padding: 4px 4px 4px 7px; text-align: left; margin: 0; border-radius: 3px 3px 0 0; vertical-align: middle; height: 20px; text-shadow: 1px 1px 1px #333333 !important; }
+.content-box .content { padding: 10px; margin: 0; }
+
+
+/* Include this definitions in other css file */
+.no-sections {
+	position: relative;
+	background: #fff;
+	margin-top: 16px;
+	min-height: 20px;
+	border-right: 1px solid #cfcfcf;
+	border-bottom: 1px solid #cfcfcf;
+	padding: 27px 27px 40px 27px;
+	float: left;
+	width: 94.3%;
+}
+
+.no-sections:before {
+	content: " ";
+	display: table;
+}
+
+.contentitem label {
+	display: inline-block;
+}
+
+#FlowInstanceAdminModule label {
+	display: inherit;
+}
+
+#FlowBrowser.contentitem input[type="checkbox"], #FlowBrowser.contentitem input[type="radio"] {
+	display: none;
+}
+
+#FlowBrowser.contentitem input[type="checkbox"]:checked + label:before {
+	content: "c";
+	display: block;
+}
+
+#FlowBrowser.contentitem input[type="radio"]:checked + label:before {
+	content: "\2022";
+	display: block;
+}
+
+.no-sections input[type="checkbox"], .no-sections input[type="radio"] {
+	display: inline !important;
+	margin-right: 5px;
+}
+
+.no-sections input[type="checkbox"] + label:before, .no-sections input[type="radio"] + label:before, .no-sections input[type="checkbox"]:checked + label:before {
+	content: "" !important;
+	display: inline !important;
+}
+
+.no-sections fieldset { margin-bottom: 5px; border-radius: 12px; border: 1px solid #DADADA; padding: 5px 10px 10px 10px; width: 98%; }
+
+.no-sections fieldset legend { font-weight: 600; line-height: 2em; font-size: 18px; padding: 0 4px 0 4px; color: #393939; }
+
+.submenu ul li.active {
+	background: none;
+    border-right: none;
+    box-shadow: none;
+}
+
+.submenu ul li.active a {
+	color: #2969bf;
+}
+
+.submenu ul li.no-url {
+	font-size: 1.1em;
+	font-weight: 700;
+	padding-left: 22px;
+}
+
+header .user .logged-out {
+	display: block;
+}
+
+input[type="submit"], input[type="button"], button {
+	padding: 10px 20px 9px 20px;	
+}
+
+input[type="password"] {
+	border-radius: 3px 3px 3px 3px;
+    color: #424242;
+    margin-top: 6px;
+    outline: 0 none;
+    padding: 12px 13px;
+    resize: none;
+}
+
+input[type="password"]:focus {
+	border-color: #2969BF;
+}
+
+input[type="text"], input[type="password"] {
+	width: inherit;
+}
+
+select[multiple="true"] {
+  font-family: 'Source Sans Pro', sans-serif;
+  width: 202px;
+  height: inherit;
+  border: 1px solid #e7e7e7;
+  border-radius: 3px;
+  outline: none;
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0 35px 0 15px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #424242;
+  cursor: pointer;
+  whitespace: nowrap;
+  text-overflow: ellipsis;
+  background: none;
+}
+
+.previews li.disabled figure {
+	opacity: 0.35;
+	*filter: alpha(opacity=35);
+}
+
+.previews li:nth-child(3n+1) {
+	clear: none;
+}
+
+.errands-wrapper table td.link, .errands-wrapper table th.link {
+	max-width: 150px;
+}
+
+label.required, h2.required {
+	color: inherit !important;
+}
+
+.panel-wrapper {
+    width: 100%;
+    z-index: 999;
+}
+
+.service article h2.hasDescription {
+	padding-bottom: 2px;
+}
+
+.service article .description {
+	clear: both;
+    float: left;
+    font-size: 0.9em;
+    padding-bottom: 10px;
+}
+
+.service article .help a {
+	line-height: inherit;
+}
+
+.service article .italic {
+	clear: left;
+}
+
+.service article.error {
+	margin-top: 0;
+}
+
+#currenthelp > span *, .service article .break {
+	float: none;
+}
+
+.input-error i {
+	right: 45px;
+}
+
+input[type="file"] {
+	border: none;
+}
+
+#drop input{
+    display:none;
+}
+
+.files li span.italic {
+	clear: none;
+}
+
+#UserFavouriteMenuModule ul li.no-favourites span.text {
+	padding: 13px 0 11px 17px;
+	display: block;
+	font-weight: 600;
+}
+
+#UserFavouriteMenuModule ul li.no-favourites span.text, #UserFavouriteBackgroundModule ul li.no-favourites {
+	background-color: #FFFFFF;
+}
+
+textarea.full {
+	width: 97% !important;
+}
+
+.upload .btn-upload {
+	position: relative;
+}
+
+input[type="file"].qloader {
+	cursor: pointer;
+    display: block !important;
+    font-size: 22px;
+    margin: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    visibility: visible;
+    width: 90px;
+}
+
+.tabs-content.nopadding {
+    padding: 25px 0 40px !important;
+}
+
+header nav ul.right li a, header nav ul.right li.active a {
+    padding: 15px 8px 12px 8px;
+}
+
+header nav ul.right li .marker {
+    bottom: 2px;
+}
+
+header nav ul.right li .submenu .inner div.paddingbottom {
+	padding-bottom: 5px;
+}
+
+header nav ul.right li .submenu article.no-events {
+    font-weight: 600;
+    padding: 12px 11px 16px;
+}
+
+section.modal-marginbottom {
+	margin-bottom: 16px;		
+}
+
+.x-body {
+	color: #424242 !important;
+    background: inherit !important;
+}

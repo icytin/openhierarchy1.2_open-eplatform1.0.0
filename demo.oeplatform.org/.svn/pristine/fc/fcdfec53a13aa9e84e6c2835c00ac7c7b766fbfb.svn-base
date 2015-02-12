@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+<log4j:configuration>
+	<appender name="file" class="se.unlogic.log4jutils.logging.RelativeFileAppender">
+		<param name="PathName" value="webroot" />
+		<param name="File" value="systemlog.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%p] %d{[yyyy-MM-dd] [HH:mm:ss]} %C{1}.%M %m%n" />
+		</layout>
+	</appender>
+
+	<root>
+		<priority value="info" />
+		<appender-ref ref="file" />
+	</root>
+</log4j:configuration>
+	
