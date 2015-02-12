@@ -29,9 +29,9 @@
 1. Window -> Preferences -> XML -> XSL -> Validation. Switch all to ignore and click apply
 
 #### How to resolve "The type javax.servlet.http.HttpServletRequest cannot be resolved."?
+... uhm
 
-
-#### "The project was not built since its build path is incomplete. Cannot find the class file for javax.servlet.http.HttpServletRequest..."?
+#### What does "The project was not built since its build path is incomplete. Cannot find the class file for javax.servlet.http.HttpServletRequest..." means?
 Check properties of the project and make sure the tomcat is selected for that project
 
 ....
