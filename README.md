@@ -30,6 +30,10 @@
 
 #### How to resolve "The type javax.servlet.http.HttpServletRequest cannot be resolved."?
 
+
+#### "The project was not built since its build path is incomplete. Cannot find the class file for javax.servlet.http.HttpServletRequest..."?
+Check properties of the project and make sure the tomcat is selected for that project
+
 ....
 
 
