@@ -24,4 +24,6 @@
 ..
 
 ## FAQ
-...
+
+### How do I resolve XSL-errors?
+1. Window -> Preferences -> XML -> XSL -> Validation. Switch all to ignore and click apply
