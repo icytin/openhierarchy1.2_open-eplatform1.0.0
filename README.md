@@ -1,5 +1,6 @@
-Get started with OpenHierarchy and the Open ePlatform
+#Get started with OpenHierarchy and the Open ePlatform
 
+## Set up the project
 1. Eclipse (Tested with Juno)
 2. Open Perspective SVN Repositories (Window -> Open Perspective -> Other..)
 3. Add this project as reference https://github.com/icytin/openhierarchy1.2_open-eplatform1.0.0
@@ -7,11 +8,19 @@ Get started with OpenHierarchy and the Open ePlatform
 5. In the next step choose "Check out as a projects into workspace", also make sure all projects are selected. Hit the finish button
 6. Open the Java-Perspective if you´re not already there
 
--- Set up TomCat Server
-..
+### JRE
+1. Window -> Preference -> Java -> Installed JRE
+2. You should have jre7 installed and marked
+3. You also need jre6 for some of the projects. Install it, click "Add.." locate the jre6 folder on your disk.
+
+### Configurations
+1. Set up TomCat Server. Window -> Show View -> Other -> Servers
+2. Click "new server wizard"
+3. Choose "Tomcat v6.0 Server". If you are missing tomcat server. You can find a .zip file inside the ProjectTemplate. Just extract the content under C:/ for example. Then locate it in the wizard..
+
 
 -- The database
 ..
 
--- FAQ
+## FAQ
 ...
