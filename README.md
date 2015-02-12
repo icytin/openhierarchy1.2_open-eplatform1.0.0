@@ -20,7 +20,7 @@
 4. You may locate the Runtime Environments from: Window -> Preferences -> Server -> Runtime Environments
 
 
--- The database
+### The database
 ..
 
 ## FAQ
