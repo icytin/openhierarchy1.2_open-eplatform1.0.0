@@ -25,5 +25,9 @@
 
 ## FAQ
 
-### How do I resolve XSL-errors?
+#### How do I resolve XSL-errors?
 1. Window -> Preferences -> XML -> XSL -> Validation. Switch all to ignore and click apply
+
+#### How to resolve "The type javax.servlet.http.HttpServletRequest cannot be resolved."
+1. Right click the project and go to properties. Check if the TomCat is checked. Clean and rebuild project.
+
