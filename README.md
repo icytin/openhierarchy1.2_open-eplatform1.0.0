@@ -1,11 +1,11 @@
 #Get started with OpenHierarchy and the Open ePlatform
 
-This is a fork of the OpenHierarchy by Nordic Peak and the on-top-platform Open-ePlatform.
+This is a fork of the OpenHierarchy by Nordic Peak and the platform on top - Open-ePlatform.
 * http://openhierarchy.org/
 * https://github.com/Sundsvallskommun/Open-ePlatform
 * http://www.oeplatform.org/
 
-The purpose with this project is to simplify the steps needed to get started working with this framework and addons.
+The purpose with this project is to simplify the steps needed to get started working with this platform.
 
 ## Set up the project
 1. Eclipse (Tested with Juno)
@@ -83,6 +83,8 @@ Check properties of the project and make sure the tomcat is selected for that pr
 #### Cannot resolve getParentLogger of the OpenHierarchy-project?
 Check project properties -> Java Build Path -> Libraries. Check if you have jre7, in this case you may try to downgrade to jre6.
 
-....
+#######...
+
+####### Please feel free to contribute!
 
 
