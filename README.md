@@ -83,8 +83,8 @@ Check properties of the project and make sure the tomcat is selected for that pr
 #### Cannot resolve getParentLogger of the OpenHierarchy-project?
 Check project properties -> Java Build Path -> Libraries. Check if you have jre7, in this case you may try to downgrade to jre6.
 
-#######...
+###### ...
 
-####### Please feel free to contribute!
+###### Please feel free to contribute!
 
 
