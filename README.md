@@ -38,7 +38,9 @@ All other projects but the ProjectTemplate, which is a custom template project
 
 
 ### The database
-Install some db-environment. For example HeidiSQL.
+
+#####Install some db-environment. For example HeidiSQL.
+
 1. File -> Session Manager -> New
 2. networktype: MySQL (TCP/IP), IP: 127.0.0.1, user: root, password: root, port: 3306
 3. Click Open
