@@ -18,7 +18,7 @@ The purpose with this project is to simplify the steps needed to get started wor
 ### JRE
 1. Window -> Preference -> Java -> Installed JRE
 2. You should have jre7 installed and marked
-3. You also need jre6 for some of the projects. Install it, click "Add.." locate the jre6 folder on your disk.
+3. You also need jre6 for some of the projects. Download and install it, click "Add.." locate the jre6 folder on your disk. The jre6 installer is located in the ProjectTemplate.
 
 ### Server Configurations
 1. Set up TomCat Server. Window -> Show View -> Other -> Servers
