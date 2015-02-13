@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+<log4j:configuration>
+
+	<appender name="file" class="se.unlogic.log4jutils.logging.RelativeFileAppender">
+        <param name="PathName" value="webroot" />
+        <param name="File" value="systemlog.log" />
+        <param name="Append" value="true" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%p] %d{[yyyy-MM-dd] [HH:mm:ss]} %C{1}.%M %m%n"/>
+        </layout>   
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+        	<param name="LevelMin" value="INFO" />
+        	<param name="LevelMax" value="FATAL" />
+        </filter>        
+     </appender>
+
+ 	<!-- <appender name="mailErrorAppender" class="org.apache.log4j.net.SMTPAppender">
+     	<param name="BufferSize" value="512" />
+   		<param name="SMTPHost" value="localhost" />
+      	<param name="From" value="test@test.se" />
+     	<param name="To" value="test@test.se" />
+       	<param name="Subject" value="Meddelande från testsystem" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%p] %d{[yyyy-MM-dd] [HH:mm:ss]} %C{1}.%M %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+        	<param name="LevelMin" value="ERROR" />
+        	<param name="LevelMax" value="FATAL" />
+        </filter>         
+     </appender> -->
+  
+	<root>
+		<level value="INFO"/>
+		<appender-ref ref="file"/>
+	 	<!-- <appender-ref ref="mailErrorAppender" />-->
+	</root>
+	
+</log4j:configuration>
+	

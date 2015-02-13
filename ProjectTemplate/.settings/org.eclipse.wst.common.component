@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="ProjectTemplate">
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="FileUploadUtils.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/FileUploadUtils/FileUploadUtils">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="WebUtils.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/WebUtils/WebUtils">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Commons-IO.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Commons-IO/Commons-IO">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="StandardUtils.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StandardUtils/StandardUtils">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Log4j.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Log4j/Log4j">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="JavaMail.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/JavaMail/JavaMail">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="JCaptcha.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/JCaptcha/JCaptcha">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Activation.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Activation/Activation">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Log4JUtils.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Log4jUtils/Log4jUtils">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SvnAnt.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SvnAnt/SvnAnt">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="POI.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/POI/POI">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="JCaptchaUtils.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/JCaptchaUtils/JCaptchaUtils">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="OpenHierarchy.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/OpenHierarchy/OpenHierarchy">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="PureCaptcha.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/PureCaptcha/PureCaptcha">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CommonsFileUpload.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/CommonsFileUpload/CommonsFileUpload">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="EmailUtils.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/EmailUtils/EmailUtils">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SVNKit.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SVNKit/SVNKit">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="ProjectTemplate"/>
+        <property name="java-output-path" value="/ProjectTemplate/bin"/>
+    </wb-module>
+</project-modules>

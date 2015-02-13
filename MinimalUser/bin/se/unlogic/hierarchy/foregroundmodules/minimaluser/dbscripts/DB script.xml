@@ -1,0 +1,76 @@
+<DBScripts>
+	<Script version="1">
+		<Query>
+			<![CDATA[
+				CREATE TABLE `minimal_users` (
+				  `userID` int(10) unsigned NOT NULL auto_increment,
+				  `firstname` varchar(30) NOT NULL,
+				  `lastname` varchar(50) NOT NULL,
+				  `admin` tinyint(1) NOT NULL default '0',
+				  `enabled` tinyint(1) NOT NULL default '0',
+				  `added` timestamp NOT NULL default CURRENT_TIMESTAMP,
+				  `lastlogin` timestamp NULL default '0000-00-00 00:00:00',
+				  `language` varchar(76) default NULL,
+				  `preferedDesign` varchar(255) default NULL,
+				  PRIMARY KEY  (`userID`)
+				) ENGINE=InnoDB AUTO_INCREMENT=2000 DEFAULT CHARSET=latin1;
+			]]>
+		</Query>
+		<Query>
+			<![CDATA[
+				CREATE TABLE  `minimal_groups` (
+				  `groupID` int(10) unsigned NOT NULL auto_increment,
+				  `name` varchar(255) NOT NULL,
+				  `description` varchar(255) NOT NULL,
+				  `enabled` tinyint(1) NOT NULL,
+				  PRIMARY KEY  (`groupID`)
+				) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;			
+			]]>
+		</Query>
+		<Query>
+			<![CDATA[
+				CREATE TABLE `minimal_user_groups` (
+				  `userID` INTEGER UNSIGNED NOT NULL,
+				  `groupID` INTEGER UNSIGNED NOT NULL,
+				  PRIMARY KEY (`userID`, `groupID`),
+				  CONSTRAINT `FK_minimal_user_groups_1` FOREIGN KEY `FK_minimal_user_groups_1` (`userID`)
+				    REFERENCES `minimal_users` (`userID`)
+				    ON DELETE CASCADE
+				    ON UPDATE CASCADE
+				)
+				ENGINE = InnoDB;
+			]]>
+		</Query>
+		<Query>
+			<![CDATA[
+				CREATE TABLE `minimal_user_attributes` (
+				  `userID` INTEGER UNSIGNED NOT NULL,
+				  `name` VARCHAR(255) NOT NULL,
+				  `value` VARCHAR(1024) NOT NULL,
+				  PRIMARY KEY (`userID`, `name`),
+				  CONSTRAINT `FK_minimal_user_attributes_1` FOREIGN KEY `FK_minimal_user_attributes_1` (`userID`)
+				    REFERENCES `minimal_users` (`userID`)
+				    ON DELETE CASCADE
+				    ON UPDATE CASCADE
+				)
+				ENGINE = InnoDB;
+			]]>
+		</Query>		
+	</Script>
+	
+	<Script version="2">
+		<Query>
+			<![CDATA[
+				DROP TABLE `minimal_groups`;
+			]]>
+		</Query>		
+	</Script>
+	
+	<Script version="3">
+		<Query>
+			<![CDATA[
+				ALTER TABLE `minimal_user_attributes` ADD INDEX `Index_2`(`name`);
+			]]>
+		</Query>		
+	</Script>			
+</DBScripts>
