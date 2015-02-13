@@ -59,11 +59,11 @@ All other projects but the ProjectTemplate, which is a custom template project
 
 ## Source references
 
-#####This is not everything. Additional features may be added from OH:
+##### This is not everything. Additional features may be added from OH:
 * svn://unlogic.se/openhierarchy
 * svn://unlogic.se/utils
 
-#####Or if you´d like to create your own project from scratch. This is what you need:
+##### Or if you´d like to create your own project from scratch. This is what you need:
 * https://github.com/Sundsvallskommun/Open-ePlatform
 * svn://unlogic.se/openhierarchy
 * svn://unlogic.se/purecaptcha
@@ -71,16 +71,16 @@ All other projects but the ProjectTemplate, which is a custom template project
 
 ## FAQ
 
-#### How do I resolve XSL-errors?
+##### How do I resolve XSL-errors?
 1. Window -> Preferences -> XML -> XSL -> Validation. Switch all to ignore and click apply
 
-#### How to resolve "The type javax.servlet.http.HttpServletRequest cannot be resolved."?
+##### How to resolve "The type javax.servlet.http.HttpServletRequest cannot be resolved."?
 ... uhmm
 
-#### What does "The project was not built since its build path is incomplete. Cannot find the class file for javax.servlet.http.HttpServletRequest..." means?
+##### What does "The project was not built since its build path is incomplete. Cannot find the class file for javax.servlet.http.HttpServletRequest..." means?
 Check properties of the project and make sure the tomcat is selected for that project
 
-#### Cannot resolve getParentLogger of the OpenHierarchy-project?
+##### Cannot resolve getParentLogger of the OpenHierarchy-project?
 Check project properties -> Java Build Path -> Libraries. Check if you have jre7, in this case you may try to downgrade to jre6.
 
 ###### ...
