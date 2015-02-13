@@ -57,7 +57,7 @@ All other projects but the ProjectTemplate, which is a custom template project
 3. Navigate to the site(same name as the project name) in this example: http://localhost:8080/demo.oeplatform.org/
 4. Sign in using the default login admin\admin
 
-## Additional Modules
+## Source references
 
 #####This is not everything. Additional features may be added from OH:
 * svn://unlogic.se/openhierarchy
