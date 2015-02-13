@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.1.73, for Win64 (unknown)
+-- MySQL dump 10.13  Distrib 5.1.73, for Win64 (unknown).
 --
 -- Host: localhost    Database: e-tjanster.sundsvall.se
 -- ------------------------------------------------------
