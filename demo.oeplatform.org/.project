@@ -24,6 +24,29 @@
 		<project>FlowInstancePDFGenerator</project>
 		<project>JTidy</project>
 		<project>AuthifyClient</project>
+		<project>OpenHierarchy</project>
+		<project>StandardUtils</project>
+		<project>FileUploadUtils</project>
+		<project>PBLKnowledgeBank</project>
+		<project>SinglePolygonMapQuery</project>
+		<project>JavaMail</project>
+		<project>Activation</project>
+		<project>SearchLMRMI</project>
+		<project>SVNKit</project>
+		<project>WebUtils</project>
+		<project>mapclient-riges</project>
+		<project>Commons-IO</project>
+		<project>Log4j</project>
+		<project>PUDQuery</project>
+		<project>ProjectTemplate</project>
+		<project>PUDMapQuery</project>
+		<project>Log4jUtils</project>
+		<project>SvnAnt</project>
+		<project>BaseMapQuery</project>
+		<project>MultiGeometryMapQuery</project>
+		<project>PureCaptcha</project>
+		<project>CommonsFileUpload</project>
+		<project>EmailUtils</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
