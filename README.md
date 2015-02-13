@@ -44,10 +44,12 @@ All other projects but the ProjectTemplate, which is a custom template project
 1. File -> Session Manager -> New
 2. networktype: MySQL (TCP/IP), IP: 127.0.0.1, user: root, password: root, port: 3306
 3. Click Open
-4. Mark root@localhost -> Right click and choose: Create New -> Database
+4. Mark root@localhost -> Right click and choose: Create New -> Database. Name it "flowengine-system"
 5. Select the database and add new query window
-6. Paste the OH-flowengine SQL-create code. Located in FlowEngine -> docs -> db
+6. Paste the SQL-code from the "Open ePlatForm 1.9.ansi.sql". Located in FlowEngine -> docs -> db
 7. Execute
+8. Make sure the demo.oeplatform.org project is added to the TomCat Server.
+9. Also check the config.xml in demo.oeplatform.org -> WebContent -> WEB-INF. Make sure the Url is pointing to the db you´ve just added "<Url>jdbc:mysql://127.0.0.1:3306/flowengine-system</Url>"
 
 ## FAQ
 
