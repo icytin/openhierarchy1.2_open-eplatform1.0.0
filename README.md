@@ -5,6 +5,8 @@ This is a fork of the OpenHierarchy by Nordic Peak and the on-top-platform Open-
 * https://github.com/Sundsvallskommun/Open-ePlatform
 * http://www.oeplatform.org/
 
+This fork is intended to simplify the steps needed to get started working with this framework and addons.
+
 ## Set up the project
 1. Eclipse (Tested with Juno)
 2. Open Perspective SVN Repositories (Window -> Open Perspective -> Other..)
