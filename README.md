@@ -17,7 +17,7 @@ The purpose with this project is to simplify the steps needed to get started wor
 7. Open the Java-Perspective if you´re not already there
 
 ### Working sets
-To place the projects categorized - OH by them self and ePlatform in a different place.. You may create working sets, from the package explorer, mark those projects you want to gather then click the "arrow down" and choose "configure working sets...".
+To categorize the projects - OH by them self and ePlatform in a different place.. You may create working sets, from the package explorer, mark those projects you want to gather then click the "arrow down" and choose "configure working sets...".
 
 ##### Open-ePlatform
 The following projects are included in the Open-ePlatform: AuthifyClient, BaseMapQuery, demo.oeplatform.org, FlowEngine, FlowInstancePDFGenerator, mapclient-riges, MinimalUserSAMLAdapter, MultiGeometryMapQuery, PBLKnowledgeBank, PUDMApQuery, PUDQuerym SearchLMRMI, SinglePolygonMapQuery
@@ -36,7 +36,6 @@ All other projects but the ProjectTemplate, which is a custom template project
 3. Choose "Tomcat v6.0 Server". If you are missing tomcat server. You can find a .zip file inside the ProjectTemplate. Just extract the content under C:/ for example. Then locate it in the wizard..
 4. You may locate the Runtime Environments from: Window -> Preferences -> Server -> Runtime Environments
 5. Make sure the demo.oeplatform.org project is added to the TomCat Server
-
 
 ### The database
 
@@ -57,6 +56,18 @@ All other projects but the ProjectTemplate, which is a custom template project
 2. Start the TomCat Server
 3. Navigate to the site(same name as the project name) in this example: http://localhost:8080/demo.oeplatform.org/
 4. Sign in using the default login admin\admin
+
+## Additional Modules
+
+#####This is not everything. Additional features may be added from OH:
+* svn://unlogic.se/openhierarchy
+* svn://unlogic.se/utils
+
+#####Or if you´d like to create your own project from scratch. This is what you need:
+* https://github.com/Sundsvallskommun/Open-ePlatform
+* svn://unlogic.se/openhierarchy
+* svn://unlogic.se/purecaptcha
+* svn://unlogic.se/utils
 
 ## FAQ
 
