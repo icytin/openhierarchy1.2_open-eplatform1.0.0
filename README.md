@@ -13,7 +13,8 @@ The purpose with this project is to simplify the steps needed to get started wor
 3. Add this project as reference https://github.com/icytin/openhierarchy1.2_open-eplatform1.0.0
 4. Right click the trunk and choose checkout as.. then select "find projects in the children of the selected resource" and finish
 5. In the next step choose "Check out as a projects into workspace", also make sure all projects are selected. Hit the finish button
-6. Open the Java-Perspective if you´re not already there
+6. Lay back and relax...
+7. Open the Java-Perspective if you´re not already there
 
 ### Working sets
 To place the projects categorized - OH by them self and ePlatform in a different place.. You may create working sets, from the package explorer, mark those projects you want to gather then click the "arrow down" and choose "configure working sets...".
