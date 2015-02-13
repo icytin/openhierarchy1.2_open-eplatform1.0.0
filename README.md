@@ -9,7 +9,7 @@ The purpose with this project is to simplify the steps needed to get started wor
 
 ## Set up the project
 1. Eclipse (Tested with Juno)
-2. Open Perspective SVN Repositories (Window -> Open Perspective -> Other..)
+2. Open Perspective SVN Repository Exploring (Window -> Open Perspective -> Other..)
 3. Add this project as reference https://github.com/icytin/openhierarchy1.2_open-eplatform1.0.0
 4. Right click the trunk and choose checkout as.. then select "find projects in the children of the selected resource" and finish
 5. In the next step choose "Check out as a projects into workspace", also make sure all projects are selected. Hit the finish button
