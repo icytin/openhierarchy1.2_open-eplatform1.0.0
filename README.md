@@ -9,11 +9,15 @@ The purpose with this project is to simplify the steps needed to get started wor
 
 ## Set up the project
 1. Eclipse (Tested with Juno)
-2. Open Perspective SVN Repositories (Window -> Open Perspective -> Other..)
+2. Open Perspective SVN Repository Exploring (Window -> Open Perspective -> Other..)
 3. Add this project as reference https://github.com/icytin/openhierarchy1.2_open-eplatform1.0.0
 4. Right click the trunk and choose checkout as.. then select "find projects in the children of the selected resource" and finish
 5. In the next step choose "Check out as a projects into workspace", also make sure all projects are selected. Hit the finish button
-6. Open the Java-Perspective if you´re not already there
+6. Lay back and relax...
+7. Open the Java-Perspective if you´re not already there
+
+### Working sets
+To place the projects categorized - OH by them self and ePlatform in a different place.. You may create working sets, from the package explorer, mark those projects you want to gather then click the "arrow down" and choose "configure working sets...".
 
 ### JRE
 1. Window -> Preference -> Java -> Installed JRE
@@ -30,9 +34,6 @@ The purpose with this project is to simplify the steps needed to get started wor
 ### The database
 ..
 
-
-### Working sets
-To place the projects separately, OH by them self and ePlatform in a different place.. You may create working sets, from the package explorer, mark those projects you want to gather then click the "arrow down" and choose "configure working sets...".
 
 ##### Open-ePlatform
 AuthifyClient, BaseMapQuery, demo.oeplatform.org, FlowEngine, FlowInstancePDFGenerator, mapclient-riges, MinimalUserSAMLAdapter, MultiGeometryMapQuery, PBLKnowledgeBank, PUDMApQuery, PUDQuerym SearchLMRMI, SinglePolygonMapQuery
