@@ -74,14 +74,11 @@ All other projects but the ProjectTemplate, which is a custom template project
 ##### How do I resolve XSL-errors?
 1. Window -> Preferences -> XML -> XSL -> Validation. Switch all to ignore and click apply
 
-##### How to resolve "The type javax.servlet.http.HttpServletRequest cannot be resolved."?
-... uhmm
-
-##### What does "The project was not built since its build path is incomplete. Cannot find the class file for javax.servlet.http.HttpServletRequest..." means?
-Check properties of the project and make sure the tomcat is selected for that project
+##### How to handle "The type javax.servlet.http.HttpServletRequest cannot be resolved."?
+Make sure TomCat6 is installed in your solution and configured for that project correctly.
 
 ##### Cannot resolve getParentLogger of the OpenHierarchy-project?
-Check project properties -> Java Build Path -> Libraries. Check if you have jre7, in this case you may try to downgrade to jre6.
+Check project properties -> Java Build Path -> Libraries. Check if you have jre7, in this case you may try to downgrade to jre6. You may also solve it by add this function stub.
 
 ###### ...
 
