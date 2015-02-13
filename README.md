@@ -35,6 +35,7 @@ All other projects but the ProjectTemplate, which is a custom template project
 2. Click "new server wizard"
 3. Choose "Tomcat v6.0 Server". If you are missing tomcat server. You can find a .zip file inside the ProjectTemplate. Just extract the content under C:/ for example. Then locate it in the wizard..
 4. You may locate the Runtime Environments from: Window -> Preferences -> Server -> Runtime Environments
+5. Make sure the demo.oeplatform.org project is added to the TomCat Server
 
 
 ### The database
@@ -47,15 +48,14 @@ All other projects but the ProjectTemplate, which is a custom template project
 4. Mark root@localhost -> Right click and choose: Create New -> Database. Name it "flowengine-system"
 5. Select the database and add new query window
 6. Paste the SQL-code from the "Open ePlatForm 1.9.ansi.sql". Located in FlowEngine -> docs -> db
-7. Execute
-8. Make sure the demo.oeplatform.org project is added to the TomCat Server.
-9. Also check the config.xml in demo.oeplatform.org -> WebContent -> WEB-INF. Make sure the Url is pointing to the db you´ve just added, in this example "<Url>jdbc:mysql://127.0.0.1:3306/flowengine-system</Url>"
+7. Execute the script
+9. Database is ready! Also check the config.xml in demo.oeplatform.org -> WebContent -> WEB-INF. Make sure the Url is pointing to the db you´ve just added, in this example "<Url>jdbc:mysql://127.0.0.1:3306/flowengine-system</Url>"
 
 ### Start the demo
 
 1. Check the port number by double click the tomcat6 Server in the Servers view. Check the HTTP-port under Ports.
 2. Start the TomCat Server
-3. Navigate to the site(same name as the project) in this example: http://localhost:8080/demo.oeplatform.org/
+3. Navigate to the site(same name as the project name) in this example: http://localhost:8080/demo.oeplatform.org/
 4. Sign in using the default login admin\admin
 
 ## FAQ
