@@ -15,6 +15,9 @@ The purpose with this project is to simplify the steps needed to get started wor
 5. In the next step choose "Check out as a projects into workspace", also make sure all projects are selected. Hit the finish button
 6. Open the Java-Perspective if you´re not already there
 
+### Working sets
+To place the projects categorized - OH by them self and ePlatform in a different place.. You may create working sets, from the package explorer, mark those projects you want to gather then click the "arrow down" and choose "configure working sets...".
+
 ### JRE
 1. Window -> Preference -> Java -> Installed JRE
 2. You should have jre7 installed and marked
@@ -30,9 +33,6 @@ The purpose with this project is to simplify the steps needed to get started wor
 ### The database
 ..
 
-
-### Working sets
-To place the projects separately, OH by them self and ePlatform in a different place.. You may create working sets, from the package explorer, mark those projects you want to gather then click the "arrow down" and choose "configure working sets...".
 
 ##### Open-ePlatform
 AuthifyClient, BaseMapQuery, demo.oeplatform.org, FlowEngine, FlowInstancePDFGenerator, mapclient-riges, MinimalUserSAMLAdapter, MultiGeometryMapQuery, PBLKnowledgeBank, PUDMApQuery, PUDQuerym SearchLMRMI, SinglePolygonMapQuery
