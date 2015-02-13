@@ -38,8 +38,6 @@ AuthifyClient, BaseMapQuery, demo.oeplatform.org, FlowEngine, FlowInstancePDFGen
 ##### OH
 All other projects but the ProjectTemplate, which is a custom template project
 
-~~~~~~~~~
-
 ## FAQ
 
 #### How do I resolve XSL-errors?
