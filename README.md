@@ -27,8 +27,7 @@ All other projects but the ProjectTemplate, which is a custom template project
 
 ### JRE
 1. Window -> Preference -> Java -> Installed JRE
-2. You should have jre7 installed and marked
-3. You also need jre6 for some of the projects. Download and install it, click "Add.." locate the jre6 folder on your disk. The jre6 installer is located in the ProjectTemplate.
+2. You may have jre7 installed and marked. But you also need jre6 for some of the projects. Download and install it, click "Add.." locate the jre6 folder on your disk. The jre6 installer can be found in the ProjectTemplate.
 
 ### Server Configurations
 1. Set up TomCat Server. Window -> Show View -> Other -> Servers
