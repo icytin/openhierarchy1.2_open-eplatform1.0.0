@@ -35,7 +35,7 @@ All other projects but the ProjectTemplate, which is a custom template project
 3. Choose "Tomcat v6.0 Server". If you are missing tomcat server. You can find a .zip file inside the ProjectTemplate. Just extract the content under C:/ for example. Then locate it in the wizard..
 4. You may locate the Runtime Environments from: Window -> Preferences -> Server -> Runtime Environments
 5. Make sure the demo.oeplatform.org project is added to the TomCat Server
-6. Also make sure that you have the mysql-connector placed in your apache server. In the ProjectTemplate, locate the mysql-connector-java-5.1.5-bin.jar and copy it to your Apache directory.
+6. Also make sure that you have the mysql-connector placed in your Apache server. In the ProjectTemplate locate the mysql-connector-java-5.1.5-bin.jar and copy it to your Apache in the bin-directory.
 
 ### The database
 
