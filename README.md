@@ -83,6 +83,10 @@ Check project properties -> Java Build Path -> Libraries. Check if you have jre7
 ##### How can I get information about the .xml for the current page?
 For this demo project go to: file:///PATH_TO_MYPROJECT/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/demo.oeplatform.org/WEB-INF/module_xmldebug.xml
 
+##### What about logging runtime errors?
+Look in the same directory as above:
+PATH_TO_YOUR_PROJECT_DIRECTORY\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\demo.oeplatform.org\WEB-INF
+
 ###### ...
 
 ###### Please feel free to contribute!
