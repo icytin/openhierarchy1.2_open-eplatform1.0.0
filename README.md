@@ -85,7 +85,7 @@ For this demo project go to: file:///PATH_TO_MYPROJECT/.metadata/.plugins/org.ec
 
 ##### What about logging runtime errors?
 Look in the same directory as above:
-PATH_TO_YOUR_PROJECT_DIRECTORY\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\demo.oeplatform.org\WEB-INF
+PATH_TO_YOUR_PROJECT_DIRECTORY\\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\demo.oeplatform.org\WEB-INF
 
 ###### ...
 
