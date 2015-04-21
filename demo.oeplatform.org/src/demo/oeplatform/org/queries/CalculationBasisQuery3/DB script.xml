@@ -1,0 +1,82 @@
+<DBScripts>
+	<Script version="1">
+		<Query>
+			<![CDATA[
+				CREATE TABLE `calculationbasis_queries` (
+				  `queryID` INTEGER UNSIGNED NOT NULL,
+				  `description` TEXT,
+				  `helpText` TEXT,
+				  `layout` VARCHAR(45) NOT NULL,
+				  PRIMARY KEY (`queryID`)
+				)
+				ENGINE = InnoDB;
+			]]>
+		</Query>
+		<Query>
+			<![CDATA[
+				CREATE TABLE `calculationbases` (
+				  `calculationBasisID` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+				  `label` VARCHAR(255),
+				  `required` BOOLEAN NOT NULL,
+				  `width` INTEGER UNSIGNED,
+				  `sortIndex` INTEGER UNSIGNED NOT NULL,
+				  `formatValidator` VARCHAR(255),
+				  `queryID` INTEGER UNSIGNED NOT NULL,
+				  PRIMARY KEY (`calculationBasisID`),
+				  CONSTRAINT `FK_queries_calculationbases` FOREIGN KEY `FK_queries_calculationbases`(`queryID`)
+					REFERENCES `calculationbasis_queries` (`queryID`)
+				    ON DELETE CASCADE
+				    ON UPDATE CASCADE
+				)
+				ENGINE = InnoDB;
+			]]>
+		</Query>
+		<Query>
+			<![CDATA[
+				CREATE TABLE `calculationbasis_query_instances` (
+				  `queryInstanceID` INTEGER UNSIGNED NOT NULL,
+				  `queryID` INTEGER UNSIGNED NOT NULL,
+				  PRIMARY KEY (`queryInstanceID`),
+				  CONSTRAINT `FK_instances_queries` FOREIGN KEY (`queryID`)
+				    REFERENCES `calculationbasis_queries` (`queryID`)
+				    ON DELETE CASCADE
+				    ON UPDATE CASCADE
+				)
+				ENGINE = InnoDB;	
+			]]>
+		</Query>
+		<Query>
+			<![CDATA[
+				CREATE TABLE `calculationbasis_query_instance_values` (
+				  `calculationBasisValueID` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+				  `queryInstanceID` INTEGER UNSIGNED NOT NULL,
+				  `calculationBasisId` INTEGER UNSIGNED NOT NULL,
+				  `value` VARCHAR(255) NOT NULL,
+				  PRIMARY KEY (`calculationBasisValueID`),
+				  CONSTRAINT `FK_values_instances` FOREIGN KEY (`queryInstanceID`)
+				    REFERENCES `calculationbasis_query_instances` (`queryInstanceID`)
+				    ON DELETE CASCADE
+				    ON UPDATE CASCADE,
+				  CONSTRAINT `FK_values_calculationbases` FOREIGN KEY (`calculationBasisId`)
+				    REFERENCES `calculationBasis` (`calculationBasisId`)
+				    ON DELETE CASCADE
+				    ON UPDATE CASCADE
+				)
+				ENGINE = InnoDB;
+			]]>
+		</Query>
+		<Query>
+			<![CDATA[
+				ALTER TABLE `calculationBasis` ADD COLUMN `maxContentLength` INTEGER UNSIGNED AFTER `queryID`;
+			]]>
+		</Query>				
+	</Script>
+
+	<Script version="2">
+		<Query>
+			<![CDATA[
+				ALTER TABLE `calculationBasis` ADD COLUMN `invalidFormatMessage` VARCHAR(255) AFTER `maxContentLength`;
+			]]>
+		</Query>
+	</Script>
+</DBScripts>
