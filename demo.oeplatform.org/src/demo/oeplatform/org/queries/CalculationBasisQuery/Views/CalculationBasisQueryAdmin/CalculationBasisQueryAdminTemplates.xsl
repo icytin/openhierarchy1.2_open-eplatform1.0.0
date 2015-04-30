@@ -44,10 +44,28 @@
 			
 			<fieldset>
 				<legend>Beräkningsunderlag</legend>
-				<div class="floatleft full marginbottom">
-					<div id="ParameterSection">
+				<div class="row">
+					<div id="ParameterSection" class="col-lg-12">
 					<h3>Parametrar</h3>
-						<table id="parametersTable">
+					<div class="row">
+						<div class="col-lg-5">
+							<!--  Params first container -->
+							<div>Namn</div>
+							<div>Behållare</div>
+							<div>Typ</div>
+						</div>
+						<div class="col-lg-5">
+							<!--  Params second container -->
+							<div>Standardvärde</div>
+							<div>Inmatningsbar</div>
+						</div>
+						<div class="col-lg-2">
+							<!-- Actions -->
+							<a href="javascript::void(0)"><i class="glyphicon glyphicon-plus"></i>Lägg till</a>
+						</div>
+					</div>
+					<!--  
+						<table id="parametersTable" class="table">
 							<tr>
 								<th>Namn</th>
 								<th>Behållare</th>
@@ -99,6 +117,7 @@
 								<td><input type="button" id="parameter_3_deletebtn" value="x"></input></td>
 							</tr>		
 						</table>
+						-->
 					</div>
 					<div id="Formulas">
 						<h3>Formler</h3>
