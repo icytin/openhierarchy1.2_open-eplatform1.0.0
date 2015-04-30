@@ -59,7 +59,7 @@
 							<div>Standardvärde</div>
 							<div>Inmatningsbar</div>
 						</div>
-						<div class="col-lg-2">
+						<div class="col-lg-2 pull-right">
 							<!-- Actions -->
 							<a href="javascript::void(0)"><i class="glyphicon glyphicon-plus"></i>Lägg till</a>
 						</div>
