@@ -17,6 +17,7 @@
 	
 	<xsl:variable name="links">
 		/css/bootstrap.min.css
+		/css/fix.css
 	</xsl:variable>  <!-- Bootstrap pajjar layouten så denna version har bara gridkomponenten.. funkar ändå inte -->
 
 	<xsl:template match="Document">	
