@@ -1,6 +1,7 @@
 /**
 Layout fixes to solve the implementation of the Twitter Bootstrap Framework
 */
+
 body
 {
 	background: #e7e7e7;
@@ -9,7 +10,9 @@ body
 	width:100%;
 }
 
-/*Overrides of the OH retarded Interface.css*/
+/*********************************************
+Overrides of the OH´s retarded Interface.css */
+
 select {
 	appearance: menulist!important;
 	-webkit-appearance: menulist!important;
