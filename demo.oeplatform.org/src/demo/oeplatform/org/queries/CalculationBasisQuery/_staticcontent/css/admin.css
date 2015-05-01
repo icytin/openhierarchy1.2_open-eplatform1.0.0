@@ -1,3 +1,6 @@
 /**
 Specific style for the admin part of the CalculationBasisQuery.
 */
+
+.text-align-right { text-align: right; }
+.text-align-left { text-align: left; }

@@ -8,3 +8,11 @@ body
 .content{
 	width:100%;
 }
+
+/*Overrides of the OH retarded Interface.css*/
+select {
+	appearance: menulist!important;
+	-webkit-appearance: menulist!important;
+	-moz-appearance: menulist!important;
+	text-indent: 0!important;
+}
