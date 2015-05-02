@@ -44,50 +44,58 @@
 			
 			<fieldset>
 				<legend>Beräkningsunderlag</legend>
-				
-				
-					<div id="ParameterSection">
-						<h3>Parametrar</h3>
 						
-						<!--  Params first row -->
-						<div class="row">
-							<div class="col-lg-4">
-								<label for="parameter_name">Namn</label>
-								<input id="parameter_name" name="parameter_name" placeholder="Namn" class="form-control"></input>
+					<div class="row">
+					
+						<div id="parameterSection" class="col-lg-9">
+						
+							<h3>Parametrar</h3>
+							
+							<!--  Params first row -->
+							<div class="row">
+								<div class="col-lg-4">
+									<label for="parameter_name">Namn</label>
+									<input id="parameter_name" name="parameter_name" placeholder="Namn" class="form-control"></input>
+								</div>
+								<div class="col-lg-4">
+									<label for="parameter_placeholder">Behållare</label>
+									<input id="parameter_placeholder" name="parameter_placeholder" placeholder="Behållare" class="form-control"></input>
+								</div>
+								<div class="col-lg-4">
+									<label for="parameter_type">Typ</label>
+									<select id="parameter_type" name="parameter_type" class="form-control">
+										<option value="int" selected="selected">Heltal</option>
+										<option value="string">Text</option>
+									</select>
+								</div>
 							</div>
-							<div class="col-lg-4">
-								<label for="parameter_placeholder">Behållare</label>
-								<input id="parameter_placeholder" name="parameter_placeholder" placeholder="Behållare" class="form-control"></input>
-							</div>
-							<div class="col-lg-4">
-								<label for="parameter_type">Typ</label>
-								<select id="parameter_type" name="parameter_type" class="form-control">
-									<option value="int" selected="selected">Heltal</option>
-									<option value="string">Text</option>
-								</select>
+							
+							<!--  Params second row -->
+							<div class="row" style="padding-top: 1.2em; padding-bottom: 1.2em;">
+								<div class="col-lg-4">
+									<label for="parameter_default">Standardvärde</label>
+									<input id="parameter_default" name="parameter_default" placeholder="Standardvärde" class="form-control"></input>
+								</div>
+								<div class="col-lg-4">
+									<label for="parameter_isinput">Inmatningsbar</label>
+									<select  id="parameter_isinput" class="form-control">
+										<option value="true" selected="selected">Ja</option>
+										<option value="false">Nej</option>
+									</select>
+								</div>
+								<div class="col-lg-4" style="padding-top: 2em;">
+									<a href="javascript:void(0)">Lägg till <i class="glyphicon glyphicon-plus"></i></a>
+								</div>
 							</div>
 						</div>
 						
-						<!--  Params second row -->
-						<div class="row" style="padding-top: 1.2em; padding-bottom: 1.2em;">
-							<div class="col-lg-4">
-								<label for="parameter_default">Standardvärde</label>
-								<input id="parameter_default" name="parameter_default" placeholder="Standardvärde" class="form-control"></input>
-							</div>
-							<div class="col-lg-4">
-								<label for="parameter_isinput">Inmatningsbar</label>
-								<select  id="parameter_isinput" class="form-control">
-									<option value="true" selected="selected">Ja</option>
-									<option value="false">Nej</option>
-								</select>
-							</div>
-							<div class="col-lg-4" style="padding-top: 2em;">
-								<a href="javascript:void(0)">Lägg till <i class="glyphicon glyphicon-plus"></i></a>
-							</div>
+						<div id="operandsSection" class="col-lg-3">
+							<h3>Operander</h3>
+							operands
 						</div>
+						
 					
-					
-			
+
 					</div>
 
 					<div id="Formulas">
@@ -98,10 +106,7 @@
 						<h3>Vy1...</h3>
 							<xsl:text>...</xsl:text>
 					</div>
-					<div id="Operands">
-						<h3>Operander</h3>
-							<xsl:text>...</xsl:text>
-					</div>
+
 					<div id="Layout">
 						<h3>Layout</h3>
 							<xsl:text>...</xsl:text>
