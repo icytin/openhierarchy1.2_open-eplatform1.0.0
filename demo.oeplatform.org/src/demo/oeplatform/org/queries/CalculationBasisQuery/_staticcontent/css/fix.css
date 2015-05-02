@@ -10,6 +10,10 @@ body
 	width:100%;
 }
 
+legend {
+	border-bottom: none;
+}
+
 /*********************************************
 Overrides of the OH´s retarded Interface.css */
 

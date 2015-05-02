@@ -4,3 +4,31 @@ Specific style for the admin part of the CalculationBasisQuery.
 
 .text-align-right { text-align: right; }
 .text-align-left { text-align: left; }
+.link-section { padding-top: 2em; font-weight: bold; font-size: 1em; }
+
+/****************************************************
+Operand */
+#operandsSection { border-left: .1em solid #ededed; }
+#operandsSection h4 { line-height: 2; }
+.operand[draggable] { text-align: center; border-radius: .5em; border: .1em solid #e8e8e8; /*padding: 0.2em;*/ margin-bottom: 0.2em; font-weight: bold; font-size: 1.5em; }
+.operand[draggable]:hover { background-color: #e5ffdd; border-color: #668c05; cursor: pointer; }
+
+/****************************************************
+Parameter */
+
+
+
+/****************************************************
+Formula */
+
+
+
+/****************************************************
+Views */
+
+
+/****************************************************
+View Component Section */
+div[data-row], div[data-col] { border-radius: .5em; border: 1px dotted #000; height: 30px; margin: 5px; }
+div[data-row]:hover, div[data-col]:hover { border: 1px solid #000; background-color: #e5ffdd; cursor: pointer; }
+.inner-text { width: 100%; text-align: center; padding-top: .2em; }

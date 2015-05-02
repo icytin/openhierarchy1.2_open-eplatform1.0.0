@@ -12,12 +12,17 @@
 	</xsl:variable>	
 	
 	<xsl:variable name="scripts">
-		/js/calculationbasisqueryadmin.js
+		/js/admin/OperandHandler.js
+		/js/admin/ParameterHandler.js
+		/js/admin/FormulaHandler.js
+		/js/admin/ViewHandler.js
+		/js/admin/calculationbasisqueryadmin.js
 	</xsl:variable>
 	
 	<xsl:variable name="links">
 		/css/bootstrap.min.css
 		/css/fix.css
+		/css/admin.css
 	</xsl:variable>  <!-- Bootstrap pajjar layouten så denna version har bara gridkomponenten.. funkar ändå inte -->
 
 	<xsl:template match="Document">	
@@ -45,9 +50,9 @@
 			<fieldset>
 				<legend>Beräkningsunderlag</legend>
 						
-					<div class="row">
+					<div id="parameterSection" class="row">
 					
-						<div id="parameterSection" class="col-lg-9">
+						<div class="col-lg-12">
 						
 							<h3>Parametrar</h3>
 							
@@ -83,33 +88,60 @@
 										<option value="false">Nej</option>
 									</select>
 								</div>
-								<div class="col-lg-4" style="padding-top: 2em;">
-									<a href="javascript:void(0)">Lägg till <i class="glyphicon glyphicon-plus"></i></a>
+								<div class="col-lg-4 link-section">
+									<a href="javascript:void(0)">Lägg till parameter <i class="glyphicon glyphicon-plus"></i></a>
 								</div>
 							</div>
 						</div>
 						
-						<div id="operandsSection" class="col-lg-3">
-							<h3>Operander</h3>
-							operands
+					</div>
+
+					<div class="row">
+						<div id="formulasSection" class="col-lg-9">
+						
+							<h3>Formler</h3>
+							
+							<div class="link-section" style="text-align: right;">
+								<a href="javascript:void(0)">Lägg till formel <i class="glyphicon glyphicon-plus"></i></a>
+							</div>
+							
 						</div>
 						
+						<div id="operandsSection" class="col-lg-3">
+							<h3>Operander</h3>
+							
+						</div>
+						
+					</div>
 					
+					<div class="row">
+						<div id="viewsSection" class="col-lg-9">
+							<h3>Vyer</h3>
+							
+							<div role="tabpanel">
 
-					</div>
-
-					<div id="Formulas">
-						<h3>Formler</h3>
-						<xsl:text>...</xsl:text>
-					</div>
-					<div id="Views">
-						<h3>Vy1...</h3>
-							<xsl:text>...</xsl:text>
-					</div>
-
-					<div id="Layout">
-						<h3>Layout</h3>
-							<xsl:text>...</xsl:text>
+							  <!-- Nav tabs -->
+							  <ul class="nav nav-tabs" role="tablist">
+							    <li role="presentation" class="active"><a href="#view1" aria-controls="view1" role="tab" data-toggle="tab">Vy 1</a></li>
+							  </ul>
+							
+							  <!-- Tab panes -->
+							  <div class="tab-content">
+							    <div role="tabpanel" class="tab-pane active" id="view1">...</div>
+							  </div>
+							
+							</div>
+							
+							<div class="link-section" style="text-align: right;">
+								<a href="javascript:void(0)">Lägg till vy <i class="glyphicon glyphicon-plus"></i></a>
+							</div>
+							
+						</div>
+						<div id="viewComponentsSection" class="col-lg-3">
+							<h3>Vy-komponenter</h3>
+							<div data-row="" draggable="true"><div class="inner-text">Rad</div></div>
+							<div data-col="" draggable="true"><div class="inner-text">Kolumn</div></div>
+						</div>
 					</div>
 					
 					<xsl:text>Här skriver vi ut adminformuläret. Försök att få in en input som sparas i db och som sedan kan visas i användarvyn av frågan</xsl:text>
