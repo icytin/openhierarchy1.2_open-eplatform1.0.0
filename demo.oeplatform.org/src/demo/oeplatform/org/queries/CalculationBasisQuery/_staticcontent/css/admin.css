@@ -22,9 +22,11 @@ Parameter */
 Formula */
 
 
-
 /****************************************************
 Views */
+.tab-content { min-height: 20em; border: 1px dotted #000; }
+.tab-pane .row {   border: 1px solid #ededed; height: 3.5em; margin-left: 0; margin-right: 0; }
+.tab-pane .row div[class^="col-lg"] { border: 1px solid #000; height: 100%; }
 
 
 /****************************************************

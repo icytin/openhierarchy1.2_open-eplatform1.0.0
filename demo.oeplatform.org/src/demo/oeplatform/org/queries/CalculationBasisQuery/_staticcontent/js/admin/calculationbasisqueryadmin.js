@@ -5,6 +5,7 @@ var AdminHandler = function() {
 		OperandHandler.init();
 		ParameterHandler.init();
 		FormulaHandler.init();
+		ViewComponentHandler.init();
 		ViewHandler.init();
 		
 		//Hide aside section

@@ -15,6 +15,7 @@
 		/js/admin/OperandHandler.js
 		/js/admin/ParameterHandler.js
 		/js/admin/FormulaHandler.js
+		/js/admin/ViewComponentHandler.js
 		/js/admin/ViewHandler.js
 		/js/admin/calculationbasisqueryadmin.js
 	</xsl:variable>
@@ -127,7 +128,7 @@
 							
 							  <!-- Tab panes -->
 							  <div class="tab-content">
-							    <div role="tabpanel" class="tab-pane active" id="view1">...</div>
+							    <div role="tabpanel" class="tab-pane active" id="view1"></div>
 							  </div>
 							
 							</div>
@@ -139,8 +140,8 @@
 						</div>
 						<div id="viewComponentsSection" class="col-lg-3">
 							<h3>Vy-komponenter</h3>
-							<div data-row="" draggable="true"><div class="inner-text">Rad</div></div>
-							<div data-col="" draggable="true"><div class="inner-text">Kolumn</div></div>
+							<div data-row="true" draggable="true"><div class="inner-text">Rad</div></div>
+							<div data-col="true" draggable="true"><div class="inner-text">Kolumn</div></div>
 						</div>
 					</div>
 					
