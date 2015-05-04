@@ -2,6 +2,22 @@ var OperandHandler = function() {
 
 	var _init = function() {
 		_buildOperandLayout();
+		_handleDragOfOperands();
+	};
+	
+	var _handleDragOfOperands = function() {
+		
+		$('#operandsSection [draggable]')
+		.bind('dragstart', function(e) {
+		    e.originalEvent.dataTransfer.effectAllowed = 'copy';
+		    var classSelector = '';
+		    $.each(e.target.className.split(' '), function(i, val) {
+		    	classSelector += '.' + val;
+		    });
+		    
+		    e.originalEvent.dataTransfer.setData('Text', '#operandsSection [draggable]' + classSelector);
+		});
+		
 	};
 	
 	var _buildOperandLayout = function() {
