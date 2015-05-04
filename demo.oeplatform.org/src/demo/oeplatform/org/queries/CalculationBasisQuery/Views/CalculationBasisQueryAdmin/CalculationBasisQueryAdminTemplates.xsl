@@ -97,10 +97,22 @@
 						
 					</div>
 
-					<div class="row">
-						<div id="formulasSection" class="col-lg-9">
+					<div id="formulasSection" class="row">
+						<div class="col-lg-9">
 						
 							<h3>Formler</h3>
+							
+							<div class="formulas">
+								
+								<!-- Each row represents a formula -->
+								<div class="row">
+									<i class="glyphicon glyphicon-remove pull-right"></i>
+									<div class="col-lg-12">
+										
+									</div>
+								</div>
+							
+							</div>
 							
 							<div class="link-section" style="text-align: right;">
 								<a href="javascript:void(0)">Lägg till formel <i class="glyphicon glyphicon-plus"></i></a>

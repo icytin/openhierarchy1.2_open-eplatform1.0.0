@@ -78,10 +78,10 @@ var ViewHandler = function() {
 	
 	var _handleDropOfCol = function($target) {
 		
-		var colsAfterDrop = $target.find("div[class^='col-lg-']").length + 1;
-		var colClassSpan = parseInt(12/colsAfterDrop);
+		var colsAfterDrop = $target.find("div[class^='col-lg-']").length + 1,
+			colClassSpan = parseInt(12/colsAfterDrop),
+			newColClassDef = 'col-lg-' + colClassSpan;
 		
-		var newColClassDef = 'col-lg-' + colClassSpan;
 		$target.find("div[class^='col-lg-']").removeClass().addClass(newColClassDef);
 		
 		$target.append('<div class="' + newColClassDef + '"></div>');

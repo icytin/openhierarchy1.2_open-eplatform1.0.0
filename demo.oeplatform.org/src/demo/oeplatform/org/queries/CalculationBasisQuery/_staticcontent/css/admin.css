@@ -10,7 +10,7 @@ Specific style for the admin part of the CalculationBasisQuery.
 Operand */
 #operandsSection { border-left: .1em solid #ededed; }
 #operandsSection h4 { line-height: 2; }
-.operand[draggable] { text-align: center; border-radius: .5em; border: .1em solid #e8e8e8; /*padding: 0.2em;*/ margin-bottom: 0.2em; font-weight: bold; font-size: 1.5em; }
+.operand[draggable] { text-align: center; border-radius: .5em; border: .1em solid #e8e8e8; /*padding: 0.2em;*/ margin-bottom: .2em; font-weight: bold; font-size: 1.5em; }
 .operand[draggable]:hover { background-color: #e5ffdd; border-color: #668c05; cursor: pointer; }
 
 /****************************************************
@@ -20,6 +20,8 @@ Parameter */
 
 /****************************************************
 Formula */
+#formulasSection .formulas .row { height: 5em; border: 1px dotted #000; margin: 0 .3em .3em .3em;  }
+#formalasSection .glyphicon-remove { font-size: 1.4em; margin-top: .1em; margin-right: .1em; color: red; }
 
 
 /****************************************************
@@ -31,6 +33,7 @@ Views */
 
 /****************************************************
 View Component Section */
-div[data-row], div[data-col] { border-radius: .5em; border: 1px dotted #000; height: 30px; margin: 5px; }
-div[data-row]:hover, div[data-col]:hover { border: 1px solid #000; background-color: #e5ffdd; cursor: pointer; }
+#viewComponentsSection { border-left: .1em solid #ededed; }
+div[data-row], div[data-col] { border-radius: .5em; margin: .2em; border-radius: .5em; border: .1em solid #e8e8e8; font-weight: bold; font-size: 1.5em; }
+div[data-row]:hover, div[data-col]:hover { background-color: #e5ffdd; border-color: #668c05; cursor: pointer; }
 .inner-text { width: 100%; text-align: center; padding-top: .2em; }
