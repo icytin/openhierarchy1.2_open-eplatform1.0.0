@@ -35,7 +35,15 @@ var FormulaHandler = function() {
 		    var $transferObj = $(e.originalEvent.dataTransfer.getData('Text')).clone(),
 		    	$target = $(e.target);
 		    
-		    if($target.hasClass('row')) {
+		    if($target.hasClass('row') && $transferObj.hasClass('operand')) {
+		    	
+		    	// Manipulate the transfered object..
+			    $transferObj.removeClass (function (index, css) {
+			        return (css.match (/(^|\s)col-lg-\S+/g) || []).join(' ');
+			    });
+			    
+			    $transferObj.addClass('col-lg-1');
+		    	
 		    	$target.append($transferObj);
 		    }
 
