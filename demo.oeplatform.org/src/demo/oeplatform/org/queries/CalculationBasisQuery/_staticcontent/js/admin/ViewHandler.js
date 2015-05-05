@@ -1,14 +1,16 @@
 var ViewHandler = function() {
 
+	var defaultInitBox = '<div data-removable="">Designa din vy genom att dra in vy-komponenter från höger och placera sedan ut de formler som du vill ha med. Notera att du kan skapa en ny vy genom att klicka "Lägg till vy" under den här boxen.</div>'
+	
 	var _init = function() {
 		
 		_setTabHandling();
 		_setDropHandling();
 		
-		
 	};
 	
 	var _setTabHandling = function() {
+		
 		// Add view
 		$('#viewsSection .link-section a').on('click', function() {
 					
@@ -21,7 +23,7 @@ var ViewHandler = function() {
 			$('.nav-tabs').append('<li role="presentation"><a href="#' + tabIdentifier + '" aria-controls="' + tabIdentifier + '" role="tab" data-toggle="tab">' + tabName + '</a></li>');
 			
 			// Content
-			$('.tab-content').append('<div role="tabpanel" class="tab-pane" id="' + tabIdentifier + '"></div>'); // Empty content pane..
+			$('.tab-content').append('<div role="tabpanel" class="tab-pane" id="' + tabIdentifier + '">' + defaultInitBox + '</div>');
 			
 		});
 		
@@ -50,6 +52,19 @@ var ViewHandler = function() {
 		    var $transferObj = $(e.originalEvent.dataTransfer.getData('Text')).clone(),
 		    	$target = $(e.target);
 		    
+		    var isDropOnCol = $target.attr('class') && $target.attr('class').substring(0, 6) === 'col-lg',
+		    	isDropOnRow = $target.hasClass('row'),
+		    	isInvalidDrop = !$target.hasClass('tab-content') && !isDropOnRow && !isDropOnCol;
+		    
+		    // Make sure the target is correct and clean
+		    if(isInvalidDrop) {
+		    	$target = $target.parents('.tab-content:first');
+		    	var $removableContent = $target.find('[data-removable]');
+		    	if($removableContent.length !== 0) {
+		    		$removableContent.remove();
+		    	}
+		    }
+		    
 		    $transferObj.html('');
 		    
 		    if($target.hasClass('tab-content')) {
@@ -59,13 +74,13 @@ var ViewHandler = function() {
 			    	$(this).find('.tab-pane.active').append(row);
 			    }
 		    }
-		    else if($target.hasClass('row')) { // Drop on row
+		    else if(isDropOnRow) { // Drop on row
 		    	
 		    	if($transferObj.attr('data-col')) { // Dropped obj is col
 		    		_handleDropOfCol($target);
 		    	}
 		    }
-		    else if($target.attr('class').substring(0, 6) === 'col-lg') { // Drop on col
+		    else if(isDropOnCol) { // Drop on col
 		    	
 		    	$target = $target.parents('.row:first');
 		    	_handleDropOfCol($target);

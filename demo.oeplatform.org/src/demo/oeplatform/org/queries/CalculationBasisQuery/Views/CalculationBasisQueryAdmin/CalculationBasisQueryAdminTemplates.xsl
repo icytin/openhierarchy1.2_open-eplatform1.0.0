@@ -104,18 +104,24 @@
 							
 							<div class="formulas">
 								
-								<!-- Each row represents a formula -->
+								
+								<!-- Name of the formula to be added -->
+								<h4>Lägg till en formel</h4>
 								<div class="row">
-									<i class="glyphicon glyphicon-remove pull-right"></i>
-									<div class="col-lg-12">
-										
+									<div class="col-lg-5" style="margin-left: .2em">
+										<input class="form-control" type="text" placeholder="Ange ett namn för din formel" />
 									</div>
 								</div>
+								<div class="row editBox">
+									<div data-removable="">Dra parametrar och operander till den här ytan för att bygga din formel!</div>
+								</div>
+								<div class="link-section" style="text-align: right;">
+									<a href="javascript:void(0)">Lägg till formel <i class="glyphicon glyphicon-plus"></i></a>
+								</div>
+								<div class="added">
+									<h4>Tillagda formler</h4>
+								</div>
 							
-							</div>
-							
-							<div class="link-section" style="text-align: right;">
-								<a href="javascript:void(0)">Lägg till formel <i class="glyphicon glyphicon-plus"></i></a>
 							</div>
 							
 						</div>
@@ -140,7 +146,9 @@
 							
 							  <!-- Tab panes -->
 							  <div class="tab-content">
-							    <div role="tabpanel" class="tab-pane active" id="view1"></div>
+							    <div role="tabpanel" class="tab-pane active" id="view1">
+							    	<div data-removable="">Designa din vy genom att dra in vy-komponenter från höger och placera sedan ut de formler som du vill ha med. Notera att du kan skapa en ny vy genom att klicka "Lägg till vy" under den här boxen.</div>
+							    </div>
 							  </div>
 							
 							</div>

@@ -11,7 +11,7 @@ Operand */
 #operandsSection { border-left: .1em solid #ededed; }
 #operandsSection h4 { line-height: 2; }
 .operand[draggable] { text-align: center; border-radius: .5em; border: .1em solid #e8e8e8; /*padding: 0.2em;*/ margin-bottom: .2em; font-weight: bold; font-size: 1.5em; }
-.operand[draggable]:hover { background-color: #e5ffdd; border-color: #668c05; cursor: pointer; }
+.operand[draggable]:hover { background-color: #e5ffdd; border-color: #668c05; cursor: move; }
 
 /****************************************************
 Parameter */
@@ -20,21 +20,30 @@ Parameter */
 
 /****************************************************
 Formula */
-#formulasSection .formulas .row { min-height: 5em; border: 1px dotted #000; margin: 0 .3em .3em .3em;  }
+#formulasSection .link-section { padding-top: 0; }
+#formulasSection .formulas input { width: 100%; margin-bottom: .1em; }
+#formulasSection .formulas .row.editBox { min-height: 5em; border: 1px dashed #000; margin: 0 .3em .3em .3em;  }
 #formulasSection .formulas .row .glyphicon-remove { font-size: 1.4em; margin-top: .1em; margin-right: .1em; color: red; }
 #formulasSection .formulas .row .glyphicon-remove:hover { cursor: pointer; }
+#formulasSection [data-removable] { text-align: center; padding-top: 1.6em; color: #999 }
+
+#formulasSection .formulas .formula { border: .1em solid #e8e8e8; margin-left: 0; margin-right: 0; padding: .4em; }
+#formulasSection .formulas .formula:hover { background-color: #e5ffdd; border-color: #668c05; cursor: move; }
+.formula-operand {   text-align: center; border-radius: .5em; margin-bottom: .2em; font-weight: bold; font-size: 1.5em;  }
+.formula-parameter {  }
 
 
 /****************************************************
 Views */
-.tab-content { min-height: 20em; border: 1px dotted #000; }
-.tab-pane .row {   border: 1px solid #ededed; height: 3.5em; margin-left: 0; margin-right: 0; }
-.tab-pane .row div[class^="col-lg"] { border: 1px solid #000; height: 100%; }
-
+#viewsSection .tab-pane [data-removable] { text-align: center; padding: 6.5em; color: #999; }
+#viewsSection .tab-content { min-height: 20em; border: 1px dashed #000; }
+#viewsSection .tab-pane .row {   border: 1px solid #ededed; height: 3.5em; margin-left: 0; margin-right: 0; }
+#viewsSection .tab-pane .row div[class^="col-lg"] { border: 1px solid #000; height: 100%; }
+#viewsSection .link-section { padding-top: 0; padding-bottom: 2em; }
 
 /****************************************************
 View Component Section */
 #viewComponentsSection { border-left: .1em solid #ededed; }
-div[data-row], div[data-col] { border-radius: .5em; margin: .2em; border-radius: .5em; border: .1em solid #e8e8e8; font-weight: bold; font-size: 1.5em; }
-div[data-row]:hover, div[data-col]:hover { background-color: #e5ffdd; border-color: #668c05; cursor: pointer; }
+#viewComponentsSection div[data-row], #viewComponentsSection div[data-col] { border-radius: .5em; margin: .2em; border-radius: .5em; border: .1em solid #e8e8e8; font-weight: bold; font-size: 1.5em; }
+#viewComponentsSection div[data-row]:hover, #viewComponentsSection div[data-col]:hover { background-color: #e5ffdd; border-color: #668c05; cursor: move; }
 .inner-text { width: 100%; text-align: center; padding-top: .2em; }

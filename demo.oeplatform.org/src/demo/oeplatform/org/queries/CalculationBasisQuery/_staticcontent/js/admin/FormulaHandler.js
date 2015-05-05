@@ -11,8 +11,28 @@ var FormulaHandler = function() {
 		
 		// Add formula
 		$('#formulasSection a').on('click', function(e) {
-			var row = '<div class="row"><i class="glyphicon glyphicon-remove pull-right"></i><div class="col-lg-12"></div></div>';
-			$('#formulasSection .formulas').append(row);
+			var $formulaNameInput = $('#formulasSection input');
+			if($formulaNameInput.val().trim() === '') {
+				$formulaNameInput.focus();
+			}
+			else {
+				
+				var $row = $('<div class="row formula"><strong>' + $formulaNameInput.val() + '</strong><i class="glyphicon glyphicon-remove pull-right"></i><div class="col-lg-12"></div></div>');
+				
+				$.each($('#formulasSection .editBox div'), function(i, element) {
+					
+					var $el = $(element).clone();
+					
+					// Modify param or operand element
+					$el.removeAttr('draggable');
+					$el.addClass('formula-operand');
+					
+					// Append to the formula row
+					$row.find('.col-lg-12').append($el);
+				});
+				
+				$('#formulasSection .added').append($row);
+			}
 		});
 		
 		// Remove formula
@@ -27,7 +47,7 @@ var FormulaHandler = function() {
 	
 	var _setDropHandling = function() {
 		
-		$('#formulasSection .formulas').bind('drop', function(e) {
+		$('#formulasSection .formulas .editBox').bind('drop', function(e) {
 			
 		    e.preventDefault();
 		    e.stopPropagation();
@@ -35,7 +55,15 @@ var FormulaHandler = function() {
 		    var $transferObj = $(e.originalEvent.dataTransfer.getData('Text')).clone(),
 		    	$target = $(e.target);
 		    
-		    if($target.hasClass('row') && $transferObj.hasClass('operand')) {
+		    if(($target.hasClass('editBox') || $target.parents('.editBox').length !== 0) && $transferObj.hasClass('operand')) {
+		    	
+		    	if(!$target.hasClass('editBox')) { // make sure the target always is the box
+		    		$target = $target.parents('.editBox');
+		    	}
+		    	
+			    if($target.find('[data-removable]')) { // Clean info if exist
+			    	$target.find('[data-removable]').remove();
+			    }
 		    	
 		    	// Manipulate the transfered object..
 			    $transferObj.removeClass (function (index, css) {
