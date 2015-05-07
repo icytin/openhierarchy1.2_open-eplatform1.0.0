@@ -37,6 +37,8 @@ Formula */
 Views */
 #viewsSection .tab-pane [data-removable] { text-align: center; padding: 6.5em; color: #999; }
 #viewsSection .tab-content { min-height: 20em; border: 1px dashed #000; }
+#viewsSection .tab-pane.active .glyphicon-remove { font-size: 1.4em; margin-top: .1em; margin-right: .1em; color: red; }
+#viewsSection .tab-pane.active .glyphicon-remove:hover { cursor: pointer; }
 #viewsSection .tab-pane .row {   border: 1px solid #ededed; height: 3.5em; margin-left: 0; margin-right: 0; }
 #viewsSection .tab-pane .row div[class^="col-lg"] { border: 1px solid #000; height: 100%; }
 #viewsSection .link-section { padding-top: 0; padding-bottom: 2em; }

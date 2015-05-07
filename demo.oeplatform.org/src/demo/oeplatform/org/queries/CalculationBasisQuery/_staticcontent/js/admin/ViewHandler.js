@@ -12,19 +12,31 @@ var ViewHandler = function() {
 	var _setTabHandling = function() {
 		
 		// Add view
-		$('#viewsSection .link-section a').on('click', function() {
-					
-			var index = $('.nav-tabs li:last').index(),
-				tabNumber = index + 2,
-				tabName = 'Vy ' + tabNumber,
-				tabIdentifier = 'view' + tabNumber;
+		$('#viewsSection').on('click', function(e) {
 			
-			// Tab
-			$('.nav-tabs').append('<li role="presentation"><a href="#' + tabIdentifier + '" aria-controls="' + tabIdentifier + '" role="tab" data-toggle="tab">' + tabName + '</a></li>');
+			var $target = $(e.target);
+			if($target.is('.link-section a')) {
+				
+				var index = $('.nav-tabs li:last').index(),
+					tabNumber = index + 2,
+					tabName = 'Vy ' + tabNumber,
+					tabIdentifier = 'view' + tabNumber;
 			
-			// Content
-			$('.tab-content').append('<div role="tabpanel" class="tab-pane" id="' + tabIdentifier + '">' + defaultInitBox + '</div>');
-			
+				// Tab
+				$('.nav-tabs').append('<li role="presentation"><a href="#' + tabIdentifier + '" aria-controls="' + tabIdentifier + '" role="tab" data-toggle="tab">' + tabName + '</a></li>');
+				
+				// Content
+				$('.tab-content').append('<div role="tabpanel" class="tab-pane" id="' + tabIdentifier + '"><i class="glyphicon glyphicon-remove pull-right"></i>' + defaultInitBox + '</div>');
+			}
+			else if($target.hasClass('glyphicon-remove')) {
+				var $tabPane = $target.parents('.tab-pane:first');
+				var $currentTab = $tabPane.parents('[role=tabpanel]:first').find('li.active');
+				$currentTab.prev().addClass('active');
+				
+				// Remove this tab and 
+				$currentTab.remove();
+				$tabPane.remove();
+			}
 		});
 		
 		// Change view
