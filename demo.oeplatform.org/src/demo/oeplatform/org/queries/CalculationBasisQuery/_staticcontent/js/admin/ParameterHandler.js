@@ -1,33 +1,76 @@
 var ParameterHandler = function() {
 
+	var ADD_PARAM_PATH = '/demo.oeplatform.org/CalculationBasisProvider/AddParameter',
+		DELETE_PARAM_PATH = '/demo.oeplatform.org/CalculationBasisProvider/DeleteParameter';
+	
 	var _init = function() {
-		$('#parameterSection a.add').on('click', function(e) {
-			if(_isValidParameter()) {
-				$.post("/demo.oeplatform.org/CalculationBasisProvider/AddParameter", {indata: "test" }, function (data, rq, ro) {
+		$('#parameterSection').on('click', function(e) {
+			
+			var $target = $(e.target);
+			
+			if($target.hasClass('add')) { // Add param
+				
+				if(_isValidParameter()) {
+					$.post(ADD_PARAM_PATH, {indata: "test" }, function (data, rq, ro) {
+						if(rq === 'success') {
+							_addParameterRow(data); // Add the parameter to the table
+							_resetElements();
+						}
+						else {
+							ErrorHandler.showError();
+						}
+					}, "json");
+					
+				}
+			}
+			else if($target.hasClass('glyphicon-remove')) { // Remove param
+				
+				var $tr = $target.parents('tr:first'),
+					paramId = $tr.attr('data-id');
+				
+				$.post(DELETE_PARAM_PATH, {id: paramId }, function (data, rq, ro) {
 					if(rq === 'success') {
-						//location.href = '/TheIssueTracker/issuetracker-crt/cases-crt/getAPIssue/' + $("#issueID").html().split("#")[1];
-						var x = data;
+						// Remove the row from GUI
+						$tr.remove();
 					}
 					else {
-						// TODO Handle failures
-						var y = data;
+						ErrorHandler.showError();
 					}
 				}, "json");
-				
-				// .. and to the following after result
-				var $table = $('#addedParametersTable');
-				$table.find('thead').show();
-				$tr = $('<tr>');
-				$tr.append('<td>' + $('#parameter_name').val() + '</td>')
-				$tr.append('<td>' + $('#parameter_placeholder').val() + '</td>');
-				$tr.append('<td>' + $('#parameter_type option:selected').html() + '</td>');
-				$tr.append('<td>' + $('#parameter_default').val() + '</td>');
-				$tr.append('<td>' + $('#parameter_isinput option:selected').html() + '</td>');
-				
-				$table.find('tbody').append($tr);
-				
+			}
+			
+			// ...
+			
+		});
+	};
+	
+	var _resetElements = function() {
+		$.each($('#parameterSection input, #parameterSection select'), function(i, el) {
+			var $element = $(el);
+			if($element.is('input')) {
+				$element.val('');
+			}
+			else if($element.is('select')) {
+				$element.find('option:first').attr('selected', 'selected');
 			}
 		});
+	};
+	
+	var _addParameterRow = function(data) {
+		
+		// TODO: Fill with data.. add Id to the row.. 
+		
+		var $table = $('#addedParametersTable');
+		$table.find('thead').show();
+		$tr = $('<tr>');
+		$tr.append('<td>' + $('#parameter_name').val() + '</td>')
+		$tr.append('<td>' + $('#parameter_placeholder').val() + '</td>');
+		$tr.append('<td>' + $('#parameter_type option:selected').html() + '</td>');
+		$tr.append('<td>' + $('#parameter_default').val() + '</td>');
+		$tr.append('<td>' + $('#parameter_isinput option:selected').html() + '</td>');
+		$tr.append('<td><i class="glyphicon glyphicon-remove pull-right"></i></td>');
+		
+		$table.find('tbody').append($tr);
 	};
 	
 	var _isValidParameter = function() {
