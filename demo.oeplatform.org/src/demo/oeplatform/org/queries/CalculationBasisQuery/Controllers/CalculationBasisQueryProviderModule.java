@@ -1,5 +1,6 @@
 package demo.oeplatform.org.queries.CalculationBasisQuery.Controllers;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ import se.unlogic.standardutils.dao.TransactionHandler;
 import se.unlogic.standardutils.db.tableversionhandler.TableVersionHandler;
 import se.unlogic.standardutils.db.tableversionhandler.UpgradeResult;
 import se.unlogic.standardutils.db.tableversionhandler.XMLDBScriptProvider;
+import se.unlogic.standardutils.json.JsonObject;
 import se.unlogic.standardutils.populators.StringPopulator;
 import se.unlogic.standardutils.string.StringUtils;
 import se.unlogic.standardutils.validation.ValidationError;
@@ -36,6 +38,7 @@ import se.unlogic.standardutils.validation.ValidationErrorType;
 import se.unlogic.standardutils.validation.ValidationException;
 import se.unlogic.standardutils.xml.XMLGenerator;
 import se.unlogic.standardutils.xml.XMLUtils;
+import se.unlogic.webutils.http.HTTPUtils;
 import se.unlogic.webutils.http.RequestUtils;
 import se.unlogic.webutils.http.URIParser;
 import se.unlogic.webutils.populators.annotated.AnnotatedRequestPopulator;
@@ -285,6 +288,27 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 	public ForegroundModuleResponse configureQuery(HttpServletRequest req, HttpServletResponse res, User user, URIParser uriParser) throws Exception {
 
 		return this.queryCRUD.update(req, res, user, uriParser);
+	}
+	
+	//Ajax methods
+	@WebPublic
+	  public ForegroundModuleResponse AddParameter(HttpServletRequest req, HttpServletResponse res, User user, URIParser uriParser) throws SQLException, IOException
+	  {
+		
+	    String indata = uriParser.get(0);//Get uriparameter use with get requests
+	    String indata2 = req.getParameter("indata");
+
+	    JsonObject jsonObject = new JsonObject();
+	    jsonObject.putField("returnData", "test");
+	    
+	    
+	    StringBuilder stringBuilder = new StringBuilder();
+	    
+	    jsonObject.toJson(stringBuilder);
+
+		HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
+
+		return null;
 	}
 	
 	//Default code

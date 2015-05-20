@@ -3,7 +3,16 @@ var ParameterHandler = function() {
 	var _init = function() {
 		$('#parameterSection a.add').on('click', function(e) {
 			if(_isValidParameter()) {
-				alert('TODO: Post it aync!');
+				$.post("/demo.oeplatform.org/CalculationBasisProvider/AddParameter", {indata: "test" }, function (data, rq, ro) {
+					if(rq === 'success') {
+						//location.href = '/TheIssueTracker/issuetracker-crt/cases-crt/getAPIssue/' + $("#issueID").html().split("#")[1];
+						var x = data;
+					}
+					else {
+						// TODO Handle failures
+						var y = data;
+					}
+				}, "json");
 				
 				// .. and to the following after result
 				var $table = $('#addedParametersTable');
