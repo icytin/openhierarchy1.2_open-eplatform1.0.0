@@ -17,19 +17,20 @@ var ViewHandler = function() {
 			var $target = $(e.target);
 			if($target.is('.link-section a')) {
 				
-				var index = $('.nav-tabs li:last').index(),
+				var index = $('#viewsSection .nav-tabs li:last').index(),
 					tabNumber = index + 2,
 					tabName = 'Vy ' + tabNumber,
 					tabIdentifier = 'view' + tabNumber;
 			
 				// Tab
-				$('.nav-tabs').append('<li role="presentation"><a href="#' + tabIdentifier + '" aria-controls="' + tabIdentifier + '" role="tab" data-toggle="tab">' + tabName + '</a></li>');
+				$('#viewsSection .nav-tabs').append('<li role="presentation"><a href="#' + tabIdentifier + '" aria-controls="' + tabIdentifier + '" role="tab" data-toggle="tab">' + tabName + '</a></li>');
 				
 				// Content
-				$('.tab-content').append('<div role="tabpanel" class="tab-pane" id="' + tabIdentifier + '"><i class="glyphicon glyphicon-remove pull-right"></i>' + defaultInitBox + '</div>');
+				$('#viewsSection .tab-content').append('<div role="tabpanel" class="tab-pane" id="' + tabIdentifier + '"><i class="glyphicon glyphicon-remove pull-right"></i>' + defaultInitBox + '</div>');
 			}
 			else if($target.hasClass('glyphicon-remove')) {
-				var $tabPane = $target.parents('.tab-pane:first');
+				
+				var $tabPane = $target.parents('#viewsSection .tab-pane:first');
 				var $currentTab = $tabPane.parents('[role=tabpanel]:first').find('li.active');
 				$currentTab.prev().addClass('active');
 				
@@ -40,13 +41,13 @@ var ViewHandler = function() {
 		});
 		
 		// Change view
-		$('.nav.nav-tabs').on('click', function(e) {
+		$('#viewsSection .nav.nav-tabs').on('click', function(e) {
 			$(this).find('li').removeClass('active')
 			if($(e.target).is('a')) {
 				$(e.target).parents('li:first').addClass('active');
 				
-				$('.tab-content div').removeClass('active');
-				$('.tab-content div[id="' + $(e.target).attr('aria-controls') + '"]').addClass('active');
+				$('#viewsSection .tab-content div').removeClass('active');
+				$('#viewsSection .tab-content div[id="' + $(e.target).attr('aria-controls') + '"]').addClass('active');
 			}
 			else {
 				$(e.target).addClass('active');
@@ -56,7 +57,7 @@ var ViewHandler = function() {
 	
 	var _setDropHandling = function() {
 		
-		$('.tab-content').bind('drop', function(e) {
+		$('#viewsSection .tab-content').bind('drop', function(e) {
 			
 		    e.preventDefault();
 		    e.stopPropagation();
