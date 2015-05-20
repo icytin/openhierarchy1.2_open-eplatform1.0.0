@@ -36,4 +36,20 @@
 			]]>
 		</Query>
 	</Script>
+	<Script version="2">
+		<Query>
+			<![CDATA[
+				CREATE TABLE `calculation_basis_parameters` (
+				  `parameterID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+				  `queryID` int(10) unsigned NOT NULL,
+				  `name` varchar(255) NOT NULL,
+				  `placeholder` varchar(255) DEFAULT NULL,
+				  `defaultValue` varchar(255) DEFAULT NULL,
+				  `allowInput` tinyint(1) unsigned NOT NULL,
+				  PRIMARY KEY (`parameterID`),
+				  CONSTRAINT `FK_parameter_query` FOREIGN KEY (`queryID`) REFERENCES `calculation_basis_queries` (`queryID`) ON DELETE CASCADE ON UPDATE CASCADE
+				) ENGINE=InnoDB DEFAULT CHARSET=latin1 DEFAULT COLLATE latin1_swedish_ci;
+			]]>
+		</Query>
+	</Script>
 </DBScripts>
