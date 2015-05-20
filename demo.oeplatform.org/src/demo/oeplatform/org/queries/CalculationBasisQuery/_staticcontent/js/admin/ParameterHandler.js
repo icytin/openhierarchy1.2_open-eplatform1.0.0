@@ -4,6 +4,19 @@ var ParameterHandler = function() {
 		$('#parameterSection a.add').on('click', function(e) {
 			if(_isValidParameter()) {
 				alert('TODO: Post it aync!');
+				
+				// .. and to the following after result
+				var $table = $('#addedParametersTable');
+				$table.find('thead').show();
+				$tr = $('<tr>');
+				$tr.append('<td>' + $('#parameter_name').val() + '</td>')
+				$tr.append('<td>' + $('#parameter_placeholder').val() + '</td>');
+				$tr.append('<td>' + $('#parameter_type option:selected').html() + '</td>');
+				$tr.append('<td>' + $('#parameter_default').val() + '</td>');
+				$tr.append('<td>' + $('#parameter_isinput option:selected').html() + '</td>');
+				
+				$table.find('tbody').append($tr);
+				
 			}
 		});
 	};
