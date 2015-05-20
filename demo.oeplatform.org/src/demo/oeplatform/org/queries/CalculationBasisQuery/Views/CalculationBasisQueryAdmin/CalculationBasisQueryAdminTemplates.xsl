@@ -93,6 +93,27 @@
 									<a href="javascript:void(0)">Lägg till parameter <i class="glyphicon glyphicon-plus"></i></a>
 								</div>
 							</div>
+							
+							<!-- Added parameters end up in this table -->
+							<div class="row">
+								<div class="col-lg-12">
+									<table class="table" id="addedParametersTable">
+										<thead style="display: none;">
+											<tr>
+												<th>Namn</th>
+												<th>Behållare</th>
+												<th>Typ</th>
+												<th>Standardvärde</th>
+												<th>Inmatningsbar</th>
+												<th>Åtgärd</th>
+											</tr>
+										</thead>
+										<tbody>
+										  <!-- Rows are added dynamically -->
+										</tbody>
+									</table>
+								</div>
+							</div>
 						</div>
 						
 					</div>
@@ -128,7 +149,7 @@
 						
 						<div id="operandsSection" class="col-lg-3">
 							<h3>Operander</h3>
-							
+							<!-- Dynamically added -->
 						</div>
 						
 					</div>

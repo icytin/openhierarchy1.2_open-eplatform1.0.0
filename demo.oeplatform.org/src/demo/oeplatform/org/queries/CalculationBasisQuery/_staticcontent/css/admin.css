@@ -41,6 +41,7 @@ Views */
 #viewsSection .tab-pane.active .glyphicon-remove:hover { cursor: pointer; }
 #viewsSection .tab-pane .row {   border: 1px solid #ededed; height: 3.5em; margin-left: 0; margin-right: 0; }
 #viewsSection .tab-pane .row div[class^="col-lg"] { border: 1px solid #000; height: 100%; }
+#viewsSection .tab-pane .row:last-child { margin-bottom: 2.7em; }
 #viewsSection .link-section { padding-top: 0; padding-bottom: 2em; }
 
 /****************************************************
