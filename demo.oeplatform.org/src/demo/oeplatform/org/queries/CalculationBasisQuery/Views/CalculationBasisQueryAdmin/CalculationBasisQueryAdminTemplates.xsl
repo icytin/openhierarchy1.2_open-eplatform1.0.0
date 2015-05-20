@@ -90,7 +90,7 @@
 									</select>
 								</div>
 								<div class="col-lg-4 link-section">
-									<a href="javascript:void(0)">Lägg till parameter <i class="glyphicon glyphicon-plus"></i></a>
+									<a class="add" href="javascript:void(0)">Lägg till parameter <i class="glyphicon glyphicon-plus"></i></a>
 								</div>
 							</div>
 							
