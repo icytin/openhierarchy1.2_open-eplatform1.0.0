@@ -1,6 +1,8 @@
 var ViewHandler = function() {
 
-	var defaultInitBox = '<div data-removable="">Designa din vy genom att dra in vy-komponenter från höger och placera sedan ut de formler som du vill ha med. Notera att du kan skapa en ny vy genom att klicka "Lägg till vy" under den här boxen.</div>'
+	var defaultInitBox = '<div data-removable="">Designa din vy genom att dra in vy-komponenter från höger och placera sedan ut de formler som du vill ha med. Notera att du kan skapa en ny vy genom att klicka "Lägg till vy" under den här boxen.</div>',
+		removeLink = '<i class="glyphicon glyphicon-remove pull-right"></i>',
+		clearDiv = '<div class="clearboth"></div>';
 	
 	var _init = function() {
 		
@@ -22,21 +24,31 @@ var ViewHandler = function() {
 					tabName = 'Vy ' + tabNumber,
 					tabIdentifier = 'view' + tabNumber;
 			
-				// Tab
+				// Create a tab
 				$('#viewsSection .nav-tabs').append('<li role="presentation"><a href="#' + tabIdentifier + '" aria-controls="' + tabIdentifier + '" role="tab" data-toggle="tab">' + tabName + '</a></li>');
 				
-				// Content
-				$('#viewsSection .tab-content').append('<div role="tabpanel" class="tab-pane" id="' + tabIdentifier + '"><i class="glyphicon glyphicon-remove pull-right"></i>' + defaultInitBox + '</div>');
+				// Remove the delete link from the currently last view
+				$('#viewsSection .tab-content .tab-pane .glyphicon-remove').remove();
+				
+				// Create content to this tab
+				$('#viewsSection .tab-content').append('<div role="tabpanel" class="tab-pane" id="' + tabIdentifier + '">' + removeLink + defaultInitBox + '</div>');
 			}
 			else if($target.hasClass('glyphicon-remove')) {
 				
-				var $tabPane = $target.parents('#viewsSection .tab-pane:first');
-				var $currentTab = $tabPane.parents('[role=tabpanel]:first').find('li.active');
-				$currentTab.prev().addClass('active');
+				var numberOfViews = $target.parents('#viewsSection .tab-content').find('.tab-pane').length,
+					$currentTabPane = $target.parents('#viewsSection .tab-pane:first'),
+					$currentTab = $currentTabPane.parents('[role=tabpanel]:first').find('li.active');
 				
-				// Remove this tab and 
+				if(numberOfViews > 2) { // Make the previous removable
+					$currentTabPane.prev().prepend(removeLink + clearDiv);
+				}
+				
+				$currentTab.prev().addClass('active');
+				$currentTab.prev().find('a').click();
+				
+				// Remove this tab and pane
 				$currentTab.remove();
-				$tabPane.remove();
+				$currentTabPane.remove();
 			}
 		});
 		
