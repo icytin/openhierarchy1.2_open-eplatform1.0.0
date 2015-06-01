@@ -12,6 +12,11 @@
 		/js/calculationbasisquery.js
 	</xsl:variable>
 
+	<xsl:variable name="links">
+		/css/bootstrap.min.css
+		/css/fix.css
+	</xsl:variable> 
+	
 	<xsl:template match="Document">	
 		
 		<xsl:apply-templates select="ShowQueryValues"/>
@@ -20,6 +25,136 @@
 	</xsl:template>
 	
 	<xsl:template match="ShowQueryValues">
+		<div style="width:500px;margin-left:50px;">
+		<div class="row">
+			<label class="title" data-type="formulaName" title="...Inkomster...">Inkomster</label>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<label>Summa</label>
+			</div>
+			<div class="col-md-6">
+				<span data-type="formulaResult" data-id="13">12000</span>
+				&#160;kr
+			</div>
+		</div>
+	
+		<div class="row">
+			<label class="title" data-type="formulaName" title="...description...">Förbehållsbelopp</label>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				Hyra&#160;
+				<span data-type="parameter" data-name="äldreboende" data-id="13">Alnösol</span>
+			</div>
+			<div class="col-md-6">
+				<span data-type="formulaResult" data-id="13">4239</span>
+				&#160;kr
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<span data-type="parametername" data-id="13" title="...minimibelopp...">Minimibelopp</span>
+			</div>
+			<div class="col-md-6">
+				<span data-type="parameter" data-name="minimibelopp" data-id="13">4787</span>
+				&#160;kr
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<span data-type="parametername" data-id="13"
+					title="...Individuellt belopp...">Individuellt belopp</span>
+			</div>
+			<div class="col-md-6">
+				<span data-type="parameter" data-name="Individuellt belopp"
+					data-id="13">1430</span>
+				&#160;kr
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<span data-type="parametername" data-id="13" title="...avdrag...">Avdrag</span>
+			</div>
+			<div class="col-md-6">
+				<span data-type="parameter" data-id="13">-550</span>
+				&#160;kr
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<label>Summa</label>
+			</div>
+			<div class="col-md-6">
+				<span data-type="formulaResult" data-id="13">9906</span>
+				&#160;kr
+			</div>
+		</div>
+	
+		<div class="row">
+			<label class="title">Avgift</label>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<span data-type="formulaname" title="...Avgiftsutrymme...">Avgiftsutrymme</span>
+			</div>
+			<div class="col-md-6">
+				<span data-type="formulaResult" data-id="13">2094</span>
+				&#160;kr
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<label class="title">Avgift</label>
+			</div>
+			<div class="col-md-6">
+				<span data-type="formulaResult" data-id="13">1696</span>
+				&#160;kr
+			</div>
+		</div>
+	
+		<div class="row">
+			<label class="title">Din månadskostnad blir</label>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				Hyra&#160;
+				<span data-type="parameter" data-name="äldreboende" data-id="13">Alnösol</span>
+			</div>
+			<div class="col-md-6">
+				<span data-type="formulaResult" data-id="13">4239</span>
+				&#160;kr
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<span data-type="parameterName">Mat</span>
+			</div>
+			<div class="col-md-6">
+				<span data-type="formulaResult" data-id="13">2910</span>
+				&#160;kr
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<span data-type="formulaname">Omvårdnadsavgift</span>
+			</div>
+			<div class="col-md-6">
+				<span data-type="formulaResult" data-id="13">1696</span>
+				&#160;kr
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<label data-type="formulaname">Summa</label>
+			</div>
+			<div class="col-md-6">
+				<span data-type="formulaResult" data-id="13">8845</span>
+				&#160;kr
+			</div>
+		</div>
+	</div>
+	old stuff
 		
 		<div class="query">
 			
@@ -217,234 +352,138 @@
 				</div>
 				
 				<fieldset>
+					<div style="width:500px;margin-left:50px;">
+						<div class="row">
+							<label class="title" data-type="formulaName" title="...Inkomster...">Inkomster</label>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<label>Summa</label>
+							</div>
+							<div class="col-md-6">
+								<span data-type="formulaResult" data-id="13">12000</span>
+								&#160;kr
+							</div>
+						</div>
 					
-					<div class="split">
+						<div class="row">
+							<label class="title" data-type="formulaName" title="...description...">Förbehållsbelopp</label>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								Hyra&#160;
+								<span data-type="parameter" data-name="äldreboende" data-id="13">Alnösol</span>
+							</div>
+							<div class="col-md-6">
+								<span data-type="formulaResult" data-id="13">4239</span>
+								&#160;kr
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<span data-type="parametername" data-id="13" title="...minimibelopp...">Minimibelopp</span>
+							</div>
+							<div class="col-md-6">
+								<span data-type="parameter" data-name="minimibelopp" data-id="13">4787</span>
+								&#160;kr
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<span data-type="parametername" data-id="13"
+									title="...Individuellt belopp...">Individuellt belopp</span>
+							</div>
+							<div class="col-md-6">
+								<span data-type="parameter" data-name="Individuellt belopp"
+									data-id="13">1430</span>
+								&#160;kr
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<span data-type="parametername" data-id="13" title="...avdrag...">Avdrag</span>
+							</div>
+							<div class="col-md-6">
+								<span data-type="parameter" data-id="13">-550</span>
+								&#160;kr
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<label>Summa</label>
+							</div>
+							<div class="col-md-6">
+								<span data-type="formulaResult" data-id="13">9906</span>
+								&#160;kr
+							</div>
+						</div>
 					
-						<xsl:variable name="fieldName" select="concat($shortQueryID, '_firstname')" />
+						<div class="row">
+							<label class="title">Avgift</label>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<span data-type="formulaname" title="...Avgiftsutrymme...">Avgiftsutrymme</span>
+							</div>
+							<div class="col-md-6">
+								<span data-type="formulaResult" data-id="13">2094</span>
+								&#160;kr
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<label class="title">Avgift</label>
+							</div>
+							<div class="col-md-6">
+								<span data-type="formulaResult" data-id="13">1696</span>
+								&#160;kr
+							</div>
+						</div>
 					
-						<xsl:variable name="class">
-							<xsl:if test="ValidationErrors/validationError[fieldName = $fieldName]">
-								<xsl:text>invalid input-error</xsl:text>
-							</xsl:if>							
-						</xsl:variable>
-					
-						<label for="{$fieldName}"><xsl:value-of select="$i18n.Firstname" /></label>
-						<xsl:call-template name="createTextField">
-							<xsl:with-param name="id" select="$fieldName" />
-							<xsl:with-param name="name" select="$fieldName" />
-							<xsl:with-param name="title" select="$i18n.Firstname"/>
-							<xsl:with-param name="size" select="50"/>
-							<xsl:with-param name="disabled">
-								<xsl:if test="/Document/user">disabled</xsl:if>					
-							</xsl:with-param>
-							<xsl:with-param name="value">
-								<xsl:choose>
-									<xsl:when test="/Document/user"><xsl:value-of select="/Document/user/firstname" /></xsl:when>
-									<xsl:otherwise><xsl:value-of select="CalculationBasisQueryInstance/firstname" /></xsl:otherwise>
-								</xsl:choose>								
-							</xsl:with-param>
-						</xsl:call-template>
-						
-						<xsl:apply-templates select="ValidationErrors/validationError[fieldName = $fieldName]"/>
-						
-					</div>
-					
-					<div class="split odd">
-						
-						<xsl:variable name="fieldName" select="concat($shortQueryID, '_lastname')" />
-						
-						<xsl:variable name="class">
-							<xsl:if test="ValidationErrors/validationError[fieldName = $fieldName]">
-								<xsl:text>invalid input-error</xsl:text>
-							</xsl:if>							
-						</xsl:variable>
-					
-						<label for="{$fieldName}"><xsl:value-of select="$i18n.Lastname" /></label>
-						<xsl:call-template name="createTextField">
-							<xsl:with-param name="id" select="$fieldName" />
-							<xsl:with-param name="name" select="$fieldName" />
-							<xsl:with-param name="title" select="$i18n.Lastname"/>
-							<xsl:with-param name="size" select="50"/>
-							<xsl:with-param name="disabled">
-								<xsl:if test="/Document/user">disabled</xsl:if>					
-							</xsl:with-param>
-							<xsl:with-param name="value">
-								<xsl:choose>
-									<xsl:when test="/Document/user"><xsl:value-of select="/Document/user/lastname" /></xsl:when>
-									<xsl:otherwise><xsl:value-of select="CalculationBasisQueryInstance/lastname" /></xsl:otherwise>
-								</xsl:choose>								
-							</xsl:with-param>
-						</xsl:call-template>
-						
-						<xsl:apply-templates select="ValidationErrors/validationError[fieldName = $fieldName]"/>
-						
+						<div class="row">
+							<label class="title">Din månadskostnad blir</label>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								Hyra&#160;
+								<span data-type="parameter" data-name="äldreboende" data-id="13">Alnösol</span>
+							</div>
+							<div class="col-md-6">
+								<span data-type="formulaResult" data-id="13">4239</span>
+								&#160;kr
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<span data-type="parameterName">Mat</span>
+							</div>
+							<div class="col-md-6">
+								<span data-type="formulaResult" data-id="13">2910</span>
+								&#160;kr
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<span data-type="formulaname">Omvårdnadsavgift</span>
+							</div>
+							<div class="col-md-6">
+								<span data-type="formulaResult" data-id="13">1696</span>
+								&#160;kr
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<label data-type="formulaname">Summa</label>
+							</div>
+							<div class="col-md-6">
+								<span data-type="formulaResult" data-id="13">8845</span>
+								&#160;kr
+							</div>
+						</div>
 					</div>
 					
 				</fieldset>
-				
-				<xsl:if test="CalculationBasisQueryInstance/CalculationBasisQuery/allowLetter = 'true'">
-					
-					<fieldset>
-					
-						<div class="split">
-							
-							<xsl:variable name="fieldName" select="concat($shortQueryID, '_address')" />
-						
-							<xsl:variable name="class">
-								<xsl:if test="ValidationErrors/validationError[fieldName = $fieldName]">
-									<xsl:text>invalid input-error</xsl:text>
-								</xsl:if>
-							</xsl:variable>
-							
-							<label for="{$fieldName}"><xsl:value-of select="$i18n.Address" /></label>
-							<xsl:call-template name="createTextField">
-								<xsl:with-param name="id" select="$fieldName" />
-								<xsl:with-param name="name" select="$fieldName" />
-								<xsl:with-param name="title" select="$i18n.Address"/>
-								<xsl:with-param name="size" select="50"/>
-								<xsl:with-param name="value" select="CalculationBasisQueryInstance/address"/>
-								<xsl:with-param name="class" select="$class"/>
-							</xsl:call-template>
-							
-							<xsl:apply-templates select="ValidationErrors/validationError[fieldName = $fieldName]"/>
-							
-						</div>					
-						
-						<div class="split">
-							
-							<div class="left">
-							
-								<xsl:variable name="fieldName" select="concat($shortQueryID, '_zipcode')" />
-							
-								<xsl:variable name="class">
-									<xsl:if test="ValidationErrors/validationError[fieldName = $fieldName]">
-										<xsl:text>invalid input-error</xsl:text>
-									</xsl:if>							
-								</xsl:variable>
-								
-								<label for="{$fieldName}" class="floatleft"><xsl:value-of select="$i18n.ZipCode" /></label>
-								<xsl:call-template name="createTextField">
-									<xsl:with-param name="id" select="$fieldName" />
-									<xsl:with-param name="name" select="$fieldName" />
-									<xsl:with-param name="title" select="$i18n.ZipCode"/>
-									<xsl:with-param name="size" select="15"/>
-									<xsl:with-param name="class" select="concat('floatleft clearboth ', $class)"/>
-									<xsl:with-param name="value" select="CalculationBasisQueryInstance/zipCode"/>
-								</xsl:call-template>
-								
-								<xsl:apply-templates select="ValidationErrors/validationError[fieldName = $fieldName]"/>
-							
-							</div>
-							
-							<div class="right">
-							
-								<xsl:variable name="fieldName" select="concat($shortQueryID, '_postaladdress')" />
-							
-								<xsl:variable name="class">
-									<xsl:if test="ValidationErrors/validationError[fieldName = $fieldName]">
-										<xsl:text>invalid input-error</xsl:text>
-									</xsl:if>							
-								</xsl:variable>
-							
-								<label for="{$fieldName}" class="floatleft"><xsl:value-of select="$i18n.PostalAddress" /></label>
-								<xsl:call-template name="createTextField">
-									<xsl:with-param name="id" select="concat($shortQueryID, '_postaladdress')" />
-									<xsl:with-param name="name" select="concat($shortQueryID, '_postaladdress')" />
-									<xsl:with-param name="title" select="$i18n.PostalAddress"/>
-									<xsl:with-param name="size" select="28"/>
-									<xsl:with-param name="class" select="concat('floatleft clearboth ', $class)"/>
-									<xsl:with-param name="value" select="CalculationBasisQueryInstance/postalAddress"/>
-								</xsl:call-template>
-								
-								<xsl:apply-templates select="ValidationErrors/validationError[fieldName = $fieldName]"/>
-								
-							</div>
-							
-						</div>
-						
-					</fieldset>
-					
-				</xsl:if>
-				
-				<fieldset>
-					
-					<xsl:if test="CalculationBasisQueryInstance/CalculationBasisQuery/allowPhone = 'true'">
-						
-						<div class="split">
-							<label for="concat($shortQueryID, '_phone')" class="floatleft full"><xsl:value-of select="$i18n.Phone" /></label>
-							<xsl:call-template name="createTextField">
-								<xsl:with-param name="id" select="concat($shortQueryID, '_phone')" />
-								<xsl:with-param name="name" select="concat($shortQueryID, '_phone')" />
-								<xsl:with-param name="title" select="$i18n.Phone"/>
-								<xsl:with-param name="size" select="50"/>
-								<xsl:with-param name="value" select="CalculationBasisQueryInstance/phone"/>
-							</xsl:call-template>
-						</div>
-					
-					</xsl:if>
-					
-					<xsl:if test="CalculationBasisQueryInstance/CalculationBasisQuery/allowEmail = 'true'">
-			
-						<div class="split">
-							
-							<xsl:variable name="fieldName" select="concat($shortQueryID, '_email')" />
-						
-							<xsl:variable name="class">
-								<xsl:if test="ValidationErrors/validationError[fieldName = $fieldName] or ValidationErrors/validationError[messageKey = 'EmailAlreadyTaken']">
-									<xsl:text>invalid input-error</xsl:text>
-								</xsl:if>							
-							</xsl:variable>
-						
-							<xsl:variable name="email">
-								<xsl:choose>
-									<xsl:when test="CalculationBasisQueryInstance/email"><xsl:value-of select="CalculationBasisQueryInstance/email" /></xsl:when>
-									<xsl:when test="/Document/user"><xsl:value-of select="/Document/user/email" /></xsl:when>
-								</xsl:choose>
-							</xsl:variable>
-						
-							<label for="{$fieldName}" class="floatleft full"><xsl:value-of select="$i18n.Email" /></label>
-							<xsl:call-template name="createTextField">
-								<xsl:with-param name="id" select="$fieldName" />
-								<xsl:with-param name="name" select="$fieldName" />
-								<xsl:with-param name="title" select="$i18n.Email"/>
-								<xsl:with-param name="size" select="50"/>
-								<xsl:with-param name="class" select="$class"/>
-								<xsl:with-param name="value" select="$email"/>
-							</xsl:call-template>
-							
-							<xsl:apply-templates select="ValidationErrors/validationError[fieldName = $fieldName]"/>
-							<xsl:apply-templates select="ValidationErrors/validationError[messageKey = 'EmailAlreadyTaken']" />
-							
-						</div>
-					
-					</xsl:if>
-					
-					<div class="split">
-						
-						<xsl:variable name="fieldName" select="concat($shortQueryID, '_mobilephone')" />
-					
-						<xsl:variable name="class">
-							<xsl:if test="ValidationErrors/validationError[fieldName = $fieldName]">
-								<xsl:text>invalid input-error</xsl:text>
-							</xsl:if>							
-						</xsl:variable>
-						
-						<label for="{$fieldName}" class="floatleft full"><xsl:value-of select="$i18n.MobilePhone" /></label>
-						<xsl:call-template name="createTextField">
-							<xsl:with-param name="id" select="$fieldName" />
-							<xsl:with-param name="name" select="$fieldName" />
-							<xsl:with-param name="title" select="$i18n.MobilePhone"/>
-							<xsl:with-param name="size" select="50"/>
-							<xsl:with-param name="class" select="$class"/>
-							<xsl:with-param name="value" select="CalculationBasisQueryInstance/mobilePhone"/>
-						</xsl:call-template>
-						
-						<xsl:apply-templates select="ValidationErrors/validationError[fieldName = $fieldName]"/>
-						
-					</div>
-					
-				</fieldset>
-				
+
 				<fieldset>
 					
 					<div class="split">
@@ -461,65 +500,10 @@
 							</xsl:call-template>
 							<label for="{concat($shortQueryID, '_contactByLetter')}" class="checkbox"><xsl:value-of select="$i18n.ContactByLetter" /></label><br/>
 						</xsl:if>
-						
-						<xsl:if test="CalculationBasisQueryInstance/CalculationBasisQuery/allowEmail = 'true'">
-							<xsl:call-template name="createCheckbox">
-								<xsl:with-param name="id" select="concat($shortQueryID, '_contactByEmail')" />
-								<xsl:with-param name="name" select="concat($shortQueryID, '_contactByEmail')" />
-								<xsl:with-param name="value" select="'true'" />
-								<xsl:with-param name="disabled" select="'disabled'" />
-								<xsl:with-param name="checked" select="CalculationBasisQueryInstance/contactByEmail"/>
-							</xsl:call-template>
-							<label for="{concat($shortQueryID, '_contactByEmail')}" class="checkbox"><xsl:value-of select="$i18n.ContactByEmail" /></label><br/>
-						</xsl:if>
-						
-						<xsl:if test="CalculationBasisQueryInstance/CalculationBasisQuery/allowSMS = 'true'">
-							<xsl:call-template name="createCheckbox">
-								<xsl:with-param name="id" select="concat($shortQueryID, '_contactBySMS')" />
-								<xsl:with-param name="name" select="concat($shortQueryID, '_contactBySMS')" />
-								<xsl:with-param name="value" select="'true'" />
-								<xsl:with-param name="disabled" select="'disabled'" />
-								<xsl:with-param name="checked" select="CalculationBasisQueryInstance/contactBySMS"/>
-							</xsl:call-template>
-							<label for="{concat($shortQueryID, '_contactBySMS')}" class="checkbox"><xsl:value-of select="$i18n.ContactBySMS" /></label><br/>
-						</xsl:if>
-						
-						<xsl:if test="CalculationBasisQueryInstance/CalculationBasisQuery/allowPhone = 'true'">
-							<xsl:call-template name="createCheckbox">
-								<xsl:with-param name="id" select="concat($shortQueryID, '_contactByPhone')" />
-								<xsl:with-param name="name" select="concat($shortQueryID, '_contactByPhone')" />
-								<xsl:with-param name="value" select="'true'" />
-								<xsl:with-param name="disabled" select="'disabled'" />
-								<xsl:with-param name="checked" select="CalculationBasisQueryInstance/contactByPhone"/>
-							</xsl:call-template>
-							<label for="{concat($shortQueryID, '_contactByPhone')}" class="checkbox"><xsl:value-of select="$i18n.ContactByPhone" /></label>
-						</xsl:if>
-						
+
 					</div>
 					
 				</fieldset>
-				
-				<xsl:if test="CalculationBasisQueryInstance/isMutableUser">
-				
-					<fieldset>
-							
-						<div class="split">
-						
-							<xsl:call-template name="createCheckbox">
-								<xsl:with-param name="id" select="concat($shortQueryID, '_persistUserProfile')" />
-								<xsl:with-param name="name" select="concat($shortQueryID, '_persistUserProfile')" />
-								<xsl:with-param name="value" select="'true'" />
-								<xsl:with-param name="checked" select="CalculationBasisQueryInstance/persistUserProfile" />
-							</xsl:call-template>
-							
-							<label for="{concat($shortQueryID, '_persistUserProfile')}" class="checkbox"><xsl:value-of select="$i18n.UpdateMyUserProfile" /></label>
-							
-						</div>
-						
-					</fieldset>
-				
-				</xsl:if>
-				
 			</article>
 		
 		</div>
