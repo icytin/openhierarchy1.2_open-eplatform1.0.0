@@ -107,7 +107,7 @@
 					<!-- Params second row -->
 					<div class="row" style="padding-top: 1.2em; padding-bottom: 1.2em;">
 						<div class="col-lg-8">
-							<label for="parameter_description">Värde</label>
+							<label for="parameter_description">Beskrivning</label>
 							<input id="parameter_description" name="parameter_description" placeholder="Beskrivning (valfri)" class="form-control"></input>
 						</div>
 						<div class="col-lg-4 link-section">
