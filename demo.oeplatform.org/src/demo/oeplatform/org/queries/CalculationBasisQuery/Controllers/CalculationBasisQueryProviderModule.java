@@ -338,19 +338,37 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 	@WebPublic
 	  public ForegroundModuleResponse GetRefQueries(HttpServletRequest req, HttpServletResponse res, User user, URIParser uriParser) throws SQLException, IOException
 	  {
+		//Get current calculationbasisquery id
+		String queryId = req.getParameter("queryId");
 		
-	    String indata = uriParser.get(0);//Get uriparameter use with get requests
-	    String name = req.getParameter("name");
-	    String queryId = req.getParameter("queryId");
-	    String value = req.getParameter("value");
+		//Get current step
+		//Get current step sortIndex
+		
+		//Get current flow
+		
+		//Get all steps with current flow id and sortIndex <= current step sortIndex
+		
+		//Get all querydescriptors for all steps (for now only with queryTypeId = textfieldquery)
+		
+		//Get distinct all queries with queryId from querydescriptors
+		
+		//If single value query extract {name:query.description,value:queryId}
+		//If multi value query get subqueries connected to that query (ex text_fields where queryId=...)
+		//Foreach subquery extract {name:subquery.label,value:queryId;subQueryId}
+		
+		
+		//Fetch all textfields with textfieldqueries connected to 
+		
+		//Hardcoded example
+	    JsonObject list = new JsonObject();
+	    list.putField("Nettoinkomst", "2150;1616");
+	    list.putField("Bostadstillägg/bidrag", "2150;1617");
+	    list.putField("Övrig inkomst", "2150;1618");
 
-	    JsonObject jsonObject = new JsonObject();
-	    jsonObject.putField("returnData", "test");
 	    
 	    
 	    StringBuilder stringBuilder = new StringBuilder();
-	    
-	    jsonObject.toJson(stringBuilder);
+	    list.toJson(stringBuilder);
 
 		HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
 
