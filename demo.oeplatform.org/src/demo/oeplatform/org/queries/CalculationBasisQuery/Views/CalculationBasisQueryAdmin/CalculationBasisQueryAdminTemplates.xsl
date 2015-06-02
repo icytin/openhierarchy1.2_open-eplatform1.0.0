@@ -88,31 +88,32 @@
 					
 					<!--  Params first row -->
 					<div class="row">
-						<div class="col-lg-3">
+						<div class="col-lg-4">
 							<label for="parameter_name">Namn</label>
 							<input id="parameter_name" name="parameter_name" placeholder="Namn" class="form-control"></input>
 						</div>
-						<div class="col-lg-3">
+						<div class="col-lg-4">
 							<label for="parameter_query">Fråga</label>
 							<select id="parameter_query" name="parameter_query" placeholder="Fråga" class="form-control">
 								<option value="-1" selected="selected">Välj...</option>
 							</select>
 						</div>
-						<div class="col-lg-3">
+						<div class="col-lg-4">
 							<label for="parameter_value">Värde</label>
 							<input id="parameter_value" name="parameter_value" placeholder="Värde" class="form-control"></input>
 						</div>
-						<div class="col-lg-3 link-section">
+					</div>
+					
+					<!-- Params second row -->
+					<div class="row" style="padding-top: 1.2em; padding-bottom: 1.2em;">
+						<div class="col-lg-8">
+							<label for="parameter_description">Värde</label>
+							<input id="parameter_description" name="parameter_description" placeholder="Beskrivning (valfri)" class="form-control"></input>
+						</div>
+						<div class="col-lg-4 link-section">
 							<a class="add" href="javascript:void(0)">Lägg till parameter <i class="glyphicon glyphicon-plus"></i></a>
 						</div>
 					</div>
-					
-					<!--  Params second row -->
-					<!-- 
-					<div class="row" style="padding-top: 1.2em; padding-bottom: 1.2em;">
-
-					</div>
-					-->
 					
 					<!-- Added parameters end up in this table -->
 					<div class="row">
@@ -123,6 +124,7 @@
 										<th>Namn</th>
 										<th>Fråga</th>
 										<th>Värde</th>
+										<th>Beskrivning</th>
 									</tr>
 								</thead>
 								<tbody>

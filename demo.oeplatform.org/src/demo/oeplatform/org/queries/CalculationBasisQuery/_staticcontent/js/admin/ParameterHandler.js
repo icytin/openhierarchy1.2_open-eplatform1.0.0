@@ -16,7 +16,7 @@ var ParameterHandler = function() {
 			if($target.hasClass('add')) { // Add param
 				
 				if(_isValidParameter()) {
-					$.post(ADD_PARAM_PATH, { name: $('#parameter_name').val(), queryId: $('#parameter_query option:selected').val(), value: $('#parameter_value').val() }, function (data, rq, ro) {
+					$.post(ADD_PARAM_PATH, { name: $('#parameter_name').val(), queryId: $('#parameter_query option:selected').val(), value: $('#parameter_value').val(), description: $('#parameter_description').val() }, function (data, rq, ro) {
 						if(rq === 'success') {
 							_addParameterRow(data); // Add the parameter to the table
 							_resetElements();
@@ -83,6 +83,7 @@ var ParameterHandler = function() {
 		var query = $('#parameter_query option:selected').val() === '-1' ? '-' : $('#parameter_query option:selected').html(); 
 		$tr.append('<td>' + query + '</td>');
 		$tr.append('<td>' + $('#parameter_value').val() + '</td>');
+		$tr.append('<td>' + $('#parameter_description').val() + '</td>');
 		$tr.append('<td><i class="glyphicon glyphicon-remove pull-right"></i></td>');
 		
 		$table.find('tbody').append($tr);
