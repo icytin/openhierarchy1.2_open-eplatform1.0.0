@@ -335,6 +335,27 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 		return null;
 	}
 	
+	@WebPublic
+	  public ForegroundModuleResponse GetRefQueries(HttpServletRequest req, HttpServletResponse res, User user, URIParser uriParser) throws SQLException, IOException
+	  {
+		
+	    String indata = uriParser.get(0);//Get uriparameter use with get requests
+	    String name = req.getParameter("name");
+	    String queryId = req.getParameter("queryId");
+	    String value = req.getParameter("value");
+
+	    JsonObject jsonObject = new JsonObject();
+	    jsonObject.putField("returnData", "test");
+	    
+	    
+	    StringBuilder stringBuilder = new StringBuilder();
+	    
+	    jsonObject.toJson(stringBuilder);
+
+		HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
+
+		return null;
+	}
 	//Default code
 	@Override
 	public Query createQuery(MutableQueryDescriptor descriptor, TransactionHandler transactionHandler) throws SQLException {

@@ -1,9 +1,14 @@
 var ParameterHandler = function() {
 
 	var ADD_PARAM_PATH = '/demo.oeplatform.org/CalculationBasisProvider/AddParameter',
-		DELETE_PARAM_PATH = '/demo.oeplatform.org/CalculationBasisProvider/DeleteParameter';
+		DELETE_PARAM_PATH = '/demo.oeplatform.org/CalculationBasisProvider/DeleteParameter',
+		GET_REF_QUERIES_PATH = '/demo.oeplatform.org/CalculationBasisProvider/GetRefQueries'
 	
 	var _init = function() {
+		
+		//Start by populating the query select list
+		_populateQuerySelectList();
+		
 		$('#parameterSection').on('click', function(e) {
 			
 			var $target = $(e.target);
@@ -43,6 +48,17 @@ var ParameterHandler = function() {
 			
 		});
 	};
+	
+	var _populateQuerySelectList = function(){
+		$.post(GET_REF_QUERIES_PATH, {}, function (data, rq, ro) {
+			if(rq === 'success') {
+				//generate select list
+			}
+			else {
+				ErrorHandler.showError();
+			}
+		}, "json");
+	}
 	
 	var _resetElements = function() {
 		$.each($('#parameterSection input, #parameterSection select'), function(i, el) {
