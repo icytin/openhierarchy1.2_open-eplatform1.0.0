@@ -52,4 +52,23 @@
 			]]>
 		</Query>
 	</Script>
+	<Script version="3">
+		<Query>
+			<![CDATA[
+				ALTER TABLE calculation_basis_parameters
+				  DROP COLUMN placeholder,
+				  DROP COLUMN defaultValue,
+				  DROP COLUMN allowInput;
+			]]>
+		</Query>
+		<Query>
+			<![CDATA[
+				ALTER TABLE calculation_basis_parameters
+				  ADD value varchar(255) DEFAULT NULL,
+				  ADD refQueryID varchar(255) DEFAULT NULL,
+				  ADD refSubQueryID varchar(255) DEFAULT NULL,
+				  ADD description varchar(255) DEFAULT NULL;
+			]]>
+		</Query>
+	</Script>	
 </DBScripts>
