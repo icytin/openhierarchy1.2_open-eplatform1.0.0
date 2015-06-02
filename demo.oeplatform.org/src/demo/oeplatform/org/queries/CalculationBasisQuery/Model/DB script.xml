@@ -71,4 +71,20 @@
 			]]>
 		</Query>
 	</Script>	
+	<Script version="4">
+		<Query>
+			<![CDATA[
+				ALTER TABLE calculation_basis_parameters
+				  DROP COLUMN refQueryID,
+				  DROP COLUMN refSubQueryID;
+			]]>
+		</Query>
+		<Query>
+			<![CDATA[
+				ALTER TABLE calculation_basis_parameters
+				  ADD refQueryID int(10) unsigned NOT NULL,
+				  ADD refSubQueryID int(10) unsigned NOT NULL;
+			]]>
+		</Query>
+	</Script>
 </DBScripts>

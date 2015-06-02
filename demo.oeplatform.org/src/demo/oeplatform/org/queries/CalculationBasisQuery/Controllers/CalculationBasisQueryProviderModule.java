@@ -3,6 +3,7 @@ package demo.oeplatform.org.queries.CalculationBasisQuery.Controllers;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,7 +45,6 @@ import se.unlogic.webutils.http.URIParser;
 import se.unlogic.webutils.populators.annotated.AnnotatedRequestPopulator;
 import se.unlogic.webutils.url.URLRewriter;
 import se.unlogic.webutils.validation.ValidationUtils;
-
 import com.nordicpeak.flowengine.enums.QueryState;
 import com.nordicpeak.flowengine.interfaces.ImmutableQueryDescriptor;
 import com.nordicpeak.flowengine.interfaces.ImmutableQueryInstanceDescriptor;
@@ -61,6 +61,8 @@ import com.nordicpeak.flowengine.utils.TextTagReplacer;
 import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisQuery.CalculationBasisQuery;
 import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisQuery.CalculationBasisQueryCRUD;
 import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisQueryInstance.CalculationBasisQueryInstance;
+import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisParameter.CalculationBasisParameter;
+import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisParameter.CalculationBasisParameterDAO;
 
 public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule<CalculationBasisQueryInstance> implements BaseQueryCRUDCallback {
 
@@ -75,6 +77,9 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 	private QueryParameterFactory<CalculationBasisQuery, Integer> queryIDParamFactory;
 	private QueryParameterFactory<CalculationBasisQueryInstance, Integer> queryInstanceIDParamFactory;
 
+	
+	private CalculationBasisParameterDAO calculationBasisParameterDAO;
+	
 	@Override
 	protected void createDAOs(DataSource dataSource) throws Exception {
 
@@ -95,6 +100,8 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 
 		queryIDParamFactory = queryDAO.getParamFactory("queryID", Integer.class);
 		queryInstanceIDParamFactory = queryInstanceDAO.getParamFactory("queryInstanceID", Integer.class);
+		
+		this.calculationBasisParameterDAO = new CalculationBasisParameterDAO(dataSource);
 	}
 
 	@Override
@@ -294,18 +301,22 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 	@WebPublic
 	  public ForegroundModuleResponse AddParameter(HttpServletRequest req, HttpServletResponse res, User user, URIParser uriParser) throws SQLException, IOException
 	  {
-		
-	    String indata = uriParser.get(0);//Get uriparameter use with get requests
+		//TODO se till att rätt parametrar skickas och ta hand om nullvärden eller "" eftersom inte alla parseint alltis ska köras.
 	    String name = req.getParameter("name");
-	    String queryId = req.getParameter("queryId");
+	    int queryId = Integer.parseInt(req.getParameter("queryId"));
+	    String refQuery = req.getParameter("refQuery");
+	    String[] refQueryIds = refQuery.split(";");
+	    int refQueryId = Integer.parseInt(refQueryIds[0]);
+	    int refSubQueryId = Integer.parseInt(refQueryIds[1]);
 	    String value = req.getParameter("value");
+	    String description = req.getParameter("description");
 
+	    CalculationBasisParameter parameter = new CalculationBasisParameter(name, queryId, refQueryId, refSubQueryId, value, description);
+	    this.calculationBasisParameterDAO.add(parameter);
+	    
 	    JsonObject jsonObject = new JsonObject();
-	    jsonObject.putField("returnData", "test");
-	    
-	    
+	    jsonObject.putField("success", "1");
 	    StringBuilder stringBuilder = new StringBuilder();
-	    
 	    jsonObject.toJson(stringBuilder);
 
 		HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
@@ -352,7 +363,7 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 		
 		//Get distinct all queries with queryId from querydescriptors
 		
-		//If single value query extract {name:query.description,value:queryId}
+		//If single value query extract {name:query.querydescriptor.name,value:queryId}
 		//If multi value query get subqueries connected to that query (ex text_fields where queryId=...)
 		//Foreach subquery extract {name:subquery.label,value:queryId;subQueryId}
 		
@@ -364,6 +375,7 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 	    list.putField("Nettoinkomst", "2150;1616");
 	    list.putField("Bostadstillägg/bidrag", "2150;1617");
 	    list.putField("Övrig inkomst", "2150;1618");
+	    list.putField("Välj äldreboende", "2149");
 
 	    
 	    
