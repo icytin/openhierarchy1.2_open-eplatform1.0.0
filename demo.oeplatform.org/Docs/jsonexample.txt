@@ -1,50 +1,58 @@
-
 "parameters":
 [
   { 
     "name":"äldreboende",
     "query":"Välj äldreboende",
-    "value":null
+    "value":null,
+	"description":null
   },
   { 
     "name":"minimibelopp",
     "query":null,
-    "value":4787
+    "value":4787,
+	"description":"didadodadi..."
   },
   { 
     "name":"individuellt belopp",
     "query":null,
-    "value":1430
+    "value":1430,
+	"description":"didadodadi..."
   },
   { 
     "name":"avdrag",
     "query":null,
-    "value":-550
+    "value":-550,
+	"description":"didadodadi..."
   },
   { 
     "name":"nettoinkomst",
     "query":nettoinkomst,
-    "value":null
+    "value":null,
+	"description":null
   },
   { 
     "name":"bostadstillägg",
     "query":bostadstillägg,
-    "value":null
+    "value":null,
+	"description":null
   },
   { 
     "name":"övrig inkomst",
     "query":övrig inkomst,
-    "value":null
+    "value":null,
+	"description":null
   },
   { 
     "name":"mat",
     "query":null,
-    "value":2910
+    "value":2910,
+	"description":null
   },
   { 
     "name":"tak omvårdnadsavgift",
     "query":null,
-    "value":1696
+    "value":1696,
+	"description":"didadodadi..."
   }
 ]
 
@@ -54,27 +62,33 @@
     "name":"hyra",
     "formula":"äldreboende==Alnösol?4239:
 	       äldreboende==Almedalen?4329:
-	       0"
+	       0",
+	"description":null
   },
   {
     "name":"förbehållsbelopp",
-    "formula":"hyra + minimibelopp + individuellt belopp + avdrag"
+    "formula":"hyra + minimibelopp + individuellt belopp + avdrag",
+	"description":"didadodadi..."
   },
   {
     "name":"inkomst",
-    "formula":"nettoinkomst + bostadstillägg + övrig inkomst"
+    "formula":"nettoinkomst + bostadstillägg + övrig inkomst",
+	"description":null
   },
   {
     "name":"avgiftsutrymme",
-    "formula":"inkomst - förbehållsbelopp"
+    "formula":"inkomst - förbehållsbelopp",
+	"description":"didadodadi..."
   },
   {
     "name":"omvårdnadsavgift",
-    "formula":"avgiftsytrymme>0?(avgiftsytrymme<tak omvårdnadsavgift?tak omvårdnadsavgift:):0"
+    "formula":"avgiftsytrymme>0?(avgiftsytrymme<tak omvårdnadsavgift?tak omvårdnadsavgift:):0",
+	"description":"didadodadi..."
   },
   {
     "name":"månadskostnad",
-    "formula":"hyra + mat + omvårdnadsavgift"
+    "formula":"hyra + mat + omvårdnadsavgift",
+	"description":null
   },
 ]
 
