@@ -11,7 +11,7 @@ var ParameterHandler = function() {
 			if($target.hasClass('add')) { // Add param
 				
 				if(_isValidParameter()) {
-					$.post(ADD_PARAM_PATH, {indata: "test" }, function (data, rq, ro) {
+					$.post(ADD_PARAM_PATH, { name: $('#parameter_name').val(), queryId: $('#parameter_query option:selected').val(), value: $('#parameter_value').val() }, function (data, rq, ro) {
 						if(rq === 'success') {
 							_addParameterRow(data); // Add the parameter to the table
 							_resetElements();
@@ -64,10 +64,9 @@ var ParameterHandler = function() {
 		$table.find('thead').show();
 		$tr = $('<tr>');
 		$tr.append('<td>' + $('#parameter_name').val() + '</td>')
-		$tr.append('<td>' + $('#parameter_placeholder').val() + '</td>');
-		$tr.append('<td>' + $('#parameter_type option:selected').html() + '</td>');
-		$tr.append('<td>' + $('#parameter_default').val() + '</td>');
-		$tr.append('<td>' + $('#parameter_isinput option:selected').html() + '</td>');
+		var query = $('#parameter_query option:selected').val() === '-1' ? '-' : $('#parameter_query option:selected').html(); 
+		$tr.append('<td>' + query + '</td>');
+		$tr.append('<td>' + $('#parameter_value').val() + '</td>');
 		$tr.append('<td><i class="glyphicon glyphicon-remove pull-right"></i></td>');
 		
 		$table.find('tbody').append($tr);
@@ -75,19 +74,40 @@ var ParameterHandler = function() {
 	
 	var _isValidParameter = function() {
 		var isValid = true;
+		
+		var $name  = $('#parameterSection #parameter_name'),
+			$query = $('#parameterSection #parameter_query'),
+			$value = $('#parameterSection #parameter_value');
+		
+		if($name.val() === '') {
+			$name.focus();
+			return false;
+		}
+		else if($query.val() === '-1' && $value.val() === '') {
+			$query.focus();
+			return false;
+		}
+		else if($query.val() !== '-1' && $value.val() !== '-1') {
+			$value.focus();
+			return false;
+		}
+		
+		/*
 		$.each($('#parameterSection input, #parameterSection select'), function(i, el) {
 			var $element = $(el);
 			if($element.is('input') && $element.val() === '') {
+				
 				$element.focus();
 				isValid = false;
 				return isValid;
 			}
-			/* Must always have a value
-			else if($element.is('select')) {
-				return false;
-			}
-			*/
+			// Must always have a value
+			//else if($element.is('select')) {
+			//	return false;
+			//}
+			
 		});
+		*/
 		
 		return isValid;
 	};

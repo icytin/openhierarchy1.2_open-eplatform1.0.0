@@ -296,7 +296,31 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 	  {
 		
 	    String indata = uriParser.get(0);//Get uriparameter use with get requests
-	    String indata2 = req.getParameter("indata");
+	    String name = req.getParameter("name");
+	    String queryId = req.getParameter("queryId");
+	    String value = req.getParameter("value");
+
+	    JsonObject jsonObject = new JsonObject();
+	    jsonObject.putField("returnData", "test");
+	    
+	    
+	    StringBuilder stringBuilder = new StringBuilder();
+	    
+	    jsonObject.toJson(stringBuilder);
+
+		HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
+
+		return null;
+	}
+	
+	@WebPublic
+	  public ForegroundModuleResponse DeleteParameter(HttpServletRequest req, HttpServletResponse res, User user, URIParser uriParser) throws SQLException, IOException
+	  {
+		
+	    String indata = uriParser.get(0);//Get uriparameter use with get requests
+	    String id = req.getParameter("id");
+	    
+	    // TODO: Remove
 
 	    JsonObject jsonObject = new JsonObject();
 	    jsonObject.putField("returnData", "test");

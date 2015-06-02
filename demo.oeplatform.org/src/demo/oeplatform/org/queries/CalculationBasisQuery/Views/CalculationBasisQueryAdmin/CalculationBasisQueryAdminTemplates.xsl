@@ -88,40 +88,31 @@
 					
 					<!--  Params first row -->
 					<div class="row">
-						<div class="col-lg-4">
+						<div class="col-lg-3">
 							<label for="parameter_name">Namn</label>
 							<input id="parameter_name" name="parameter_name" placeholder="Namn" class="form-control"></input>
 						</div>
-						<div class="col-lg-4">
-							<label for="parameter_placeholder">Behållare</label>
-							<input id="parameter_placeholder" name="parameter_placeholder" placeholder="Behållare" class="form-control"></input>
-						</div>
-						<div class="col-lg-4">
-							<label for="parameter_type">Typ</label>
-							<select id="parameter_type" name="parameter_type" class="form-control">
-								<option value="int" selected="selected">Heltal</option>
-								<option value="string">Text</option>
+						<div class="col-lg-3">
+							<label for="parameter_query">Fråga</label>
+							<select id="parameter_query" name="parameter_query" placeholder="Fråga" class="form-control">
+								<option value="-1" selected="selected">Välj...</option>
 							</select>
+						</div>
+						<div class="col-lg-3">
+							<label for="parameter_value">Värde</label>
+							<input id="parameter_value" name="parameter_value" placeholder="Värde" class="form-control"></input>
+						</div>
+						<div class="col-lg-3 link-section">
+							<a class="add" href="javascript:void(0)">Lägg till parameter <i class="glyphicon glyphicon-plus"></i></a>
 						</div>
 					</div>
 					
 					<!--  Params second row -->
+					<!-- 
 					<div class="row" style="padding-top: 1.2em; padding-bottom: 1.2em;">
-						<div class="col-lg-4">
-							<label for="parameter_default">Standardvärde</label>
-							<input id="parameter_default" name="parameter_default" placeholder="Standardvärde" class="form-control"></input>
-						</div>
-						<div class="col-lg-4">
-							<label for="parameter_isinput">Inmatningsbar</label>
-							<select  id="parameter_isinput" class="form-control">
-								<option value="true" selected="selected">Ja</option>
-								<option value="false">Nej</option>
-							</select>
-						</div>
-						<div class="col-lg-4 link-section">
-							<a class="add" href="javascript:void(0)">Lägg till parameter <i class="glyphicon glyphicon-plus"></i></a>
-						</div>
+
 					</div>
+					-->
 					
 					<!-- Added parameters end up in this table -->
 					<div class="row">
@@ -130,11 +121,8 @@
 								<thead style="display: none;">
 									<tr>
 										<th>Namn</th>
-										<th>Behållare</th>
-										<th>Typ</th>
-										<th>Standardvärde</th>
-										<th>Inmatningsbar</th>
-										<th>Åtgärd</th>
+										<th>Fråga</th>
+										<th>Värde</th>
 									</tr>
 								</thead>
 								<tbody>
