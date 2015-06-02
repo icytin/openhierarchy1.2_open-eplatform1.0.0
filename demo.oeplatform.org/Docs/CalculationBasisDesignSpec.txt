@@ -1,0 +1,40 @@
+CalculationBasisModule
+
+== Model ==
+
+CalculationBasis
+|-Parameters (name,placeholder, type<text,number,date etc.>, <type>:default, bool:static)//Antingen renderas det som input av typ <Type> eller som ren text
+|
+|-Formulas	    Parameter (name,placeholder, type<text,number,date etc.>, <type>:default, bool:static)//Antingen renderas det som input av typ <Type> eller som ren text
+| |-FormulaElements<
+| |-Position	    Operand (+-*) (Validera formel medan den byggs för att se att ett resultat alltid kan räknas ut)
+|		    Result (Formel kan byggas på resultat av andra formler)
+|-PageViews
+| |-Position
+| |-Html (dragndrop formula elements or results into htmlEditor (sandboxed), makes <span data-formulaElementId="xxx" >ElementName</span>)
+| 
+
+OBS! Variabler ska sparas på calculationbasisnivå men en formel kan koppla mot ett variabelId
+
+
+== Controllers - Api för partial views och posts ==
+
+CalculationBasisController
+|-
+|-
+
+FormulaController
+|- [Get] Formula/GetAllByCalculationBasisId (formuladata i json), för att bygga upp admingränssnittet behövs allt
+|- [Get] Formula/GetResultByFormulaId <!!behövs ej.. ElementByElementId kan användas då result också sparas som <span data-formulaElementId="xxx">
+|- [Get] Formula/GetFormulaElementById (returnerar html. Ex. result och static parameter ger text och dynamisk 
+                                     parameter ger <input> baserat på <span data-formulaElementId="xxx")
+
+
+== View ==
+CalculationBasis.xsl (användarvy)
+|- Visar wizard med varje pageView (renderad html med värdena för formulaelement inbäddade), 
+   back och nextknappar, navigation progress indicator breadcrumb
+CalculationBasisAdmin.xsl (adminvy)
+|- Visar editor för variabler, 
+   formler(dragndrop av variabler och operander),
+   pageViews (html med dragndrop för att placera in variabler och formler(resultatet))

@@ -1,0 +1,85 @@
+
+"parameters":
+[
+  { 
+    "name":"äldreboende",
+    "query":"Välj äldreboende",
+    "value":null
+  },
+  { 
+    "name":"minimibelopp",
+    "query":null,
+    "value":4787
+  },
+  { 
+    "name":"individuellt belopp",
+    "query":null,
+    "value":1430
+  },
+  { 
+    "name":"avdrag",
+    "query":null,
+    "value":-550
+  },
+  { 
+    "name":"nettoinkomst",
+    "query":nettoinkomst,
+    "value":null
+  },
+  { 
+    "name":"bostadstillägg",
+    "query":bostadstillägg,
+    "value":null
+  },
+  { 
+    "name":"övrig inkomst",
+    "query":övrig inkomst,
+    "value":null
+  },
+  { 
+    "name":"mat",
+    "query":null,
+    "value":2910
+  },
+  { 
+    "name":"tak omvårdnadsavgift",
+    "query":null,
+    "value":1696
+  }
+]
+
+"formulas":
+[
+  {
+    "name":"hyra",
+    "formula":"äldreboende==Alnösol?4239:
+	       äldreboende==Almedalen?4329:
+	       0"
+  },
+  {
+    "name":"förbehållsbelopp",
+    "formula":"hyra + minimibelopp + individuellt belopp + avdrag"
+  },
+  {
+    "name":"inkomst",
+    "formula":"nettoinkomst + bostadstillägg + övrig inkomst"
+  },
+  {
+    "name":"avgiftsutrymme",
+    "formula":"inkomst - förbehållsbelopp"
+  },
+  {
+    "name":"omvårdnadsavgift",
+    "formula":"avgiftsytrymme>0?(avgiftsytrymme<tak omvårdnadsavgift?tak omvårdnadsavgift:):0"
+  },
+  {
+    "name":"månadskostnad",
+    "formula":"hyra + mat + omvårdnadsavgift"
+  },
+]
+
+"views":
+[
+  "title":"Resultat - månadskostnad för äldreboende"
+  "html":""
+]

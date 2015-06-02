@@ -25,137 +25,6 @@
 	</xsl:template>
 	
 	<xsl:template match="ShowQueryValues">
-		<div style="width:500px;margin-left:50px;">
-		<div class="row">
-			<label class="title" data-type="formulaName" title="...Inkomster...">Inkomster</label>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<label>Summa</label>
-			</div>
-			<div class="col-md-6">
-				<span data-type="formulaResult" data-id="13">12000</span>
-				&#160;kr
-			</div>
-		</div>
-	
-		<div class="row">
-			<label class="title" data-type="formulaName" title="...description...">Förbehållsbelopp</label>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				Hyra&#160;
-				<span data-type="parameter" data-name="äldreboende" data-id="13">Alnösol</span>
-			</div>
-			<div class="col-md-6">
-				<span data-type="formulaResult" data-id="13">4239</span>
-				&#160;kr
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<span data-type="parametername" data-id="13" title="...minimibelopp...">Minimibelopp</span>
-			</div>
-			<div class="col-md-6">
-				<span data-type="parameter" data-name="minimibelopp" data-id="13">4787</span>
-				&#160;kr
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<span data-type="parametername" data-id="13"
-					title="...Individuellt belopp...">Individuellt belopp</span>
-			</div>
-			<div class="col-md-6">
-				<span data-type="parameter" data-name="Individuellt belopp"
-					data-id="13">1430</span>
-				&#160;kr
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<span data-type="parametername" data-id="13" title="...avdrag...">Avdrag</span>
-			</div>
-			<div class="col-md-6">
-				<span data-type="parameter" data-id="13">-550</span>
-				&#160;kr
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<label>Summa</label>
-			</div>
-			<div class="col-md-6">
-				<span data-type="formulaResult" data-id="13">9906</span>
-				&#160;kr
-			</div>
-		</div>
-	
-		<div class="row">
-			<label class="title">Avgift</label>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<span data-type="formulaname" title="...Avgiftsutrymme...">Avgiftsutrymme</span>
-			</div>
-			<div class="col-md-6">
-				<span data-type="formulaResult" data-id="13">2094</span>
-				&#160;kr
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<label class="title">Avgift</label>
-			</div>
-			<div class="col-md-6">
-				<span data-type="formulaResult" data-id="13">1696</span>
-				&#160;kr
-			</div>
-		</div>
-	
-		<div class="row">
-			<label class="title">Din månadskostnad blir</label>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				Hyra&#160;
-				<span data-type="parameter" data-name="äldreboende" data-id="13">Alnösol</span>
-			</div>
-			<div class="col-md-6">
-				<span data-type="formulaResult" data-id="13">4239</span>
-				&#160;kr
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<span data-type="parameterName">Mat</span>
-			</div>
-			<div class="col-md-6">
-				<span data-type="formulaResult" data-id="13">2910</span>
-				&#160;kr
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<span data-type="formulaname">Omvårdnadsavgift</span>
-			</div>
-			<div class="col-md-6">
-				<span data-type="formulaResult" data-id="13">1696</span>
-				&#160;kr
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<label data-type="formulaname">Summa</label>
-			</div>
-			<div class="col-md-6">
-				<span data-type="formulaResult" data-id="13">8845</span>
-				&#160;kr
-			</div>
-		</div>
-	</div>
-	old stuff
-		
 		<div class="query">
 			
 			<article>
@@ -184,97 +53,146 @@
 				
 				<fieldset>
 					
-					<div class="split">
-						<strong class="block">Fisk<xsl:value-of select="$i18n.FirstnameAndLastname" /></strong>
-						<xsl:value-of select="CalculationBasisQueryInstance/firstname" />
-						<xsl:text>&#160;</xsl:text>
-						<xsl:value-of select="CalculationBasisQueryInstance/lastname" />
-					</div>
+					<div class="split" style="margin-left:20px;">
+						<div class="row">
+							<label class="title" data-type="formulaName" title="...Inkomster...">Inkomster</label>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<label>Summa</label>
+							</div>
+							<div class="col-md-6">
+								<span data-type="formulaResult" data-id="13">12000</span>
+								&#160;kr
+							</div>
+						</div>
 					
-					<div class="split odd"></div>
+						<div class="row">
+							<label class="title" data-type="formulaName" title="...description...">Förbehållsbelopp</label>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								Hyra&#160;
+								<span data-type="parameter" data-name="äldreboende" data-id="13">Alnösol</span>
+							</div>
+							<div class="col-md-6">
+								<span data-type="formulaResult" data-id="13">4239</span>
+								&#160;kr
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<span data-type="parametername" data-id="13" title="...minimibelopp...">Minimibelopp</span>
+							</div>
+							<div class="col-md-6">
+								<span data-type="parameter" data-name="minimibelopp" data-id="13">4787</span>
+								&#160;kr
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<span data-type="parametername" data-id="13"
+									title="...Individuellt belopp...">Individuellt belopp</span>
+							</div>
+							<div class="col-md-6">
+								<span data-type="parameter" data-name="Individuellt belopp"
+									data-id="13">1430</span>
+								&#160;kr
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<span data-type="parametername" data-id="13" title="...avdrag...">Avdrag</span>
+							</div>
+							<div class="col-md-6">
+								<span data-type="parameter" data-id="13">-550</span>
+								&#160;kr
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<label>Summa</label>
+							</div>
+							<div class="col-md-6">
+								<span data-type="formulaResult" data-id="13">9906</span>
+								&#160;kr
+							</div>
+						</div>
+					
+						<div class="row">
+							<label class="title">Avgift</label>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<span data-type="formulaname" title="...Avgiftsutrymme...">Avgiftsutrymme</span>
+							</div>
+							<div class="col-md-6">
+								<span data-type="formulaResult" data-id="13">2094</span>
+								&#160;kr
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<label class="title">Avgift</label>
+							</div>
+							<div class="col-md-6">
+								<span data-type="formulaResult" data-id="13">1696</span>
+								&#160;kr
+							</div>
+						</div>
+					
+						<div class="row">
+							<label class="title">Din månadskostnad blir</label>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								Hyra&#160;
+								<span data-type="parameter" data-name="äldreboende" data-id="13">Alnösol</span>
+							</div>
+							<div class="col-md-6">
+								<span data-type="formulaResult" data-id="13">4239</span>
+								&#160;kr
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<span data-type="parameterName">Mat</span>
+							</div>
+							<div class="col-md-6">
+								<span data-type="formulaResult" data-id="13">2910</span>
+								&#160;kr
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<span data-type="formulaname">Omvårdnadsavgift</span>
+							</div>
+							<div class="col-md-6">
+								<span data-type="formulaResult" data-id="13">1696</span>
+								&#160;kr
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<label data-type="formulaname">Summa</label>
+							</div>
+							<div class="col-md-6">
+								<span data-type="formulaResult" data-id="13">8845</span>
+								&#160;kr
+							</div>
+						</div>
+					</div>
 					
 				</fieldset>
 				
-				<xsl:if test="CalculationBasisQueryInstance/CalculationBasisQuery/allowLetter = 'true'">
-					
-					<fieldset>
-					
-						<div class="split">
-							<strong class="block"><xsl:value-of select="$i18n.Address" /></strong>
-							<xsl:call-template name="printValue">
-								<xsl:with-param name="value" select="CalculationBasisQueryInstance/address" />
-							</xsl:call-template>
-						</div>					
-						
-						<div class="split odd">
-							<strong class="block"><xsl:value-of select="$i18n.ZipCode" /><xsl:text>&#160;</xsl:text><xsl:value-of select="$i18n.And" /><xsl:text>&#160;</xsl:text><xsl:value-of select="$i18n.PostalAddress" /></strong>
-							<xsl:call-template name="printValue">
-								<xsl:with-param name="value" select="CalculationBasisQueryInstance/zipCode" />
-							</xsl:call-template>
-							<xsl:text>&#160;</xsl:text>
-							<xsl:call-template name="printValue">
-								<xsl:with-param name="value" select="CalculationBasisQueryInstance/postalAddress" />
-							</xsl:call-template>
-						</div>
-						
-					</fieldset>
-					
-				</xsl:if>
-				
+
 				<fieldset>
-					
-					<xsl:if test="CalculationBasisQueryInstance/CalculationBasisQuery/allowPhone = 'true'">
-						
-						<div class="split">
-							<strong class="block"><xsl:value-of select="$i18n.Phone" /></strong>
-							<xsl:call-template name="printValue">
-								<xsl:with-param name="value" select="CalculationBasisQueryInstance/phone" />
-							</xsl:call-template>
-						</div>
-					
-					</xsl:if>
-					
-					<xsl:if test="CalculationBasisQueryInstance/CalculationBasisQuery/allowEmail = 'true'">
-			
-						<div class="split">
-							<strong class="block"><xsl:value-of select="$i18n.Email" /></strong>
-							<xsl:call-template name="printValue">
-								<xsl:with-param name="value" select="CalculationBasisQueryInstance/email" />
-							</xsl:call-template>
-						</div>
-					
-					</xsl:if>
-					
-					<div class="split">
-						<strong class="block"><xsl:value-of select="$i18n.MobilePhone" /></strong>
-						<xsl:call-template name="printValue">
-							<xsl:with-param name="value" select="CalculationBasisQueryInstance/mobilePhone" />
-						</xsl:call-template>
-					</div>
-					
-				</fieldset>
-				
-				<fieldset>
-					
 					<div class="split">
 						<strong class="block"><xsl:value-of select="$i18n.ChooseContactChannels" /></strong>
 						<xsl:if test="CalculationBasisQueryInstance/contactByLetter = 'true'">
 							<xsl:value-of select="$i18n.ContactByLetter" /><br/>
 						</xsl:if>
-						
-						<xsl:if test="CalculationBasisQueryInstance/contactByEmail = 'true'">
-							<xsl:value-of select="$i18n.ContactByEmail" /><br/>
-						</xsl:if>
-						
-						<xsl:if test="CalculationBasisQueryInstance/contactBySMS = 'true'">
-							<xsl:value-of select="$i18n.ContactBySMS" /><br/>
-						</xsl:if>
-						
-						<xsl:if test="CalculationBasisQueryInstance/contactByPhone = 'true'">
-							<xsl:value-of select="$i18n.ContactByPhone" />
-						</xsl:if>
 					</div>
-					
 				</fieldset>
 				
 			</article>
