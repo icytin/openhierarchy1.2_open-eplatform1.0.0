@@ -73,6 +73,12 @@ var ParameterHandler = function() {
 	var _initParamaterChangeEvents = function() {
 		$('#parameterSection #parameter_query').change(function(e) {
 			$target = $(e.target);
+			if($target.val() === '-1') {
+				$('#parameter_value').removeAttr('disabled');
+			}
+			else {
+				$('#parameter_value').attr('disabled', 'disabled')
+			}
 		})
 	};
 	
