@@ -31,6 +31,7 @@ import se.unlogic.standardutils.dao.TransactionHandler;
 import se.unlogic.standardutils.db.tableversionhandler.TableVersionHandler;
 import se.unlogic.standardutils.db.tableversionhandler.UpgradeResult;
 import se.unlogic.standardutils.db.tableversionhandler.XMLDBScriptProvider;
+import se.unlogic.standardutils.json.JsonArray;
 import se.unlogic.standardutils.json.JsonObject;
 import se.unlogic.standardutils.populators.StringPopulator;
 import se.unlogic.standardutils.string.StringUtils;
@@ -45,6 +46,7 @@ import se.unlogic.webutils.http.URIParser;
 import se.unlogic.webutils.populators.annotated.AnnotatedRequestPopulator;
 import se.unlogic.webutils.url.URLRewriter;
 import se.unlogic.webutils.validation.ValidationUtils;
+
 import com.nordicpeak.flowengine.enums.QueryState;
 import com.nordicpeak.flowengine.interfaces.ImmutableQueryDescriptor;
 import com.nordicpeak.flowengine.interfaces.ImmutableQueryInstanceDescriptor;
@@ -64,7 +66,9 @@ import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisQ
 import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisParameter.CalculationBasisParameter;
 import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisParameter.CalculationBasisParameterDAO;
 
-public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule<CalculationBasisQueryInstance> implements BaseQueryCRUDCallback {
+public class CalculationBasisQueryProviderModule extends
+		BaseQueryProviderModule<CalculationBasisQueryInstance> implements
+		BaseQueryCRUDCallback {
 
 	private static final EmailPopulator EMAIL_POPULATOR = new EmailPopulator();
 	private static final String SCRIPT_PATH = "../Model/DB script.xml";
@@ -77,35 +81,49 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 	private QueryParameterFactory<CalculationBasisQuery, Integer> queryIDParamFactory;
 	private QueryParameterFactory<CalculationBasisQueryInstance, Integer> queryInstanceIDParamFactory;
 
-	
 	private CalculationBasisParameterDAO calculationBasisParameterDAO;
-	
+
 	@Override
 	protected void createDAOs(DataSource dataSource) throws Exception {
 
 		// Automatic table version handling
-		UpgradeResult upgradeResult = TableVersionHandler.upgradeDBTables(dataSource, CalculationBasisQueryProviderModule.class.getName(), new XMLDBScriptProvider(this.getClass().getResourceAsStream(SCRIPT_PATH)));
+		UpgradeResult upgradeResult = TableVersionHandler.upgradeDBTables(
+				dataSource,
+				CalculationBasisQueryProviderModule.class.getName(),
+				new XMLDBScriptProvider(this.getClass().getResourceAsStream(
+						SCRIPT_PATH)));
 
 		if (upgradeResult.isUpgrade()) {
 
 			log.info(upgradeResult.toString());
 		}
 
-		SimpleAnnotatedDAOFactory daoFactory = new SimpleAnnotatedDAOFactory(dataSource);
+		SimpleAnnotatedDAOFactory daoFactory = new SimpleAnnotatedDAOFactory(
+				dataSource);
 
 		queryDAO = daoFactory.getDAO(CalculationBasisQuery.class);
-		queryInstanceDAO = daoFactory.getDAO(CalculationBasisQueryInstance.class);
+		queryInstanceDAO = daoFactory
+				.getDAO(CalculationBasisQueryInstance.class);
 
-		queryCRUD = new CalculationBasisQueryCRUD(queryDAO.getWrapper(Integer.class), new AnnotatedRequestPopulator<CalculationBasisQuery>(CalculationBasisQuery.class), "CalculationBasisQuery", "query", null, this);
+		queryCRUD = new CalculationBasisQueryCRUD(
+				queryDAO.getWrapper(Integer.class),
+				new AnnotatedRequestPopulator<CalculationBasisQuery>(
+						CalculationBasisQuery.class), "CalculationBasisQuery",
+				"query", null, this);
 
-		queryIDParamFactory = queryDAO.getParamFactory("queryID", Integer.class);
-		queryInstanceIDParamFactory = queryInstanceDAO.getParamFactory("queryInstanceID", Integer.class);
-		
-		this.calculationBasisParameterDAO = new CalculationBasisParameterDAO(dataSource);
+		queryIDParamFactory = queryDAO
+				.getParamFactory("queryID", Integer.class);
+		queryInstanceIDParamFactory = queryInstanceDAO.getParamFactory(
+				"queryInstanceID", Integer.class);
+
+		this.calculationBasisParameterDAO = new CalculationBasisParameterDAO(
+				dataSource);
 	}
 
 	@Override
-	public void populate(CalculationBasisQueryInstance queryInstance, HttpServletRequest req, User user, boolean allowPartialPopulation) throws ValidationException {
+	public void populate(CalculationBasisQueryInstance queryInstance,
+			HttpServletRequest req, User user, boolean allowPartialPopulation)
+			throws ValidationException {
 
 		StringPopulator stringPopulator = StringPopulator.getPopulator();
 
@@ -113,11 +131,16 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 
 		Integer queryID = queryInstance.getQuery().getQueryID();
 
-		boolean contactByLetter = req.getParameter("q" + queryID + "_contactByLetter") != null;
-		boolean contactBySMS = req.getParameter("q" + queryID + "_contactBySMS") != null;
-		boolean contactByEmail = req.getParameter("q" + queryID + "_contactByEmail") != null;
-		boolean contactByPhone = req.getParameter("q" + queryID + "_contactByPhone") != null;
-		boolean persistUserProfile = req.getParameter("q" + queryID + "_persistUserProfile") != null;
+		boolean contactByLetter = req.getParameter("q" + queryID
+				+ "_contactByLetter") != null;
+		boolean contactBySMS = req
+				.getParameter("q" + queryID + "_contactBySMS") != null;
+		boolean contactByEmail = req.getParameter("q" + queryID
+				+ "_contactByEmail") != null;
+		boolean contactByPhone = req.getParameter("q" + queryID
+				+ "_contactByPhone") != null;
+		boolean persistUserProfile = req.getParameter("q" + queryID
+				+ "_persistUserProfile") != null;
 
 		String firstname;
 		String lastname;
@@ -126,20 +149,31 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 			firstname = user.getFirstname();
 			lastname = user.getLastname();
 		} else {
-			firstname = ValidationUtils.validateParameter("q" + queryID + "_firstname", req, true, stringPopulator, errors);
-			lastname = ValidationUtils.validateParameter("q" + queryID + "_lastname", req, true, stringPopulator, errors);
+			firstname = ValidationUtils.validateParameter("q" + queryID
+					+ "_firstname", req, true, stringPopulator, errors);
+			lastname = ValidationUtils.validateParameter("q" + queryID
+					+ "_lastname", req, true, stringPopulator, errors);
 		}
 
-		String address = ValidationUtils.validateParameter("q" + queryID + "_address", req, contactByLetter, stringPopulator, errors);
-		String zipCode = ValidationUtils.validateParameter("q" + queryID + "_zipcode", req, contactByLetter, stringPopulator, errors);
-		String postalAddress = ValidationUtils.validateParameter("q" + queryID + "_postaladdress", req, contactByLetter, stringPopulator, errors);
-		String mobilePhone = ValidationUtils.validateParameter("q" + queryID + "_mobilephone", req, contactBySMS, stringPopulator, errors);
-		String email = ValidationUtils.validateParameter("q" + queryID + "_email", req, contactByEmail, EMAIL_POPULATOR, errors);
-		String phone = ValidationUtils.validateParameter("q" + queryID + "_phone", req, contactByPhone, stringPopulator, errors);
+		String address = ValidationUtils.validateParameter("q" + queryID
+				+ "_address", req, contactByLetter, stringPopulator, errors);
+		String zipCode = ValidationUtils.validateParameter("q" + queryID
+				+ "_zipcode", req, contactByLetter, stringPopulator, errors);
+		String postalAddress = ValidationUtils.validateParameter("q" + queryID
+				+ "_postaladdress", req, contactByLetter, stringPopulator,
+				errors);
+		String mobilePhone = ValidationUtils.validateParameter("q" + queryID
+				+ "_mobilephone", req, contactBySMS, stringPopulator, errors);
+		String email = ValidationUtils.validateParameter("q" + queryID
+				+ "_email", req, contactByEmail, EMAIL_POPULATOR, errors);
+		String phone = ValidationUtils.validateParameter("q" + queryID
+				+ "_phone", req, contactByPhone, stringPopulator, errors);
 
 		if (!errors.isEmpty()) {
 
-			if (!allowPartialPopulation && queryInstance.getQueryInstanceDescriptor().getQueryState() == QueryState.VISIBLE_REQUIRED) {
+			if (!allowPartialPopulation
+					&& queryInstance.getQueryInstanceDescriptor()
+							.getQueryState() == QueryState.VISIBLE_REQUIRED) {
 
 				throw new ValidationException(errors);
 			}
@@ -159,39 +193,60 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 			queryInstance.setPhone(phone);
 			queryInstance.setPersistUserProfile(persistUserProfile);
 
-			queryInstance.getQueryInstanceDescriptor().setPopulated(queryInstance.isPopulated());
+			queryInstance.getQueryInstanceDescriptor().setPopulated(
+					queryInstance.isPopulated());
 			return;
 
 		}
 
-		if (queryInstance.getQueryInstanceDescriptor().getQueryState() == QueryState.VISIBLE_REQUIRED && !contactByLetter && !contactBySMS && !contactByEmail && !contactByPhone) {
+		if (queryInstance.getQueryInstanceDescriptor().getQueryState() == QueryState.VISIBLE_REQUIRED
+				&& !contactByLetter
+				&& !contactBySMS
+				&& !contactByEmail
+				&& !contactByPhone) {
 			errors.add(new ValidationError("NoContactChannelChoosen"));
 		}
 
-		if (StringUtils.isEmpty(address) && (!StringUtils.isEmpty(zipCode) || !StringUtils.isEmpty(postalAddress))) {
-			errors.add(new ValidationError("q" + queryID + "_address", ValidationErrorType.RequiredField));
+		if (StringUtils.isEmpty(address)
+				&& (!StringUtils.isEmpty(zipCode) || !StringUtils
+						.isEmpty(postalAddress))) {
+			errors.add(new ValidationError("q" + queryID + "_address",
+					ValidationErrorType.RequiredField));
 		}
 
-		if (StringUtils.isEmpty(zipCode) && (!StringUtils.isEmpty(address) || !StringUtils.isEmpty(postalAddress))) {
-			errors.add(new ValidationError("q" + queryID + "_zipcode", ValidationErrorType.RequiredField));
+		if (StringUtils.isEmpty(zipCode)
+				&& (!StringUtils.isEmpty(address) || !StringUtils
+						.isEmpty(postalAddress))) {
+			errors.add(new ValidationError("q" + queryID + "_zipcode",
+					ValidationErrorType.RequiredField));
 		}
 
-		if (StringUtils.isEmpty(postalAddress) && (!StringUtils.isEmpty(address) || !StringUtils.isEmpty(zipCode))) {
-			errors.add(new ValidationError("q" + queryID + "_postaladdress", ValidationErrorType.RequiredField));
+		if (StringUtils.isEmpty(postalAddress)
+				&& (!StringUtils.isEmpty(address) || !StringUtils
+						.isEmpty(zipCode))) {
+			errors.add(new ValidationError("q" + queryID + "_postaladdress",
+					ValidationErrorType.RequiredField));
 		}
 
-		this.validateFieldLength("q" + queryID + "_firstname", firstname, 255, errors);
-		this.validateFieldLength("q" + queryID + "_lastname", lastname, 255, errors);
-		this.validateFieldLength("q" + queryID + "_address", address, 255, errors);
-		this.validateFieldLength("q" + queryID + "_zipcode", zipCode, 10, errors);
-		this.validateFieldLength("q" + queryID + "_postaladdress", postalAddress, 255, errors);
-		this.validateFieldLength("q" + queryID + "_mobilephone", mobilePhone, 255, errors);
+		this.validateFieldLength("q" + queryID + "_firstname", firstname, 255,
+				errors);
+		this.validateFieldLength("q" + queryID + "_lastname", lastname, 255,
+				errors);
+		this.validateFieldLength("q" + queryID + "_address", address, 255,
+				errors);
+		this.validateFieldLength("q" + queryID + "_zipcode", zipCode, 10,
+				errors);
+		this.validateFieldLength("q" + queryID + "_postaladdress",
+				postalAddress, 255, errors);
+		this.validateFieldLength("q" + queryID + "_mobilephone", mobilePhone,
+				255, errors);
 		this.validateFieldLength("q" + queryID + "_email", email, 255, errors);
 		this.validateFieldLength("q" + queryID + "_phone", phone, 255, errors);
 
 		if (!StringUtils.isEmpty(email)) {
 			if (!EmailUtils.isValidEmailAddress(email)) {
-				errors.add(new ValidationError("q" + queryID + "_email", ValidationErrorType.InvalidFormat));
+				errors.add(new ValidationError("q" + queryID + "_email",
+						ValidationErrorType.InvalidFormat));
 			}
 		}
 
@@ -214,7 +269,8 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 		queryInstance.setEmail(email);
 		queryInstance.setPhone(phone);
 		queryInstance.setPersistUserProfile(persistUserProfile);
-		queryInstance.getQueryInstanceDescriptor().setPopulated(queryInstance.isPopulated());
+		queryInstance.getQueryInstanceDescriptor().setPopulated(
+				queryInstance.isPopulated());
 
 		if (user != null && user instanceof MutableUser && persistUserProfile) {
 
@@ -222,7 +278,8 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 
 			if (email != null) {
 
-				User emailMatch = systemInterface.getUserHandler().getUserByEmail(email, false, false);
+				User emailMatch = systemInterface.getUserHandler()
+						.getUserByEmail(email, false, false);
 
 				if (emailMatch != null && !emailMatch.equals(mutableUser)) {
 
@@ -235,19 +292,25 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 				}
 			}
 
-			MutableAttributeHandler attributeHandler = mutableUser.getAttributeHandler();
+			MutableAttributeHandler attributeHandler = mutableUser
+					.getAttributeHandler();
 
 			if (attributeHandler != null) {
 
 				setAttributeValue("address", address, attributeHandler);
 				setAttributeValue("zipCode", zipCode, attributeHandler);
-				setAttributeValue("postalAddress", postalAddress, attributeHandler);
+				setAttributeValue("postalAddress", postalAddress,
+						attributeHandler);
 				setAttributeValue("mobilePhone", mobilePhone, attributeHandler);
 				setAttributeValue("phone", phone, attributeHandler);
-				setAttributeValue("contactByEmail", contactByEmail, attributeHandler);
-				setAttributeValue("contactByLetter", contactByLetter, attributeHandler);
-				setAttributeValue("contactByPhone", contactByPhone, attributeHandler);
-				setAttributeValue("contactBySMS", contactBySMS, attributeHandler);
+				setAttributeValue("contactByEmail", contactByEmail,
+						attributeHandler);
+				setAttributeValue("contactByLetter", contactByLetter,
+						attributeHandler);
+				setAttributeValue("contactByPhone", contactByPhone,
+						attributeHandler);
+				setAttributeValue("contactBySMS", contactBySMS,
+						attributeHandler);
 
 			}
 
@@ -263,11 +326,14 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 
 					req.getSession(true).setAttribute("user", user);
 
-					this.systemInterface.getUserHandler().updateUser(mutableUser, false, false, attributeHandler != null);
+					this.systemInterface.getUserHandler()
+							.updateUser(mutableUser, false, false,
+									attributeHandler != null);
 
 				} catch (UnableToUpdateUserException e) {
 
-					throw new ValidationException(new ValidationError("UnableToUpdateUser"));
+					throw new ValidationException(new ValidationError(
+							"UnableToUpdateUser"));
 
 				}
 
@@ -277,171 +343,234 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 
 	}
 
-	public void save(CalculationBasisQueryInstance queryInstance, TransactionHandler transactionHandler) throws Throwable {
+	public void save(CalculationBasisQueryInstance queryInstance,
+			TransactionHandler transactionHandler) throws Throwable {
 
-		if (queryInstance.getQueryInstanceID() == null || !queryInstance.getQueryInstanceID().equals(queryInstance.getQueryInstanceDescriptor().getQueryInstanceID())) {
+		if (queryInstance.getQueryInstanceID() == null
+				|| !queryInstance.getQueryInstanceID().equals(
+						queryInstance.getQueryInstanceDescriptor()
+								.getQueryInstanceID())) {
 
-			queryInstance.setQueryInstanceID(queryInstance.getQueryInstanceDescriptor().getQueryInstanceID());
+			queryInstance.setQueryInstanceID(queryInstance
+					.getQueryInstanceDescriptor().getQueryInstanceID());
 
 			this.queryInstanceDAO.add(queryInstance, transactionHandler, null);
 
 		} else {
 
-			this.queryInstanceDAO.update(queryInstance, transactionHandler, null);
+			this.queryInstanceDAO.update(queryInstance, transactionHandler,
+					null);
 		}
 	}
-	//Web methods
+
+	// Web methods
 	@WebPublic(alias = "config")
-	public ForegroundModuleResponse configureQuery(HttpServletRequest req, HttpServletResponse res, User user, URIParser uriParser) throws Exception {
+	public ForegroundModuleResponse configureQuery(HttpServletRequest req,
+			HttpServletResponse res, User user, URIParser uriParser)
+			throws Exception {
 
 		return this.queryCRUD.update(req, res, user, uriParser);
 	}
-	
-	//Ajax methods
+
+	// Ajax methods
 	@WebPublic
-	  public ForegroundModuleResponse AddParameter(HttpServletRequest req, HttpServletResponse res, User user, URIParser uriParser) throws SQLException, IOException
-	  {
+	public ForegroundModuleResponse AddParameter(HttpServletRequest req,
+			HttpServletResponse res, User user, URIParser uriParser)
+			throws SQLException, IOException {
 		JsonObject result = new JsonObject();
 		StringBuilder stringBuilder = new StringBuilder();
-		
-		try{
-			//Get parameters
-		    String name = req.getParameter("name");
-		    Integer queryId = req.getParameter("queryId")!=""?Integer.parseInt(req.getParameter("queryId")):null;
-		    String refQuery = req.getParameter("refQuery");
-		    String[] refQueryIds = refQuery.split(";");
-		    Integer refQueryId = refQueryIds.length>0?Integer.parseInt(refQueryIds[0]):null;
-		    Integer refSubQueryId = refQueryIds.length>1?Integer.parseInt(refQueryIds[1]):null;
-		    String value = req.getParameter("value")!=""?req.getParameter("value"):null;
-		    String description = req.getParameter("description")!=""?req.getParameter("description"):null;
-		    
-		    //Update db
-		    CalculationBasisParameter parameter = new CalculationBasisParameter(name, queryId, refQueryId==-1?null:refQueryId, refSubQueryId, value, description);
-		    calculationBasisParameterDAO.add(parameter);
-		    
-		    //Get id from created parameter
-		    int id = parameter.getParameterID();
-		    result.putField("id", id);
-		    
-		    result.putField("success", "1");
-		    result.toJson(stringBuilder);
-			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
-		}
-		catch (Exception ex)
-		{
-			//TODO log error
-			result.putField("message", "Ett fel inträffade på servern.");
-			result.putField("success", "0");
-		    result.toJson(stringBuilder);
-			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
-		}
-		return null;
-	}
-	
-	@WebPublic
-	  public ForegroundModuleResponse DeleteParameter(HttpServletRequest req, HttpServletResponse res, User user, URIParser uriParser) throws SQLException, IOException
-	  {
-	    
-	    JsonObject result = new JsonObject();
-		StringBuilder stringBuilder = new StringBuilder();
-		
-		try{
-			//Get parameters
-			String id = req.getParameter("id");
-		    
-		    //Update db
-		    calculationBasisParameterDAO.remove(id);
-		    result.putField("id", id);
-		    
-		    result.putField("success", "1");
-		    result.toJson(stringBuilder);
-			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
-		}
-		catch (Exception ex)
-		{
-			//TODO log error
-			result.putField("message", "Ett fel inträffade på servern.");
-			result.putField("success", "0");
-		    result.toJson(stringBuilder);
-			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
-		}
-		return null;
-	}
-	
-	@WebPublic
-	  public ForegroundModuleResponse GetRefQueries(HttpServletRequest req, HttpServletResponse res, User user, URIParser uriParser) throws SQLException, IOException
-	  {
-		//Get current calculationbasisquery id
-		String queryId = req.getParameter("queryId");
-		
-		//Get current step
-		//Get current step sortIndex
-		
-		//Get current flow
-		
-		//Get all steps with current flow id and sortIndex <= current step sortIndex
-		
-		//Get all querydescriptors for all steps (for now only with queryTypeId = textfieldquery)
-		
-		//Get distinct all queries with queryId from querydescriptors
-		
-		//If single value query extract {name:query.querydescriptor.name,value:queryId}
-		//If multi value query get subqueries connected to that query (ex text_fields where queryId=...)
-		//Foreach subquery extract {name:subquery.label,value:queryId;subQueryId}
-		
-		
-		//Fetch all textfields with textfieldqueries connected to 
-		
-		//Hardcoded example
-	    JsonObject list = new JsonObject();
-	    list.putField("Nettoinkomst", "2150;1616");
-	    list.putField("Bostadstillägg/bidrag", "2150;1617");
-	    list.putField("Övrig inkomst", "2150;1618");
-	    list.putField("Välj äldreboende", "2149");
 
-	    
-	    
-	    StringBuilder stringBuilder = new StringBuilder();
-	    list.toJson(stringBuilder);
-
-		HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
-
-		return null;
-	}
-	
-	@WebPublic
-	  public ForegroundModuleResponse AddFormula(HttpServletRequest req, HttpServletResponse res, User user, URIParser uriParser) throws SQLException, IOException
-	  {
-		JsonObject result = new JsonObject();
-		StringBuilder stringBuilder = new StringBuilder();
-		
 		try {
-			
-			// TODO: Get parameters
-		    // String name = req.getParameter("xxxx");
-		    
-		    //TODO get id from created parameter
-		    int id = 0;
-		    result.putField("id", id);
-		    
-		    result.putField("success", "1");
-		    result.toJson(stringBuilder);
-			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
-		}
-		catch (Exception ex)
-		{
-			//TODO log error
+			// Get parameters
+			String name = req.getParameter("name");
+			Integer queryId = req.getParameter("queryId") != "" ? Integer
+					.parseInt(req.getParameter("queryId")) : null;
+			String refQuery = req.getParameter("refQuery");
+			String[] refQueryIds = refQuery.split(";");
+			Integer refQueryId = refQueryIds.length > 0 ? Integer
+					.parseInt(refQueryIds[0]) : null;
+			Integer refSubQueryId = refQueryIds.length > 1 ? Integer
+					.parseInt(refQueryIds[1]) : null;
+			String value = req.getParameter("value") != "" ? req
+					.getParameter("value") : null;
+			String description = req.getParameter("description") != "" ? req
+					.getParameter("description") : null;
+
+			// Update db
+			CalculationBasisParameter parameter = new CalculationBasisParameter(
+					name, queryId, refQueryId == -1 ? null : refQueryId,
+					refSubQueryId, value, description);
+			calculationBasisParameterDAO.add(parameter);
+
+			// Get id from created parameter
+			int id = parameter.getParameterID();
+			result.putField("id", id);
+
+			result.putField("success", "1");
+			result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json",
+					res);
+		} catch (Exception ex) {
+			// TODO log error
 			result.putField("message", "Ett fel inträffade på servern.");
 			result.putField("success", "0");
-		    result.toJson(stringBuilder);
-			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
+			result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json",
+					res);
 		}
 		return null;
 	}
-	
-	//Default code
+
+	@WebPublic
+	public ForegroundModuleResponse DeleteParameter(HttpServletRequest req,
+			HttpServletResponse res, User user, URIParser uriParser)
+			throws SQLException, IOException {
+
+		JsonObject result = new JsonObject();
+		StringBuilder stringBuilder = new StringBuilder();
+
+		try {
+			// Get parameters
+			String id = req.getParameter("id");
+
+			// Update db
+			calculationBasisParameterDAO.remove(id);
+			result.putField("id", id);
+
+			result.putField("success", "1");
+			result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json",
+					res);
+		} catch (Exception ex) {
+			// TODO log error
+			result.putField("message", "Ett fel inträffade på servern.");
+			result.putField("success", "0");
+			result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json",
+					res);
+		}
+		return null;
+	}
+
+	@WebPublic
+	public ForegroundModuleResponse GetParameterList(HttpServletRequest req,
+			HttpServletResponse res, User user, URIParser uriParser)
+			throws SQLException, IOException {
+		JsonObject result = new JsonObject();
+		StringBuilder stringBuilder = new StringBuilder();
+
+		try {
+			// Get parameters
+			String queryId = req.getParameter("queryId");
+
+			// Call db
+			ArrayList<CalculationBasisParameter> parameters = calculationBasisParameterDAO.listByQueryId(queryId);
+
+			JsonObject parametersJson = new JsonObject();
+			JsonArray parametersJsonArray = new JsonArray(); 
+
+			if (parameters != null && !parameters.isEmpty()) {
+				for (CalculationBasisParameter p : parameters) {
+					parametersJsonArray.addNode(p.toJson());
+				}
+			}
+			result.putField("parameters", parametersJsonArray);
+
+			result.putField("success", "1");
+			result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json",
+					res);
+		} catch (Exception ex) {
+			// TODO log error
+			result.putField("message", "Ett fel inträffade på servern.");
+			result.putField("success", "0");
+			result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json",
+					res);
+		}
+		return null;
+	}
+
+	@WebPublic
+	public ForegroundModuleResponse GetRefQueries(HttpServletRequest req,
+			HttpServletResponse res, User user, URIParser uriParser)
+			throws SQLException, IOException {
+		// Get current calculationbasisquery id
+		String queryId = req.getParameter("queryId");
+
+		// Get current step
+		// Get current step sortIndex
+
+		// Get current flow
+
+		// Get all steps with current flow id and sortIndex <= current step
+		// sortIndex
+
+		// Get all querydescriptors for all steps (for now only with queryTypeId
+		// = textfieldquery)
+
+		// Get distinct all queries with queryId from querydescriptors
+
+		// If single value query extract
+		// {name:query.querydescriptor.name,value:queryId}
+		// If multi value query get subqueries connected to that query (ex
+		// text_fields where queryId=...)
+		// Foreach subquery extract
+		// {name:subquery.label,value:queryId;subQueryId}
+
+		// Fetch all textfields with textfieldqueries connected to
+
+		// Hardcoded example
+		JsonObject list = new JsonObject();
+		list.putField("Nettoinkomst", "2150;1616");
+		list.putField("Bostadstillägg/bidrag", "2150;1617");
+		list.putField("Övrig inkomst", "2150;1618");
+		list.putField("Välj äldreboende", "2149");
+
+		StringBuilder stringBuilder = new StringBuilder();
+		list.toJson(stringBuilder);
+
+		HTTPUtils
+				.sendReponse(stringBuilder.toString(), "application/json", res);
+
+		return null;
+	}
+
+	@WebPublic
+	public ForegroundModuleResponse AddFormula(HttpServletRequest req,
+			HttpServletResponse res, User user, URIParser uriParser)
+			throws SQLException, IOException {
+		JsonObject result = new JsonObject();
+		StringBuilder stringBuilder = new StringBuilder();
+
+		try {
+
+			// TODO: Get parameters
+			// String name = req.getParameter("xxxx");
+
+			// TODO get id from created parameter
+			int id = 0;
+			result.putField("id", id);
+
+			result.putField("success", "1");
+			result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json",
+					res);
+		} catch (Exception ex) {
+			// TODO log error
+			result.putField("message", "Ett fel inträffade på servern.");
+			result.putField("success", "0");
+			result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json",
+					res);
+		}
+		return null;
+	}
+
+	// Default code
 	@Override
-	public Query createQuery(MutableQueryDescriptor descriptor, TransactionHandler transactionHandler) throws SQLException {
+	public Query createQuery(MutableQueryDescriptor descriptor,
+			TransactionHandler transactionHandler) throws SQLException {
 
 		CalculationBasisQuery query = new CalculationBasisQuery();
 
@@ -449,27 +578,31 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 
 		this.queryDAO.add(query, transactionHandler, null);
 
-		query.init(descriptor, getFullAlias() + "/config/" + descriptor.getQueryID());
+		query.init(descriptor,
+				getFullAlias() + "/config/" + descriptor.getQueryID());
 
 		return query;
 	}
 
 	@Override
-	public Query importQuery(MutableQueryDescriptor descriptor, TransactionHandler transactionHandler) throws Throwable {
+	public Query importQuery(MutableQueryDescriptor descriptor,
+			TransactionHandler transactionHandler) throws Throwable {
 
 		CalculationBasisQuery query = new CalculationBasisQuery();
-		
+
 		query.setQueryID(descriptor.getQueryID());
-		
-		query.populate(descriptor.getImportParser().getNode(XMLGenerator.getElementName(query.getClass())));
-		
+
+		query.populate(descriptor.getImportParser().getNode(
+				XMLGenerator.getElementName(query.getClass())));
+
 		this.queryDAO.add(query, transactionHandler, null);
-		
+
 		return query;
 	}
-	
+
 	@Override
-	public Query getQuery(MutableQueryDescriptor descriptor) throws SQLException {
+	public Query getQuery(MutableQueryDescriptor descriptor)
+			throws SQLException {
 
 		CalculationBasisQuery query = this.getQuery(descriptor.getQueryID());
 
@@ -478,28 +611,35 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 			return null;
 		}
 
-		query.init(descriptor, getFullAlias() + "/config/" + descriptor.getQueryID());
+		query.init(descriptor,
+				getFullAlias() + "/config/" + descriptor.getQueryID());
 
 		return query;
 	}
 
 	@Override
-	public Query getQuery(MutableQueryDescriptor descriptor, TransactionHandler transactionHandler) throws Throwable {
+	public Query getQuery(MutableQueryDescriptor descriptor,
+			TransactionHandler transactionHandler) throws Throwable {
 
-		CalculationBasisQuery query = this.getQuery(descriptor.getQueryID(), transactionHandler);
+		CalculationBasisQuery query = this.getQuery(descriptor.getQueryID(),
+				transactionHandler);
 
 		if (query == null) {
 
 			return null;
 		}
 
-		query.init(descriptor, getFullAlias() + "/config/" + descriptor.getQueryID());
+		query.init(descriptor,
+				getFullAlias() + "/config/" + descriptor.getQueryID());
 
 		return query;
 	}
 
 	@Override
-	public QueryInstance getQueryInstance(MutableQueryInstanceDescriptor descriptor, String instanceManagerID, HttpServletRequest req, User user, InstanceMetadata instanceMetadata) throws SQLException {
+	public QueryInstance getQueryInstance(
+			MutableQueryInstanceDescriptor descriptor,
+			String instanceManagerID, HttpServletRequest req, User user,
+			InstanceMetadata instanceMetadata) throws SQLException {
 
 		CalculationBasisQueryInstance queryInstance;
 
@@ -523,18 +663,22 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 			}
 		}
 
-		queryInstance.setQuery(getQuery(descriptor.getQueryDescriptor().getQueryID()));
+		queryInstance.setQuery(getQuery(descriptor.getQueryDescriptor()
+				.getQueryID()));
 
 		if (queryInstance.getQuery() == null) {
 
 			return null;
 		}
 
-		FCKUtils.setAbsoluteFileUrls(queryInstance.getQuery(), RequestUtils.getFullContextPathURL(req) + ckConnectorModuleAlias);
-		
+		FCKUtils.setAbsoluteFileUrls(queryInstance.getQuery(),
+				RequestUtils.getFullContextPathURL(req)
+						+ ckConnectorModuleAlias);
+
 		URLRewriter.setAbsoluteLinkUrls(queryInstance.getQuery(), req, true);
 
-		TextTagReplacer.replaceTextTags(queryInstance.getQuery(), instanceMetadata.getSiteProfile());
+		TextTagReplacer.replaceTextTags(queryInstance.getQuery(),
+				instanceMetadata.getSiteProfile());
 
 		queryInstance.set(descriptor);
 
@@ -550,7 +694,8 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 		return queryDAO.get(query);
 	}
 
-	private CalculationBasisQuery getQuery(Integer queryID, TransactionHandler transactionHandler) throws SQLException {
+	private CalculationBasisQuery getQuery(Integer queryID,
+			TransactionHandler transactionHandler) throws SQLException {
 
 		HighLevelQuery<CalculationBasisQuery> query = new HighLevelQuery<CalculationBasisQuery>();
 
@@ -559,16 +704,20 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 		return queryDAO.get(query, transactionHandler);
 	}
 
-	private CalculationBasisQueryInstance getQueryInstance(Integer queryInstanceID) throws SQLException {
+	private CalculationBasisQueryInstance getQueryInstance(
+			Integer queryInstanceID) throws SQLException {
 
-		HighLevelQuery<CalculationBasisQueryInstance> query = new HighLevelQuery<CalculationBasisQueryInstance>(CalculationBasisQueryInstance.QUERY_RELATION);
+		HighLevelQuery<CalculationBasisQueryInstance> query = new HighLevelQuery<CalculationBasisQueryInstance>(
+				CalculationBasisQueryInstance.QUERY_RELATION);
 
-		query.addParameter(queryInstanceIDParamFactory.getParameter(queryInstanceID));
+		query.addParameter(queryInstanceIDParamFactory
+				.getParameter(queryInstanceID));
 
 		return queryInstanceDAO.get(query);
 	}
 
-	private void setAttributeValue(String name, Object value, MutableAttributeHandler attributeHandler) {
+	private void setAttributeValue(String name, Object value,
+			MutableAttributeHandler attributeHandler) {
 
 		if (value != null) {
 
@@ -582,17 +731,20 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 
 	}
 
-	private void validateFieldLength(String fieldName, String field, Integer maxLength, List<ValidationError> errors) {
+	private void validateFieldLength(String fieldName, String field,
+			Integer maxLength, List<ValidationError> errors) {
 
 		if (field != null && field.length() > maxLength) {
 
-			errors.add(new TooLongContentValidationError(fieldName, field.length(), maxLength));
+			errors.add(new TooLongContentValidationError(fieldName, field
+					.length(), maxLength));
 		}
 
 	}
 
 	@Override
-	public boolean deleteQuery(ImmutableQueryDescriptor descriptor, TransactionHandler transactionHandler) throws SQLException {
+	public boolean deleteQuery(ImmutableQueryDescriptor descriptor,
+			TransactionHandler transactionHandler) throws SQLException {
 
 		CalculationBasisQuery query = getQuery(descriptor.getQueryID());
 
@@ -607,9 +759,12 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 	}
 
 	@Override
-	public boolean deleteQueryInstance(ImmutableQueryInstanceDescriptor descriptor, TransactionHandler transactionHandler) throws Throwable {
+	public boolean deleteQueryInstance(
+			ImmutableQueryInstanceDescriptor descriptor,
+			TransactionHandler transactionHandler) throws Throwable {
 
-		CalculationBasisQueryInstance queryInstance = this.getQueryInstance(descriptor.getQueryInstanceID());
+		CalculationBasisQueryInstance queryInstance = this
+				.getQueryInstance(descriptor.getQueryInstanceID());
 
 		if (queryInstance == null) {
 
@@ -640,9 +795,12 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 	}
 
 	@Override
-	public void copyQuery(MutableQueryDescriptor sourceQueryDescriptor, MutableQueryDescriptor copyQueryDescriptor, TransactionHandler transactionHandler) throws SQLException {
+	public void copyQuery(MutableQueryDescriptor sourceQueryDescriptor,
+			MutableQueryDescriptor copyQueryDescriptor,
+			TransactionHandler transactionHandler) throws SQLException {
 
-		CalculationBasisQuery query = getQuery(sourceQueryDescriptor.getQueryID(), transactionHandler);
+		CalculationBasisQuery query = getQuery(
+				sourceQueryDescriptor.getQueryID(), transactionHandler);
 
 		query.setQueryID(copyQueryDescriptor.getQueryID());
 
@@ -650,14 +808,21 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 	}
 
 	@Override
-	protected void appendPDFData(Document doc, Element showQueryValuesElement, CalculationBasisQueryInstance queryInstance) {
+	protected void appendPDFData(Document doc, Element showQueryValuesElement,
+			CalculationBasisQueryInstance queryInstance) {
 
 		super.appendPDFData(doc, showQueryValuesElement, queryInstance);
 
 		if (queryInstance.getQuery().getDescription() != null) {
 
-			XMLUtils.appendNewCDATAElement(doc, showQueryValuesElement, "Description", JTidyUtils.getXHTML(queryInstance.getQuery().getDescription()));
-			XMLUtils.appendNewCDATAElement(doc, showQueryValuesElement, "isHTMLDescription", queryInstance.getQuery().getDescription().contains("<") && queryInstance.getQuery().getDescription().contains(">"));
+			XMLUtils.appendNewCDATAElement(doc, showQueryValuesElement,
+					"Description", JTidyUtils.getXHTML(queryInstance.getQuery()
+							.getDescription()));
+			XMLUtils.appendNewCDATAElement(doc, showQueryValuesElement,
+					"isHTMLDescription", queryInstance.getQuery()
+							.getDescription().contains("<")
+							&& queryInstance.getQuery().getDescription()
+									.contains(">"));
 		}
 	}
 }
