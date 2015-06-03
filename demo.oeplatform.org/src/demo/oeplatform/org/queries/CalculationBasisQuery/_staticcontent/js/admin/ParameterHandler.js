@@ -107,10 +107,7 @@ var ParameterHandler = function() {
 	};
 	
 	var _addParameterRow = function(data) {
-		
-		// TODO: Fill with data.. add Id to the row.. 
-		var id= 1; 
-			
+		var id= data.id; 
 			
 		var $table = $('#addedParametersTable');
 		$table.find('thead').show();
