@@ -104,7 +104,7 @@ var ParameterHandler = function() {
 				if (data.success===1){
 					//generate all parameter rows
 					$.each(data.parameters, function(i,parameter){
-						_addParameterRow(parameter); // Add the parameter to the table
+						_addParameter(parameter); // Add the parameter to the table
 					});
 					_resetElements();
 				}
@@ -158,6 +158,28 @@ var ParameterHandler = function() {
 		$tr.append('<td>' + query + '</td>');
 		$tr.append('<td>' + $('#parameter_value').val() + '</td>');
 		$tr.append('<td>' + $('#parameter_description').val() + '</td>');
+		$tr.append('<td><i class="glyphicon glyphicon-remove pull-right"></i></td>');
+		
+		$table.find('tbody').append($tr);
+		
+		_handleDragOfParameters();
+	};
+	
+	var _addParameter = function(parameter) {
+		var id= parameter.parameterID; 
+			
+		var $table = $('#addedParametersTable');
+		$table.find('thead').show();
+		$tr = $('<tr id="' + id + '" draggable="true">');
+		$tr.append('<td>' + parameter.name + '</td>')
+		//Get parameter from selectlist parameter_query given parameter.refQueryId;parameter.refSubQueryId
+		var refId = parameter.refQueryID===null?"":parameter.refSubQueryID===null?parameter.refQueryID:parameter.refQueryID + ";" + parameter.refSubQueryID;
+		var refOption = $('#parameter_query option[value="'+ refId +'"]');
+		
+		var query = refId === "" ? '-' : refOption.html(); 
+		$tr.append('<td>' + query + '</td>');
+		$tr.append('<td>' + (parameter.value===null?"-":parameter.value) + '</td>');
+		$tr.append('<td>' + (parameter.description===null?"-":parameter.description) + '</td>');
 		$tr.append('<td><i class="glyphicon glyphicon-remove pull-right"></i></td>');
 		
 		$table.find('tbody').append($tr);
