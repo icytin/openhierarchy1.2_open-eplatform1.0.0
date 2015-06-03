@@ -197,7 +197,7 @@ var FormulaHandler = function() {
 				if (data.success===1){
 					//generate all rows
 					$.each(data.formulas, function(i,formula){
-						_addFormula(formula); // Add to the table
+						_addFormulaRow(formula); // Add to the table
 					});
 				}
 				else{
@@ -212,18 +212,41 @@ var FormulaHandler = function() {
 	
 	var _addFormulaRow = function(formula){
 		var formulaelements = formula.formula.split(",");
-		$.each(formulaelements,function(i,val){
-			/*fm(54),
-			op(+),
-			pm(45)*/
+		var formulaPresentation = "";
+		$.each(formulaelements,function(i,element){
+			var id = _getParenthesesValue(element);
+			
+			if (element.substr(0,2)==="fm"){
+				//Formula - get formula with id
+				var formulaRow = $('div.formula[id="'+id+'"]')
+				var name = formulaRow.attr("data-name");
+				formulaPresentation+=name;
+			}
+			else if (element.substr(0,2)==="op"){
+				//Operand
+				formulaPresentation+=id;
+			}
+			else if (element.substr(0,2)==="pm"){
+				//Parameter
+				var name = $('#addedParametersTable [id="'+ id +'"] td:eq(0)').html();
+				formulaPresentation+=name;
+			}
 		});
 		
-		var formulaPresentation = 
+		/*var formulaPresentation = */
 		$row = $('<div data-name="' + formula.name + 
+				'" id="' + formula.formulaId + 
 				'" data-description="' + formula.description + 
 				'" data-formula="' + formula.formula + 
-				'" data-formula-presentation="' + formulaPresentation + '" class="row formula" draggable="true" ><strong>' + formulaName + ':</strong>' + formulaPresentation + '<i class="glyphicon glyphicon-remove pull-right"></i><div class="col-lg-12"></div></div>');
+				'" data-formula-presentation="' + formulaPresentation + '" class="row formula" draggable="true" ><strong>' + formula.name + ':</strong>' + 
+					formulaPresentation + '<i class="glyphicon glyphicon-remove pull-right"></i><div class="col-lg-12"></div></div>');
 		$('#formulasSection .added').append($row);
+	}
+	
+	var _getParenthesesValue = function(text){
+		var regExp = /\(([^)]+)\)/;
+		var matches = regExp.exec(text);
+		return matches[1];
 	}
 	return {
 		init: _init
