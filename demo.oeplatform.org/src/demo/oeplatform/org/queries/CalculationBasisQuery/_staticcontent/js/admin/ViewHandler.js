@@ -197,15 +197,14 @@ var ViewHandler = function() {
 					parameterValue = $parameter.find('td:eq(2)').html();
 				
 				var $colString = $(colString);
-				$colString.append(parameterName);
-				$span = $('<span data-id="' + parameterId + '" data-type="parameter" data-name="' + parameterName + '" data-description="' + parameterDescription + '">');
+				$span = $('<span data-id="' + parameterId + '" data-type="parameter" data-name="' + parameterName + '" data-description="' + parameterDescription + '" title="' + parameterDescription + '">' + parameterDescription + '</span>');
 				$colString.append($span);
 				$row.append($colString); // Add first col
 				
 				
 				$colString = $(colString);
 				var val = parameterValue === '-' ? '[ X ]' : parameterValue;
-				$span = $('<span data-id="' + parameterId + '" data-type="parameter value" data-name="' + parameterName + '" data-description="' + parameterDescription + '">' + val + '</span>');
+				$span = $('<span data-id="' + parameterId + '" data-type="parameter value" data-name="' + parameterName + '" data-description="' + parameterDescription + '" title="' + parameterDescription + '">' + val + '</span>');
 				$colString.append($span);
 				$row.append($colString); // Add second col
 				

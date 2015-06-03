@@ -47,8 +47,6 @@ Formula */
 #formulasSection .formulas .editBox .parameter:hover,
 #formulasSection .formulas .editBox .operand:hover { background-color: #e5ffdd; border-color: #668c05; cursor: move; }
 
-
-
 /****************************************************
 Views */
 #viewsSection .tab-pane [data-removable] { text-align: center; padding: 6.5em; color: #999; }
