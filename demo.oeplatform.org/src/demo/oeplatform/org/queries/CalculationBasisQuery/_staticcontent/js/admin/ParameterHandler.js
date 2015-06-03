@@ -106,6 +106,9 @@ var ParameterHandler = function() {
 					$.each(data.parameters, function(i,parameter){
 						_addParameter(parameter); // Add the parameter to the table
 					});
+					
+					FormulaHandler.loadFormulas();
+					
 					_resetElements();
 				}
 				else{

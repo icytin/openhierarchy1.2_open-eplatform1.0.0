@@ -9,7 +9,6 @@ var FormulaHandler = function() {
 		_setFormulaLinks();
 		_setDropHandling();
 		_handleDragOfParameters();
-		_loadFormulas();
 	};
 	
 	var _setFormulaLinks = function() {
@@ -249,7 +248,8 @@ var FormulaHandler = function() {
 		return matches[1];
 	}
 	return {
-		init: _init
+		init: _init,
+		loadFormulas: _loadFormulas
 	};
 	
 }(jQuery);
