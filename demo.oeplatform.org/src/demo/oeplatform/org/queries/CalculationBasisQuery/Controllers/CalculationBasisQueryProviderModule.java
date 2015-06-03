@@ -341,22 +341,30 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 	@WebPublic
 	  public ForegroundModuleResponse DeleteParameter(HttpServletRequest req, HttpServletResponse res, User user, URIParser uriParser) throws SQLException, IOException
 	  {
+	    
+	    JsonObject result = new JsonObject();
+		StringBuilder stringBuilder = new StringBuilder();
 		
-	    String indata = uriParser.get(0);//Get uriparameter use with get requests
-	    String id = req.getParameter("id");
-	    
-	    // TODO: Remove
-
-	    JsonObject jsonObject = new JsonObject();
-	    jsonObject.putField("returnData", "test");
-	    
-	    
-	    StringBuilder stringBuilder = new StringBuilder();
-	    
-	    jsonObject.toJson(stringBuilder);
-
-		HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
-
+		try{
+			//Get parameters
+			String id = req.getParameter("id");
+		    
+		    //Update db
+		    calculationBasisParameterDAO.remove(id);
+		    result.putField("id", id);
+		    
+		    result.putField("success", "1");
+		    result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
+		}
+		catch (Exception ex)
+		{
+			//TODO log error
+			result.putField("message", "Ett fel inträffade på servern.");
+			result.putField("success", "0");
+		    result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
+		}
 		return null;
 	}
 	

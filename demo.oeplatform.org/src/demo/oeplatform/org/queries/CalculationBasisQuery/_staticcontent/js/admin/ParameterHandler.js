@@ -45,8 +45,13 @@ var ParameterHandler = function() {
 				
 				$.post(DELETE_PARAM_PATH, {id: paramId }, function (data, rq, ro) {
 					if(rq === 'success') {
-						// Remove the row from GUI
-						$tr.remove();
+						if (data.success===1){
+							// Remove the row from GUI
+							$tr.remove();
+						}
+						else{
+							alert(data.message);
+						}
 					}
 					else {
 						ErrorHandler.showError();
