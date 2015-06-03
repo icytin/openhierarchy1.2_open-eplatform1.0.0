@@ -36,7 +36,11 @@
 	</xsl:template>
 		
 	<xsl:template match="UpdateCalculationBasisQuery">
-	
+		<input id="queryId" type="hidden">
+			<xsl:attribute name="value">
+            	<xsl:value-of select="CalculationBasisQuery/queryID" />
+            </xsl:attribute>
+        </input> 
 		<h1><xsl:text>Uppdatera fråga:&#160;</xsl:text><xsl:value-of select="CalculationBasisQuery/QueryDescriptor/name" /></h1>
 		<xsl:apply-templates select="validationException/validationError" />
 		

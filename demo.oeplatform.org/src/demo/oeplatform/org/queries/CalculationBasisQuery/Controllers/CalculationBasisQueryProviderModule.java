@@ -301,26 +301,40 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 	@WebPublic
 	  public ForegroundModuleResponse AddParameter(HttpServletRequest req, HttpServletResponse res, User user, URIParser uriParser) throws SQLException, IOException
 	  {
-		//TODO se till att rätt parametrar skickas och ta hand om nullvärden eller "" eftersom inte alla parseint alltis ska köras.
-	    String name = req.getParameter("name");
-	    int queryId = Integer.parseInt(req.getParameter("queryId"));
-	    String refQuery = req.getParameter("refQuery");
-	    String[] refQueryIds = refQuery.split(";");
-	    int refQueryId = Integer.parseInt(refQueryIds[0]);
-	    int refSubQueryId = Integer.parseInt(refQueryIds[1]);
-	    String value = req.getParameter("value");
-	    String description = req.getParameter("description");
-
-	    CalculationBasisParameter parameter = new CalculationBasisParameter(name, queryId, refQueryId, refSubQueryId, value, description);
-	    this.calculationBasisParameterDAO.add(parameter);
-	    
-	    JsonObject jsonObject = new JsonObject();
-	    jsonObject.putField("success", "1");
-	    StringBuilder stringBuilder = new StringBuilder();
-	    jsonObject.toJson(stringBuilder);
-
-		HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
-
+		JsonObject result = new JsonObject();
+		StringBuilder stringBuilder = new StringBuilder();
+		
+		try{
+			//Get parameters
+		    String name = req.getParameter("name");
+		    Integer queryId = req.getParameter("queryId")!=""?Integer.parseInt(req.getParameter("queryId")):null;
+		    String refQuery = req.getParameter("refQuery");
+		    String[] refQueryIds = refQuery.split(";");
+		    Integer refQueryId = refQueryIds.length>0?Integer.parseInt(refQueryIds[0]):null;
+		    Integer refSubQueryId = refQueryIds.length>1?Integer.parseInt(refQueryIds[1]):null;
+		    String value = req.getParameter("value")!=""?req.getParameter("value"):null;
+		    String description = req.getParameter("description")!=""?req.getParameter("description"):null;
+		    
+		    //Update db
+		    CalculationBasisParameter parameter = new CalculationBasisParameter(name, queryId, refQueryId==-1?null:refQueryId, refSubQueryId, value, description);
+		    this.calculationBasisParameterDAO.add(parameter);
+		    
+		    //TODO get id from created parameter
+		    int id = 0;
+		    result.putField("id", id);
+		    
+		    result.putField("success", "1");
+		    result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
+		}
+		catch (Exception ex)
+		{
+			//TODO log error
+			result.putField("message", "Ett fel inträffade på servern.");
+			result.putField("success", "0");
+		    result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
+		}
 		return null;
 	}
 	

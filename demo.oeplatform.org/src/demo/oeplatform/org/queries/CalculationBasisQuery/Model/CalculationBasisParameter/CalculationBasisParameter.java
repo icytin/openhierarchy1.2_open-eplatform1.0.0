@@ -5,11 +5,11 @@ public class CalculationBasisParameter {
 	private int queryID;
 	private String name;
 	private String value;
-	private int refQueryID;
-	private int refSubQueryID;
+	private Integer refQueryID;
+	private Integer refSubQueryID;
 	private String description;
 	
-	public CalculationBasisParameter(String name, int queryId, int refQueryId, int refSubQueryId, String value, String description)
+	public CalculationBasisParameter(String name, int queryId, Integer refQueryId, Integer refSubQueryId, String value, String description)
 	{
 		this.name = name;
 		this.queryID = queryId;
