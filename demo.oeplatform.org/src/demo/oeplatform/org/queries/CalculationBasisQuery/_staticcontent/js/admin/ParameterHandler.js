@@ -81,6 +81,12 @@ var ParameterHandler = function() {
 		$.post(GET_REF_QUERIES_PATH, {}, function (data, rq, ro) {
 			if(rq === 'success') {
 				//generate select list
+				var selectList = $('#parameter_query');
+				selectList.empty().append('<option value="-1">Ej vald</option>');
+				$.each(data, function(name, value)
+				{
+					selectList.append('<option value=' + value + '>' + name + '</option>');
+				});
 			}
 			else {
 				ErrorHandler.showError();
