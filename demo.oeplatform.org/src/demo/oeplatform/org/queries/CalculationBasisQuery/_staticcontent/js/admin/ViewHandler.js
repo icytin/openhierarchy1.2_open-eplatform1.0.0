@@ -1,6 +1,7 @@
 var ViewHandler = function() {
 
 	var SAVE_VIEW_HTML_PATH = '/demo.oeplatform.org/CalculationBasisProvider/SaveViewHtml',
+		GET_VIEW_HTML_PATH = '/demo.oeplatform.org/CalculationBasisProvider/GetViewHtml',
 		defaultInitBox = '<div data-removable="">Designa din vy genom att dra in vy-komponenter från höger och placera sedan ut de formler som du vill ha med. Notera att du kan skapa en ny vy genom att klicka "Lägg till vy" under den här boxen.</div>',
 		removeLink = '<i class="glyphicon glyphicon-remove pull-right"></i>',
 		clearDiv = '<div class="clearboth"></div>';
@@ -37,23 +38,7 @@ var ViewHandler = function() {
 			}
 			else if($target.is('.link-section a') && $target.find('.glyphicon-trash').length !== 0) { // Clean current view
 				$('#viewsSection .tab-pane.active').html(defaultInitBox);
-				
-				alert("TODO: Update html in db, just an empty string");
-				// Update html in db, just an empty string
-				$.post(SAVE_VIEW_HTML_PATH, { /*... */ }, function (data, rq, ro) {
-					if(rq === 'success') {
-						if (data.success === 1) {
-							// Nothing to do!
-						}
-						else {
-							alert(data.message);
-						}
-					}
-					else {
-						ErrorHandler.showError();
-					}
-				}, "json");
-				
+				_saveViewHtml('');
 			}
 			else if($target.hasClass('glyphicon-remove')) { // remove a view
 				
@@ -87,6 +72,44 @@ var ViewHandler = function() {
 				$(e.target).addClass('active');
 			}
 		});
+	};
+	
+	var _saveViewHtml = function(html) {
+		
+		alert("TODO: Update html in db");
+		$.post(SAVE_VIEW_HTML_PATH, { html: html }, function (data, rq, ro) { // Update html in db
+			if(rq === 'success') {
+				if (data.success === 1) {
+					// Nothing to do!
+				}
+				else {
+					alert(data.message);
+				}
+			}
+			else {
+				ErrorHandler.showError();
+			}
+		}, "json");
+	};
+	
+	var _loadViewHtml = function() {
+		alert('TODO: Load View Html.. if exist!');
+		$.post(GET_VIEW_HTML_PATH, { /* ... */ }, function (data, rq, ro) {
+			if(rq === 'success') {
+				if (data.success === 1) {
+					// TODO: Set the view html
+					// if(data.html) {
+					//    $contentArea.find('.tab-pane.active').html(data.html);
+					// }
+				}
+				else{
+					alert(data.message);
+				}
+			}
+			else {
+				ErrorHandler.showError();
+			}
+		}, "json");
 	};
 	
 	var _setDropHandling = function() {
@@ -157,7 +180,11 @@ var ViewHandler = function() {
 			$formulaSection.append('<div class="row">' + formulaDescription + '</div>');
 		}
 		
+		// Add to tab
 		$contentArea.find('.tab-pane.active').append($formulaSection);
+		
+		// TODO: Uncomment
+		// _saveViewHtml($contentArea.find('.tab-pane.active').html());
 	};
 	
 	var _handleDropOfCol = function($target) {
