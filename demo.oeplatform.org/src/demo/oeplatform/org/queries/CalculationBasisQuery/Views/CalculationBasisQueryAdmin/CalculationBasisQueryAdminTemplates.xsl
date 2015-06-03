@@ -149,14 +149,16 @@
 						<!-- Name of the formula to be added -->
 						<h4>Lägg till en formel</h4>
 						<div class="row">
-							<div class="col-lg-5" style="margin-left: .2em">
-								<input class="form-control" type="text" placeholder="Ange ett namn för din formel" />
+							<div class="col-lg-9" style="margin-left: .2em">
+								<input class="form-control" type="text" placeholder="Ange ett namn för din formel" style="width: 16em;" />
+								<input class="form-control" type="text" placeholder="Beskrivning av formeln (valfri)" />
 							</div>
 						</div>
 						<div class="row editBox">
 							<div data-removable="">Dra parametrar och operander till den här ytan för att bygga din formel!</div>
 						</div>
 						<div class="link-section" style="text-align: right;">
+							<a href="javascript:void(0)">Rensa <i class="glyphicon glyphicon-trash"></i></a>
 							<a href="javascript:void(0)">Lägg till formel <i class="glyphicon glyphicon-plus"></i></a>
 						</div>
 						<div class="added">

@@ -20,6 +20,10 @@ var ParameterHandler = function() {
 			if($target.hasClass('add')) { // Add param
 				
 				if(_isValidParameter()) {
+					
+					// TODO: Remove line below!
+					// _addParameterRow(); // Add the parameter to the table
+					
 					$.post(ADD_PARAM_PATH, { name: $('#parameter_name').val(), queryId: "0", refQuery: $('#parameter_query option:selected').val(), value: $('#parameter_value').val(), description: $('#parameter_description').val() }, function (data, rq, ro) {
 						if(rq === 'success') {
 							_addParameterRow(data); // Add the parameter to the table

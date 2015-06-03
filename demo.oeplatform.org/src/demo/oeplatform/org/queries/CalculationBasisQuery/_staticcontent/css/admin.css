@@ -32,9 +32,11 @@ Formula */
 #formulasSection .formulas .row.editBox { min-height: 5em; border: 1px dashed #000; margin: 0 .3em .3em .3em; padding: .7em; }
 #formulasSection .formulas .row .glyphicon-remove { font-size: 1.4em; margin-top: .1em; margin-right: .1em; color: red; }
 #formulasSection .formulas .row .glyphicon-remove:hover { cursor: pointer; }
+#formulasSection .link-section a:first-child { color: red; padding-right: .4em; }
 #formulasSection [data-removable] { text-align: center; padding-top: 1.6em; color: #999 }
 
 #formulasSection .formulas .formula { border: .1em solid #e8e8e8; margin-left: 0; margin-right: 0; padding: .4em; }
+#formulasSection .formulas .formula strong { margin-right: .3em; }
 #formulasSection .formulas .formula:hover { background-color: #e5ffdd; border-color: #668c05; cursor: move; }
 .formula-operand {   text-align: center; border-radius: .5em; margin-bottom: .2em; font-weight: bold; font-size: 1.5em;  }
 .formula-parameter {  }
