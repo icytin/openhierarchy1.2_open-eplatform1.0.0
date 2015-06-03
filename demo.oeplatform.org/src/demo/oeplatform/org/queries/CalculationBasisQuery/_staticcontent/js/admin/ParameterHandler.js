@@ -20,14 +20,16 @@ var ParameterHandler = function() {
 			if($target.hasClass('add')) { // Add param
 				
 				if(_isValidParameter()) {
-					
-					// TODO: Remove line below!
-					_addParameterRow(); // Add the parameter to the table
-					
-					$.post(ADD_PARAM_PATH, { name: $('#parameter_name').val(), queryId: "0", refQuery: $('#parameter_query option:selected').val(), value: $('#parameter_value').val(), description: $('#parameter_description').val() }, function (data, rq, ro) {
+					$.post(ADD_PARAM_PATH, { name: $('#parameter_name').val(), queryId: $('#queryId').val(), refQuery: $('#parameter_query option:selected').val(), value: $('#parameter_value').val(), description: $('#parameter_description').val() }, function (data, rq, ro) {
 						if(rq === 'success') {
-							_addParameterRow(data); // Add the parameter to the table
-							_resetElements();
+							if (data.success===1){
+								var id = data.id;
+								_addParameterRow(data); // Add the parameter to the table
+								_resetElements();
+							}
+							else{
+								alert(data.message);
+							}
 						}
 						else {
 							ErrorHandler.showError();
@@ -78,7 +80,7 @@ var ParameterHandler = function() {
 	var _populateQuerySelectList = function(){
 		$.post(GET_REF_QUERIES_PATH, {}, function (data, rq, ro) {
 			if(rq === 'success') {
-				//generate select list..
+				//generate select list
 			}
 			else {
 				ErrorHandler.showError();
