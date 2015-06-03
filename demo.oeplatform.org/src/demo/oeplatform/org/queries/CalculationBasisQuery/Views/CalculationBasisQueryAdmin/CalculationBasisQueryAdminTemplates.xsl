@@ -201,6 +201,7 @@
 					</div>
 					
 					<div class="link-section" style="text-align: right;">
+						<a href="javascript:void(0)">Rensa <i class="glyphicon glyphicon-trash"></i></a>
 						<a href="javascript:void(0)">Lägg till vy <i class="glyphicon glyphicon-plus"></i></a>
 					</div>
 					

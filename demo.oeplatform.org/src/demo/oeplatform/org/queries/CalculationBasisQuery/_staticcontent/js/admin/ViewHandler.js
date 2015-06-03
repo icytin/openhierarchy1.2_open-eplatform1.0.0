@@ -1,6 +1,7 @@
 var ViewHandler = function() {
 
-	var defaultInitBox = '<div data-removable="">Designa din vy genom att dra in vy-komponenter från höger och placera sedan ut de formler som du vill ha med. Notera att du kan skapa en ny vy genom att klicka "Lägg till vy" under den här boxen.</div>',
+	var SAVE_VIEW_HTML_PATH = '/demo.oeplatform.org/CalculationBasisProvider/SaveViewHtml',
+		defaultInitBox = '<div data-removable="">Designa din vy genom att dra in vy-komponenter från höger och placera sedan ut de formler som du vill ha med. Notera att du kan skapa en ny vy genom att klicka "Lägg till vy" under den här boxen.</div>',
 		removeLink = '<i class="glyphicon glyphicon-remove pull-right"></i>',
 		clearDiv = '<div class="clearboth"></div>';
 	
@@ -17,7 +18,8 @@ var ViewHandler = function() {
 		$('#viewsSection').on('click', function(e) {
 			
 			var $target = $(e.target);
-			if($target.is('.link-section a')) {
+			
+			if($target.is('.link-section a') && $target.find('.glyphicon-plus').length !== 0) { // Add a view
 				
 				var index = $('#viewsSection .nav-tabs li:last').index(),
 					tabNumber = index + 2,
@@ -33,7 +35,27 @@ var ViewHandler = function() {
 				// Create content to this tab
 				$('#viewsSection .tab-content').append('<div role="tabpanel" class="tab-pane" id="' + tabIdentifier + '">' + removeLink + defaultInitBox + '</div>');
 			}
-			else if($target.hasClass('glyphicon-remove')) {
+			else if($target.is('.link-section a') && $target.find('.glyphicon-trash').length !== 0) { // Clean current view
+				$('#viewsSection .tab-pane.active').html(defaultInitBox);
+				
+				alert("TODO: Update html in db, just an empty string");
+				// Update html in db, just an empty string
+				$.post(SAVE_VIEW_HTML_PATH, { /*... */ }, function (data, rq, ro) {
+					if(rq === 'success') {
+						if (data.success === 1) {
+							// Nothing to do!
+						}
+						else {
+							alert(data.message);
+						}
+					}
+					else {
+						ErrorHandler.showError();
+					}
+				}, "json");
+				
+			}
+			else if($target.hasClass('glyphicon-remove')) { // remove a view
 				
 				var numberOfViews = $target.parents('#viewsSection .tab-content').find('.tab-pane').length,
 					$currentTabPane = $target.parents('#viewsSection .tab-pane:first'),
@@ -121,9 +143,21 @@ var ViewHandler = function() {
 	};
 	
 	var _addFormulaToView = function($contentArea, $transferObject) {
-		var $formulaSection = $('<div>');
 		
-		$contentArea.append($formulaSection);
+		var formulaName = $transferObject.attr('data-name'),
+			formulaDescription = $transferObject.attr('data-description'),
+			formulaId = $transferObject.attr('id'),
+			$formulaSection = $('<div id="' + formulaId + '">');
+		
+		// Title
+		$formulaSection.append('<div class="row"><label class="title" data-type="formulaName" title="' + formulaName + '">' + formulaName + '</label></div>');
+		
+		// Description
+		if(formulaDescription && formulaDescription !== '') {
+			$formulaSection.append('<div class="row">' + formulaDescription + '</div>');
+		}
+		
+		$contentArea.find('.tab-pane.active').append($formulaSection);
 	};
 	
 	var _handleDropOfCol = function($target) {
