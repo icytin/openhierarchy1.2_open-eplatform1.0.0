@@ -400,6 +400,37 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 
 		return null;
 	}
+	
+	@WebPublic
+	  public ForegroundModuleResponse AddFormula(HttpServletRequest req, HttpServletResponse res, User user, URIParser uriParser) throws SQLException, IOException
+	  {
+		JsonObject result = new JsonObject();
+		StringBuilder stringBuilder = new StringBuilder();
+		
+		try {
+			
+			// TODO: Get parameters
+		    // String name = req.getParameter("xxxx");
+		    
+		    //TODO get id from created parameter
+		    int id = 0;
+		    result.putField("id", id);
+		    
+		    result.putField("success", "1");
+		    result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
+		}
+		catch (Exception ex)
+		{
+			//TODO log error
+			result.putField("message", "Ett fel inträffade på servern.");
+			result.putField("success", "0");
+		    result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
+		}
+		return null;
+	}
+	
 	//Default code
 	@Override
 	public Query createQuery(MutableQueryDescriptor descriptor, TransactionHandler transactionHandler) throws SQLException {

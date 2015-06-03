@@ -1,4 +1,6 @@
 var FormulaHandler = function() {
+	
+	var ADD_FORMULA_PATH = '/demo.oeplatform.org/CalculationBasisProvider/AddFormula';
 
 	var _init = function() {
 		
@@ -20,42 +22,7 @@ var FormulaHandler = function() {
 				$target.parents('.row:first').remove();
 			}
 			else if($target.hasClass('glyphicon-plus')) { // Add formula
-				
-				var $formulaNameInput = $('#formulasSection input:first'),
-					$formulaDescriptionInput = $('#formulasSection input:eq(1)');
-				
-				if($formulaNameInput.val().trim() === '') {
-					$formulaNameInput.focus();
-				}
-				else {
-					var formula = '',
-						formulaPresentation = '',
-						$elements = $('#formulasSection .editBox span'),
-						nOfEls = $elements.length;
-					
-					$.each($elements, function(i, element) {
-						var $el = $(element);
-						if($el.hasClass('operand')) {
-							var operand = $el.html().trim();
-							formula += operand;
-							formulaPresentation += ' ' + operand + ' ';
-						}
-						else if($el.hasClass('parameter')) {
-							var paramaterName = $el.html(),
-								separatorBefore = ( i === 0 ? '' : ' '),
-								separatorAfter = ( i === nOfEls - 1 ? '' : ' ');
-							
-							formula += 'dataId_' + $el.attr('data-id');
-							formulaPresentation += separatorBefore + paramaterName + separatorAfter;
-						}
-					});
-					
-					var formulaName = $formulaNameInput.val(),
-						description = $formulaDescriptionInput.val();
-						$row = $('<div data-name="' + formulaName + '" data-description="' + description + '" data-formula="' + formula + '" data-formula-presentation="' + formulaPresentation + '" class="row formula"><strong>' + formulaName + ':</strong>' + formulaPresentation + '<i class="glyphicon glyphicon-remove pull-right"></i><div class="col-lg-12"></div></div>');
-					
-					$('#formulasSection .added').append($row);
-				}
+				_addFormula();
 			}
 			else if($target.hasClass('glyphicon-trash')) { // Clean formula section
 				$('#formulasSection input').val('');
@@ -63,6 +30,58 @@ var FormulaHandler = function() {
 			}
 			
 		});
+	};
+	
+	var _addFormula = function() {
+		
+		var $formulaNameInput = $('#formulasSection input:first'),
+			$formulaDescriptionInput = $('#formulasSection input:eq(1)');
+		
+		if($formulaNameInput.val().trim() === '') {
+			$formulaNameInput.focus();
+		}
+		else {
+			var formula = '',
+				formulaPresentation = '',
+				$elements = $('#formulasSection .editBox span'),
+				nOfEls = $elements.length;
+			
+			$.each($elements, function(i, element) {
+				var $el = $(element);
+				if($el.hasClass('operand')) {
+					var operand = $el.html().trim();
+					formula += operand;
+					formulaPresentation += ' ' + operand + ' ';
+				}
+				else if($el.hasClass('parameter')) {
+					var paramaterName = $el.html(),
+						separatorBefore = ( i === 0 ? '' : ' '),
+						separatorAfter = ( i === nOfEls - 1 ? '' : ' ');
+					
+					formula += 'dataId_' + $el.attr('data-id');
+					formulaPresentation += separatorBefore + paramaterName + separatorAfter;
+				}
+			});
+			
+			var formulaName = $formulaNameInput.val(),
+				description = $formulaDescriptionInput.val(),
+				$row = $('<div data-name="' + formulaName + '" data-description="' + description + '" data-formula="' + formula + '" data-formula-presentation="' + formulaPresentation + '" class="row formula"><strong>' + formulaName + ':</strong>' + formulaPresentation + '<i class="glyphicon glyphicon-remove pull-right"></i><div class="col-lg-12"></div></div>');
+			
+			$.post(ADD_FORMULA_PATH, { /* Add params */  }, function (data, rq, ro) {
+				if(rq === 'success') {
+					if (data.success === 1) {
+						$row.attr('id', data.id);
+						$('#formulasSection .added').append($row);
+					}
+					else{
+						alert(data.message);
+					}
+				}
+				else {
+					ErrorHandler.showError();
+				}
+			}, "json");
+		}
 	};
 	
 	var _setDropHandling = function() {
