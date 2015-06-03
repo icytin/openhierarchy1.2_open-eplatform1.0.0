@@ -195,19 +195,21 @@ var ViewHandler = function() {
 					parameterName = $parameter.find('td:eq(0)').html(),
 					parameterDescription = $parameter.find('td:eq(3)').html(),
 					parameterValue = $parameter.find('td:eq(2)').html();
-				
+
+				// ===========================
+				// Col1
 				var $colString = $(colString);
-				$span = $('<span data-id="' + parameterId + '" data-type="parameter" data-name="' + parameterName + '" data-description="' + parameterDescription + '" title="' + parameterDescription + '">' + parameterDescription + '</span>');
+				$span = $('<span data-id="' + parameterId + '" data-type="parameter" data-name="' + parameterName + '" data-description="' + parameterDescription + '" title="' + parameterDescription + '">' + parameterName + '</span>');
 				$colString.append($span);
 				$row.append($colString); // Add first col
 				
-				
+				// ===========================
+				// Col2
 				$colString = $(colString);
 				var val = parameterValue === '-' ? '[ X ]' : parameterValue;
 				$span = $('<span data-id="' + parameterId + '" data-type="parameter value" data-name="' + parameterName + '" data-description="' + parameterDescription + '" title="' + parameterDescription + '">' + val + '</span>');
 				$colString.append($span);
 				$row.append($colString); // Add second col
-				
 				
 				$formulaSection.append($row); // Append parameter section
 				
