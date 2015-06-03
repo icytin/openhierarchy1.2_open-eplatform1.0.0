@@ -18,6 +18,7 @@ public class CalculationBasisParameterDAO extends BaseDAO {
 	private static final String TABLE_NAME = "calculation_basis_parameters";
 	private static final StringPopulator STRINGPOPULATOR = new StringPopulator();
 	private static final IntegerPopulator INTPOPULATOR = new IntegerPopulator();
+	private static final CalculationBasisParameterTablePopulator TABLEPOPULATOR = new CalculationBasisParameterTablePopulator();
 
 	/**
 	 * Konstruktor
@@ -58,5 +59,14 @@ public class CalculationBasisParameterDAO extends BaseDAO {
 		UpdateQuery q = new UpdateQuery(this.dataSource, true, sql);
 		q.executeUpdate();
 
+	}
+
+	public ArrayList<CalculationBasisParameter> listByQueryId(String queryId) throws SQLException {
+		String sql = "SELECT parameterID, queryID, name, value, description, refQueryId, refSubQueryId FROM " + TABLE_NAME
+				+ " WHERE queryID = " + queryId;
+	    
+	    ArrayListQuery<CalculationBasisParameter> query = new ArrayListQuery<CalculationBasisParameter>(this.dataSource, true, sql, TABLEPOPULATOR);
+	    
+	    return query.executeQuery();
 	}
 }
