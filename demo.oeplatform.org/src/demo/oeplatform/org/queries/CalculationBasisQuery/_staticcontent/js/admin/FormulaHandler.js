@@ -9,6 +9,7 @@ var FormulaHandler = function() {
 		_setFormulaLinks();
 		_setDropHandling();
 		_handleDragOfParameters();
+		_loadFormulas();
 	};
 	
 	var _setFormulaLinks = function() {
@@ -78,7 +79,7 @@ var FormulaHandler = function() {
 				var $el = $(element);
 				if($el.hasClass('operand')) {
 					var operand = $el.html().trim();
-					formula += operand;
+					formula += "op(" + operand +")";
 					formulaPresentation += ' ' + operand + ' ';
 				}
 				else if($el.hasClass('parameter')) {
@@ -89,8 +90,19 @@ var FormulaHandler = function() {
 						formulaSepAfter = ( i === numberOfElements - 1 ? '' : ',');
 					
 					var id = $el.attr('data-id').trim();
-					formula += formulaSepBefore + ("data-id='" + id + "'") + formulaSepAfter;
+					formula += formulaSepBefore + "pm(" + id + ")" + formulaSepAfter;
 					formulaPresentation += presentationSepBefore + paramaterName + presentationSepAfter;
+				}
+				else if($el.hasClass('formula')) {
+					var formulaName = $el.html(),
+						presentationSepBefore = ( i === 0 ? '' : ' '),
+						presentationSepAfter = ( i === numberOfElements - 1 ? '' : ' '),
+						formulaSepBefore = ( i === 0 ? '' : ','),
+						formulaSepAfter = ( i === numberOfElements - 1 ? '' : ',');
+					
+					var id = $el.attr('data-id').trim();
+					formula += formulaSepBefore + "fm(" + id + ")" + formulaSepAfter;
+					formulaPresentation += presentationSepBefore + formulaName + presentationSepAfter;
 				}
 			});
 			
@@ -168,6 +180,10 @@ var FormulaHandler = function() {
 		    	else if($transferObj.hasClass('parameter')) {
 		    		$target.append($transferObj);
 		    	}
+		    	else if($transferObj.hasClass('formula')) {
+		    		var span = '<span data-name="' + $transferObj.attr('data-name') + '" data-id="' + $transferObj.attr('id') + '" class="formula" draggable="true">' + $transferObj.attr('data-name') + '</span>'; // '#operandsSection [draggable]' + classSelector
+		    		$target.append(span);
+		    	}
 		    }
 
 		    return false;
@@ -175,6 +191,40 @@ var FormulaHandler = function() {
 		}).bind('dragover', false);
 	};
 	
+	var _loadFormulas = function() {
+		$.post(GET_FORMULA_LIST_PATH, { queryId: $('#queryId').val()}, function (data, rq, ro) {
+			if(rq === 'success') {
+				if (data.success===1){
+					//generate all rows
+					$.each(data.formulas, function(i,formula){
+						_addFormula(formula); // Add to the table
+					});
+				}
+				else{
+					alert(data.message);
+				}
+			}
+			else {
+				ErrorHandler.showError();
+			}
+		}, "json");
+	};
+	
+	var _addFormulaRow = function(formula){
+		var formulaelements = formula.formula.split(",");
+		$.each(formulaelements,function(i,val){
+			/*fm(54),
+			op(+),
+			pm(45)*/
+		});
+		
+		var formulaPresentation = 
+		$row = $('<div data-name="' + formula.name + 
+				'" data-description="' + formula.description + 
+				'" data-formula="' + formula.formula + 
+				'" data-formula-presentation="' + formulaPresentation + '" class="row formula" draggable="true" ><strong>' + formulaName + ':</strong>' + formulaPresentation + '<i class="glyphicon glyphicon-remove pull-right"></i><div class="col-lg-12"></div></div>');
+		$('#formulasSection .added').append($row);
+	}
 	return {
 		init: _init
 	};
