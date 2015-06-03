@@ -125,7 +125,7 @@ var FormulaHandler = function() {
 				id = $target.attr('id');
 			
 		    e.originalEvent.dataTransfer.effectAllowed = 'copy';
-		    e.originalEvent.dataTransfer.setData('Text', '#formulasSection .added #' + id); // '#operandsSection [draggable]' + classSelector
+		    e.originalEvent.dataTransfer.setData('Text', '#formulasSection .added [id="' + id + '"]'); // '#operandsSection [draggable]' + classSelector
 		});
 		
 	};
