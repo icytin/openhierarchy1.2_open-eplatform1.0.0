@@ -43,16 +43,16 @@ public class CalculationBasisParameter {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	public int getRefQueryID() {
+	public Integer getRefQueryID() {
 		return refQueryID;
 	}
-	public void setRefQueryID(int refQueryID) {
+	public void setRefQueryID(Integer refQueryID) {
 		this.refQueryID = refQueryID;
 	}
-	public int getRefSubQueryID() {
+	public Integer getRefSubQueryID() {
 		return refSubQueryID;
 	}
-	public void setRefSubQueryID(int refSubQueryID) {
+	public void setRefSubQueryID(Integer refSubQueryID) {
 		this.refSubQueryID = refSubQueryID;
 	}
 	public String getDescription() {

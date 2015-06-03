@@ -317,10 +317,10 @@ public class CalculationBasisQueryProviderModule extends BaseQueryProviderModule
 		    
 		    //Update db
 		    CalculationBasisParameter parameter = new CalculationBasisParameter(name, queryId, refQueryId==-1?null:refQueryId, refSubQueryId, value, description);
-		    this.calculationBasisParameterDAO.add(parameter);
+		    calculationBasisParameterDAO.add(parameter);
 		    
-		    //TODO get id from created parameter
-		    int id = 0;
+		    //get id from created parameter
+		    int id = parameter.getParameterID();
 		    result.putField("id", id);
 		    
 		    result.putField("success", "1");
