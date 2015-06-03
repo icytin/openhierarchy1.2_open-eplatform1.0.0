@@ -45,11 +45,11 @@
 		<xsl:apply-templates select="validationException/validationError" />
 		
 		<ul id="page-tabs" class="nav nav-tabs">
-		  <li role="presentation" class="active"><a href="#basic">Grunduppgifter</a></li>
-		  <li role="presentation"><a href="#queryBuilder">Beräkningsunderlag</a></li>
+		  <li role="presentation" class="active"><a href="#queryBuilder">Beräkningsunderlag</a></li>
+		  <li role="presentation"><a href="#basic">Grunduppgifter</a></li>
 		</ul>
 		
-        <div id="basic">
+        <div id="basic" style="display: none">
         
       			<form id="updateCalculationBasisQueryForm" name="queryAdminForm" method="post" action="{/Document/requestinfo/uri}">
       			
@@ -81,7 +81,7 @@
 			</form>
 			
         </div> <!-- End basic tab -->
-        <div id="queryBuilder" style="display: none">
+        <div id="queryBuilder">
         
         	<h2>Beräkningsunderlag</h2>
         	
