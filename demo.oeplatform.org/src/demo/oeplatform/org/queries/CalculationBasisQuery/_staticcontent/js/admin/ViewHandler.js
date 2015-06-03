@@ -180,6 +180,45 @@ var ViewHandler = function() {
 			$formulaSection.append('<div class="row">' + formulaDescription + '</div>');
 		}
 		
+		var rowString = '<div class="row"></row>',
+			colString = '<div class="col-md-6"></div>';
+		
+		$.each($transferObject.attr('data-formula').split(','), function(i, part) {
+		
+			if(part.startsWith('fm')) {
+				var formulaId = part.replace('fm(', '').replace(')', '');
+			}
+			else if(part.startsWith('pm')) {
+				var parameterId = part.replace('pm(', '').replace(')', ''),
+					$parameter = $('#addedParametersTable [id="' + parameterId + '"]'),
+					$row = $(rowString),
+					parameterName = $parameter.find('td:eq(0)').html(),
+					parameterDescription = $parameter.find('td:eq(3)').html(),
+					parameterValue = $parameter.find('td:eq(2)').html();
+				
+				var $colString = $(colString);
+				$colString.append(parameterName);
+				$span = $('<span data-id="' + parameterId + '" data-type="parameter" data-name="' + parameterName + '" data-description="' + parameterDescription + '">');
+				$colString.append($span);
+				$row.append($colString); // Add first col
+				
+				
+				$colString = $(colString);
+				var val = parameterValue === '-' ? '[ X ]' : parameterValue;
+				$span = $('<span data-id="' + parameterId + '" data-type="parameter value" data-name="' + parameterName + '" data-description="' + parameterDescription + '">' + val + '</span>');
+				$colString.append($span);
+				$row.append($colString); // Add second col
+				
+				
+				$formulaSection.append($row); // Append parameter section
+				
+			}
+			else if(part.startsWith('op')) {
+				var operand = part.replace('op(', '').replace(')', '');
+			}
+			
+		});
+		
 		// Add to tab
 		$contentArea.find('.tab-pane.active').append($formulaSection);
 		
