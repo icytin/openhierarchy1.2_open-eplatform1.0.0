@@ -198,6 +198,8 @@ var FormulaHandler = function() {
 					$.each(data.formulas, function(i,formula){
 						_addFormulaRow(formula); // Add to the table
 					});
+					
+					_handleDragOfParameters();
 				}
 				else{
 					alert(data.message);
