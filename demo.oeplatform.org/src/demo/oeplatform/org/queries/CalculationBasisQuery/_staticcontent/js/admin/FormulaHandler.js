@@ -35,18 +35,26 @@ var FormulaHandler = function() {
 	var _addFormula = function() {
 		
 		var $formulaNameInput = $('#formulasSection input:first'),
-			$formulaDescriptionInput = $('#formulasSection input:eq(1)');
+			$formulaDescriptionInput = $('#formulasSection input:eq(1)'),
+			$editBox = $('#formulasSection .editBox'),
+			$editBoxElements = $('#formulasSection .editBox span'),
+			numberOfElements = $editBoxElements.length,
+			formulaName = $formulaNameInput.val().trim();
 		
-		if($formulaNameInput.val().trim() === '') {
+		if(formulaName === '' || $('#formulasSection .added div[data-name="' + formulaName + '"]').length !== 0) {
 			$formulaNameInput.focus();
+		}
+		else if(numberOfElements === 0) {
+			$editBox.css('border-color', '#d43f3a');
+			setTimeout(function() {
+				$editBox.css('border-color', '#000');				
+			}, 800);
 		}
 		else {
 			var formula = '',
-				formulaPresentation = '',
-				$elements = $('#formulasSection .editBox span'),
-				nOfEls = $elements.length;
+				formulaPresentation = '';
 			
-			$.each($elements, function(i, element) {
+			$.each($editBoxElements, function(i, element) {
 				var $el = $(element);
 				if($el.hasClass('operand')) {
 					var operand = $el.html().trim();
@@ -55,11 +63,14 @@ var FormulaHandler = function() {
 				}
 				else if($el.hasClass('parameter')) {
 					var paramaterName = $el.html(),
-						separatorBefore = ( i === 0 ? '' : ' '),
-						separatorAfter = ( i === nOfEls - 1 ? '' : ' ');
+						presentationSepBefore = ( i === 0 ? '' : ' '),
+						presentationSepAfter = ( i === numberOfElements - 1 ? '' : ' '),
+						formulaSepBefore = ( i === 0 ? '' : ','),
+						formulaSepAfter = ( i === numberOfElements - 1 ? '' : ',');
 					
-					formula += 'dataId_' + $el.attr('data-id');
-					formulaPresentation += separatorBefore + paramaterName + separatorAfter;
+					var id = $el.attr('data-id').trim();
+					formula += formulaSepBefore + ("data-id='" + id + "'") + formulaSepAfter;
+					formulaPresentation += presentationSepBefore + paramaterName + presentationSepAfter;
 				}
 			});
 			

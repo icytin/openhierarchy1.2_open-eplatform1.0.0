@@ -18,7 +18,7 @@ Operand */
 Parameter */
 #parameterSection table tbody tr { border-radius: .5em; border: .1em solid #e8e8e8; }
 #parameterSection table tbody tr:hover { background-color: #e5ffdd; border-color: #668c05; cursor: move; padding-bottom: .3em; }
-#parameterSection table tbody tr td .glyphicon-remove { font-size: 1.4em;margin-top: .1em;margin-right: .1em;color: red; }
+#parameterSection table tbody tr td .glyphicon-remove { font-size: 1.4em;margin-top: .1em;margin-right: .1em;color: #d43f3a; }
 #parameterSection table tbody tr td .glyphicon-remove:hover { cursor: pointer; }
 .parameter[draggable] { text-align: center; border-radius: .5em; border: .1em solid #e8e8e8; /*padding: 0.2em;*/ margin-bottom: .2em; font-weight: bold; font-size: 1.5em; }
 .parameter[draggable]:hover { background-color: #e5ffdd; border-color: #668c05; cursor: move; }
@@ -30,9 +30,9 @@ Formula */
 #formulasSection .link-section { padding-top: 0; }
 #formulasSection .formulas input { width: 100%; margin-bottom: .1em; }
 #formulasSection .formulas .row.editBox { min-height: 5em; border: 1px dashed #000; margin: 0 .3em .3em .3em; padding: .7em; }
-#formulasSection .formulas .row .glyphicon-remove { font-size: 1.4em; margin-top: .1em; margin-right: .1em; color: red; }
+#formulasSection .formulas .row .glyphicon-remove { font-size: 1.4em; margin-top: .1em; margin-right: .1em; color: #d43f3a; }
 #formulasSection .formulas .row .glyphicon-remove:hover { cursor: pointer; }
-#formulasSection .link-section a:first-child { color: red; padding-right: .4em; }
+#formulasSection .link-section a:first-child { color: #d43f3a; padding-right: .4em; }
 #formulasSection [data-removable] { text-align: center; padding-top: 1.6em; color: #999 }
 
 #formulasSection .formulas .formula { border: .1em solid #e8e8e8; margin-left: 0; margin-right: 0; padding: .4em; }
@@ -46,7 +46,7 @@ Formula */
 Views */
 #viewsSection .tab-pane [data-removable] { text-align: center; padding: 6.5em; color: #999; }
 #viewsSection .tab-content { min-height: 20em; border: 1px dashed #000; }
-#viewsSection .tab-pane.active .glyphicon-remove { font-size: 1.4em; margin-top: .1em; margin-right: .1em; color: red; }
+#viewsSection .tab-pane.active .glyphicon-remove { font-size: 1.4em; margin-top: .1em; margin-right: .1em; color: #d43f3a; }
 #viewsSection .tab-pane.active .glyphicon-remove:hover { cursor: pointer; }
 #viewsSection .tab-pane .row {   border: 1px solid #ededed; height: 3.5em; margin-left: 0; margin-right: 0; }
 #viewsSection .tab-pane .row div[class^="col-lg"] { border: 1px solid #000; height: 100%; }
