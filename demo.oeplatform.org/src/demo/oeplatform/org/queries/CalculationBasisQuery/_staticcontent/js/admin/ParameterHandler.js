@@ -159,8 +159,8 @@ var ParameterHandler = function() {
 		$tr.append('<td>' + $('#parameter_name').val() + '</td>')
 		var query = $('#parameter_query option:selected').val() === '-1' ? '-' : $('#parameter_query option:selected').html(); 
 		$tr.append('<td>' + query + '</td>');
-		$tr.append('<td>' + $('#parameter_value').val() + '</td>');
-		$tr.append('<td>' + $('#parameter_description').val() + '</td>');
+		$tr.append('<td contenteditable="true">' + $('#parameter_value').val() + '</td>');
+		$tr.append('<td contenteditable="true">' + $('#parameter_description').val() + '</td>');
 		$tr.append('<td><i class="glyphicon glyphicon-remove pull-right"></i></td>');
 		
 		$table.find('tbody').append($tr);
@@ -181,8 +181,8 @@ var ParameterHandler = function() {
 		
 		var query = refId === "" ? '-' : refOption.html(); 
 		$tr.append('<td>' + query + '</td>');
-		$tr.append('<td>' + (parameter.value===null?"-":parameter.value) + '</td>');
-		$tr.append('<td>' + (parameter.description===null?"-":parameter.description) + '</td>');
+		$tr.append('<td contenteditable="true">' + (parameter.value===null?"-":parameter.value) + '</td>');
+		$tr.append('<td contenteditable="true">' + (parameter.description===null?"-":parameter.description) + '</td>');
 		$tr.append('<td><i class="glyphicon glyphicon-remove pull-right"></i></td>');
 		
 		$table.find('tbody').append($tr);

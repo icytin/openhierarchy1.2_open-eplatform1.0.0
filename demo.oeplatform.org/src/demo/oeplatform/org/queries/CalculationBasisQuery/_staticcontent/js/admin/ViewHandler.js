@@ -10,7 +10,7 @@ var ViewHandler = function() {
 		
 		_setTabHandling();
 		_setDropHandling();
-		
+		_loadViewHtml();
 	};
 	
 	var _setTabHandling = function() {
@@ -75,12 +75,12 @@ var ViewHandler = function() {
 	};
 	
 	var _saveViewHtml = function(html) {
-		
-		alert("TODO: Update html in db");
-		$.post(SAVE_VIEW_HTML_PATH, { html: html }, function (data, rq, ro) { // Update html in db
+		var viewId = $('#viewsSection .tab-pane.active').attr("data-viewId");
+		$.post(SAVE_VIEW_HTML_PATH, { html: html, queryId: $('#queryId').val(),viewId:viewId===undefined?"-1":viewId }, function (data, rq, ro) { // Update html in db
 			if(rq === 'success') {
 				if (data.success === 1) {
-					// Nothing to do!
+					var id = data.id;
+					$('#viewsSection .tab-pane.active').attr("data-viewId",id);//Save id
 				}
 				else {
 					alert(data.message);
@@ -93,14 +93,14 @@ var ViewHandler = function() {
 	};
 	
 	var _loadViewHtml = function() {
-		alert('TODO: Load View Html.. if exist!');
-		$.post(GET_VIEW_HTML_PATH, { /* ... */ }, function (data, rq, ro) {
+		$.post(GET_VIEW_HTML_PATH, { queryId: $('#queryId').val() }, function (data, rq, ro) {
 			if(rq === 'success') {
 				if (data.success === 1) {
 					// TODO: Set the view html
-					// if(data.html) {
-					//    $contentArea.find('.tab-pane.active').html(data.html);
-					// }
+					if(data.view.html) 
+					  $('#viewsSection .tab-pane.active').html(data.view.html);
+					  
+					$('#viewsSection .tab-pane.active').attr("data-viewId",data.view.viewId);//Save id
 				}
 				else{
 					alert(data.message);
@@ -223,8 +223,7 @@ var ViewHandler = function() {
 		// Add to tab
 		$contentArea.find('.tab-pane.active').append($formulaSection);
 		
-		// TODO: Uncomment
-		// _saveViewHtml($contentArea.find('.tab-pane.active').html());
+		_saveViewHtml($contentArea.find('.tab-pane.active').html());
 	};
 	
 	var _handleDropOfCol = function($target) {

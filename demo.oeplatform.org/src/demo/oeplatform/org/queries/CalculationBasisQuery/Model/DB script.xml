@@ -111,4 +111,26 @@
 			]]>
 		</Query>
 	</Script>
+		<Script version="7">
+		<Query>
+			<![CDATA[
+				CREATE TABLE `calculation_basis_views` (
+				  `viewId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+				  `queryId` int(10) unsigned NOT NULL,
+				  `html` varchar(255) NOT NULL,
+				  PRIMARY KEY (`viewId`),
+				  CONSTRAINT `FK_view_query` FOREIGN KEY (`queryId`) REFERENCES `calculation_basis_queries` (`queryID`) ON DELETE CASCADE ON UPDATE CASCADE
+				) ENGINE=InnoDB DEFAULT CHARSET=latin1 DEFAULT COLLATE latin1_swedish_ci;
+			]]>
+		</Query>
+	</Script>
+	<Script version="8">
+		<Query>
+			<![CDATA[
+				ALTER TABLE calculation_basis_views
+					MODIFY COLUMN html varchar(35000) NOT NULL;
+			]]>
+		</Query>
+	</Script>
+	
 </DBScripts>

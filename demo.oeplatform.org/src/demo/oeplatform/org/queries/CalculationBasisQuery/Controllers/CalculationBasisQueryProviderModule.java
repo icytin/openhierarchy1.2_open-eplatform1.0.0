@@ -66,6 +66,8 @@ import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisP
 import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisQuery.CalculationBasisQuery;
 import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisQuery.CalculationBasisQueryCRUD;
 import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisQueryInstance.CalculationBasisQueryInstance;
+import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisView.CalculationBasisView;
+import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisView.CalculationBasisViewDAO;
 
 public class CalculationBasisQueryProviderModule extends
 		BaseQueryProviderModule<CalculationBasisQueryInstance> implements
@@ -84,6 +86,7 @@ public class CalculationBasisQueryProviderModule extends
 
 	private CalculationBasisParameterDAO calculationBasisParameterDAO;
 	private CalculationBasisFormulaDAO calculationBasisFormulaDAO;
+	private CalculationBasisViewDAO calculationBasisViewDAO;
 
 	@Override
 	protected void createDAOs(DataSource dataSource) throws Exception {
@@ -121,6 +124,7 @@ public class CalculationBasisQueryProviderModule extends
 		this.calculationBasisParameterDAO = new CalculationBasisParameterDAO(
 				dataSource);
 		calculationBasisFormulaDAO = new CalculationBasisFormulaDAO(dataSource);
+		calculationBasisViewDAO = new CalculationBasisViewDAO(dataSource);
 	}
 
 	@Override
@@ -641,6 +645,73 @@ public class CalculationBasisQueryProviderModule extends
 		}
 		return null;
 	}
+	
+	@WebPublic
+	public ForegroundModuleResponse GetViewHtml(HttpServletRequest req,
+			HttpServletResponse res, User user, URIParser uriParser)
+			throws SQLException, IOException {
+		JsonObject result = new JsonObject();
+		StringBuilder stringBuilder = new StringBuilder();
+
+		try {
+			int queryId = Integer.parseInt(req.getParameter("queryId"));
+
+			// Call db
+			CalculationBasisView view = calculationBasisViewDAO.getByQueryId(queryId);
+
+			result.putField("view", view.toJson());
+
+			result.putField("success", "1");
+			result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json", res);
+		}catch (Exception ex) {
+			// TODO log error
+			result.putField("message", "Ett fel inträffade på servern.");
+			result.putField("success", "0");
+			result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json",
+					res);
+		}
+		return null;
+	}
+	
+	@WebPublic
+	public ForegroundModuleResponse SaveViewHtml(HttpServletRequest req,
+			HttpServletResponse res, User user, URIParser uriParser)
+			throws SQLException, IOException {
+		JsonObject result = new JsonObject();
+		StringBuilder stringBuilder = new StringBuilder();
+
+		try {
+			int queryId = Integer.parseInt(req.getParameter("queryId"));
+			String viewId = req.getParameter("viewId");
+			String html = req.getParameter("html");
+
+			CalculationBasisView calculationBasisView = new CalculationBasisView(queryId, html);
+			// Add to db
+			if (viewId.equals("-1"))
+				calculationBasisViewDAO.add(calculationBasisView);
+			else
+			{
+				calculationBasisView.setViewId(Integer.parseInt(viewId));
+				calculationBasisViewDAO.update(calculationBasisView);
+			}
+
+			result.putField("id", calculationBasisView.getViewId());
+			result.putField("success", "1");
+			result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json",
+					res);
+		} catch (Exception ex) {
+			// TODO log error
+			result.putField("message", "Ett fel inträffade på servern.");
+			result.putField("success", "0");
+			result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json",res);
+		}
+		return null;
+	}
+	
 	// Default code
 	@Override
 	public Query createQuery(MutableQueryDescriptor descriptor,
