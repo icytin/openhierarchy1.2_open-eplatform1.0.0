@@ -19,6 +19,7 @@ var ParameterHandler = function() {
 	};
 	
 	var _initParameterClickEvents = function() {
+		
 		$('#parameterSection').on('click', function(e) {
 			
 			var $target = $(e.target);

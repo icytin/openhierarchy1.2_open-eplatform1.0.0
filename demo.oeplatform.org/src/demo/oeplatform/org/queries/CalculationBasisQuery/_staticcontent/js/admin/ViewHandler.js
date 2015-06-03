@@ -90,6 +90,10 @@ var ViewHandler = function() {
 		    	}
 		    }
 		    
+		    if($transferObj.hasClass('formula')) {
+		    	_addFormulaToView($transferObj);
+		    }
+		    
 		    $transferObj.html('');
 		    
 		    if($target.hasClass('tab-content')) {
@@ -114,6 +118,10 @@ var ViewHandler = function() {
 		    return false;
 		    
 		}).bind('dragover', false);
+	};
+	
+	var _addFormulaToView = function($transferObject) {
+		alert('TODO');
 	};
 	
 	var _handleDropOfCol = function($target) {

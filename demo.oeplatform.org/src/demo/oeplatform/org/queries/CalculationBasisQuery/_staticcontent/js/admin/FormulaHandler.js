@@ -6,7 +6,7 @@ var FormulaHandler = function() {
 		
 		_setFormulaLinks();
 		_setDropHandling();
-		
+		_handleDragOfParameters();
 	};
 	
 	var _setFormulaLinks = function() {
@@ -76,15 +76,16 @@ var FormulaHandler = function() {
 			
 			var formulaName = $formulaNameInput.val(),
 				description = $formulaDescriptionInput.val(),
-				$row = $('<div data-name="' + formulaName + '" data-description="' + description + '" data-formula="' + formula + '" data-formula-presentation="' + formulaPresentation + '" class="row formula"><strong>' + formulaName + ':</strong>' + formulaPresentation + '<i class="glyphicon glyphicon-remove pull-right"></i><div class="col-lg-12"></div></div>');
+				$row = $('<div data-name="' + formulaName + '" data-description="' + description + '" data-formula="' + formula + '" data-formula-presentation="' + formulaPresentation + '" class="row formula" draggable="true" ><strong>' + formulaName + ':</strong>' + formulaPresentation + '<i class="glyphicon glyphicon-remove pull-right"></i><div class="col-lg-12"></div></div>');
 			
 			$.post(ADD_FORMULA_PATH, { /* Add params */  }, function (data, rq, ro) {
 				if(rq === 'success') {
 					if (data.success === 1) {
 						$row.attr('id', data.id);
 						$('#formulasSection .added').append($row);
+						_handleDragOfParameters();
 					}
-					else{
+					else {
 						alert(data.message);
 					}
 				}
@@ -93,6 +94,20 @@ var FormulaHandler = function() {
 				}
 			}, "json");
 		}
+	};
+	
+	var _handleDragOfParameters = function() {
+		
+		$('#formulasSection .added [draggable]')
+		.bind('dragstart', function(e) {
+			var $target = $(e.target),
+				name = $target.find('td:first').html(),
+				id = $target.attr('id');
+			
+		    e.originalEvent.dataTransfer.effectAllowed = 'copy';
+		    e.originalEvent.dataTransfer.setData('Text', '#formulasSection .added #' + id); // '#operandsSection [draggable]' + classSelector
+		});
+		
 	};
 	
 	var _setDropHandling = function() {
