@@ -3,7 +3,6 @@ package demo.oeplatform.org.queries.CalculationBasisQuery.Controllers;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,11 +59,13 @@ import com.nordicpeak.flowengine.queries.basequery.BaseQueryProviderModule;
 import com.nordicpeak.flowengine.utils.JTidyUtils;
 import com.nordicpeak.flowengine.utils.TextTagReplacer;
 
+import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisFormula.CalculationBasisFormula;
+import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisFormula.CalculationBasisFormulaDAO;
+import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisParameter.CalculationBasisParameter;
+import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisParameter.CalculationBasisParameterDAO;
 import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisQuery.CalculationBasisQuery;
 import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisQuery.CalculationBasisQueryCRUD;
 import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisQueryInstance.CalculationBasisQueryInstance;
-import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisParameter.CalculationBasisParameter;
-import demo.oeplatform.org.queries.CalculationBasisQuery.Model.CalculationBasisParameter.CalculationBasisParameterDAO;
 
 public class CalculationBasisQueryProviderModule extends
 		BaseQueryProviderModule<CalculationBasisQueryInstance> implements
@@ -82,6 +83,7 @@ public class CalculationBasisQueryProviderModule extends
 	private QueryParameterFactory<CalculationBasisQueryInstance, Integer> queryInstanceIDParamFactory;
 
 	private CalculationBasisParameterDAO calculationBasisParameterDAO;
+	private CalculationBasisFormulaDAO calculationBasisFormulaDAO;
 
 	@Override
 	protected void createDAOs(DataSource dataSource) throws Exception {
@@ -118,6 +120,7 @@ public class CalculationBasisQueryProviderModule extends
 
 		this.calculationBasisParameterDAO = new CalculationBasisParameterDAO(
 				dataSource);
+		calculationBasisFormulaDAO = new CalculationBasisFormulaDAO(dataSource);
 	}
 
 	@Override
@@ -544,12 +547,17 @@ public class CalculationBasisQueryProviderModule extends
 		StringBuilder stringBuilder = new StringBuilder();
 
 		try {
+			int queryId = Integer.parseInt(req.getParameter("queryId"));
+			String name = req.getParameter("formulaName");
+			String formula = req.getParameter("formula");
+			String description = req.getParameter("description");
 
-			// TODO: Get parameters
-			// String name = req.getParameter("xxxx");
+			// Update db
+			CalculationBasisFormula calculationBasisFormula = new CalculationBasisFormula(queryId, name, formula, description);
+			calculationBasisFormulaDAO.add(calculationBasisFormula);
 
-			// TODO get id from created parameter
-			int id = 0;
+			// Get id from created parameter
+			int id = calculationBasisFormula.getFormulaId();
 			result.putField("id", id);
 
 			result.putField("success", "1");
@@ -561,12 +569,11 @@ public class CalculationBasisQueryProviderModule extends
 			result.putField("message", "Ett fel inträffade på servern.");
 			result.putField("success", "0");
 			result.toJson(stringBuilder);
-			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json",
-					res);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json",res);
 		}
 		return null;
 	}
-
+	
 	// Default code
 	@Override
 	public Query createQuery(MutableQueryDescriptor descriptor,

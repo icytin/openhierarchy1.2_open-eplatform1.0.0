@@ -96,4 +96,19 @@
 			]]>
 		</Query>
 	</Script>
+	<Script version="6">
+		<Query>
+			<![CDATA[
+				CREATE TABLE `calculation_basis_formulas` (
+				  `formulaId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+				  `queryId` int(10) unsigned NOT NULL,
+				  `name` varchar(255) NOT NULL,
+				  `formula` varchar(255) NOT NULL,
+				  `description` varchar(255) DEFAULT NULL,
+				  PRIMARY KEY (`formulaId`),
+				  CONSTRAINT `FK_formula_query` FOREIGN KEY (`queryId`) REFERENCES `calculation_basis_queries` (`queryID`) ON DELETE CASCADE ON UPDATE CASCADE
+				) ENGINE=InnoDB DEFAULT CHARSET=latin1 DEFAULT COLLATE latin1_swedish_ci;
+			]]>
+		</Query>
+	</Script>
 </DBScripts>
