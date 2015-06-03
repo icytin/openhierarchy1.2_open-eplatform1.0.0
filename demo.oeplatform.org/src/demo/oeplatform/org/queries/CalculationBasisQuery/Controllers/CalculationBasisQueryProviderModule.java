@@ -469,7 +469,6 @@ public class CalculationBasisQueryProviderModule extends
 			// Call db
 			ArrayList<CalculationBasisParameter> parameters = calculationBasisParameterDAO.listByQueryId(queryId);
 
-			JsonObject parametersJson = new JsonObject();
 			JsonArray parametersJsonArray = new JsonArray(); 
 
 			if (parameters != null && !parameters.isEmpty()) {
@@ -574,6 +573,74 @@ public class CalculationBasisQueryProviderModule extends
 		return null;
 	}
 	
+	@WebPublic
+	public ForegroundModuleResponse DeleteFormula(HttpServletRequest req,
+			HttpServletResponse res, User user, URIParser uriParser)
+			throws SQLException, IOException {
+
+		JsonObject result = new JsonObject();
+		StringBuilder stringBuilder = new StringBuilder();
+
+		try {
+			// Get parameters
+			String id = req.getParameter("id");
+
+			// Update db
+			calculationBasisFormulaDAO.remove(id);
+			result.putField("id", id);
+
+			result.putField("success", "1");
+			result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json",
+					res);
+		} catch (Exception ex) {
+			// TODO log error
+			result.putField("message", "Ett fel inträffade på servern.");
+			result.putField("success", "0");
+			result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json",
+					res);
+		}
+		return null;
+	}
+
+	@WebPublic
+	public ForegroundModuleResponse GetFormulaList(HttpServletRequest req,
+			HttpServletResponse res, User user, URIParser uriParser)
+			throws SQLException, IOException {
+		JsonObject result = new JsonObject();
+		StringBuilder stringBuilder = new StringBuilder();
+
+		try {
+			// Get parameters
+			String queryId = req.getParameter("queryId");
+
+			// Call db
+			ArrayList<CalculationBasisFormula> formulas = calculationBasisFormulaDAO.listByQueryId(queryId);
+
+			JsonArray formulasJsonArray = new JsonArray(); 
+
+			if (formulas != null && !formulas.isEmpty()) {
+				for (CalculationBasisFormula f : formulas) {
+					formulasJsonArray.addNode(f.toJson());
+				}
+			}
+			result.putField("formulas", formulasJsonArray);
+
+			result.putField("success", "1");
+			result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json",
+					res);
+		} catch (Exception ex) {
+			// TODO log error
+			result.putField("message", "Ett fel inträffade på servern.");
+			result.putField("success", "0");
+			result.toJson(stringBuilder);
+			HTTPUtils.sendReponse(stringBuilder.toString(), "application/json",
+					res);
+		}
+		return null;
+	}
 	// Default code
 	@Override
 	public Query createQuery(MutableQueryDescriptor descriptor,

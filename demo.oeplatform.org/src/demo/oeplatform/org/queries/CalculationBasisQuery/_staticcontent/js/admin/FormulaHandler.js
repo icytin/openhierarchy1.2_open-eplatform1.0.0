@@ -1,7 +1,9 @@
 var FormulaHandler = function() {
 	
-	var ADD_FORMULA_PATH = '/demo.oeplatform.org/CalculationBasisProvider/AddFormula';
-
+	var ADD_FORMULA_PATH = '/demo.oeplatform.org/CalculationBasisProvider/AddFormula',
+		DELETE_FORMULA_PATH = '/demo.oeplatform.org/CalculationBasisProvider/DeleteFormula',
+		GET_FORMULA_LIST_PATH = '/demo.oeplatform.org/CalculationBasisProvider/GetFormulaList'
+			
 	var _init = function() {
 		
 		_setFormulaLinks();
@@ -19,7 +21,25 @@ var FormulaHandler = function() {
 			}
 			
 			if($target.hasClass('glyphicon-remove')) { // Remove formla
-				$target.parents('.row:first').remove();
+				
+				var $tr = $target.parents('.row:first'),
+				id = $tr.attr('id');
+			
+				$.post(DELETE_FORMULA_PATH, {id: id }, function (data, rq, ro) {
+					if(rq === 'success') {
+						if (data.success===1){
+							// Remove the row from GUI
+							$tr.remove();
+						}
+						else{
+							alert(data.message);
+						}
+					}
+					else {
+						ErrorHandler.showError();
+					}
+				}, "json");
+				
 			}
 			else if($target.hasClass('glyphicon-plus')) { // Add formula
 				_addFormula();
