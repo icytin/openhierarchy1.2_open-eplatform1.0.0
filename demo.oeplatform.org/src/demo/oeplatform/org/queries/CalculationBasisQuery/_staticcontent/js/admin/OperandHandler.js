@@ -16,7 +16,7 @@ var OperandHandler = function() {
 		    });
 		    
 		    $operand = $('#operandsSection [draggable]' + classSelector);
-		    e.originalEvent.dataTransfer.setData('Text', '<span class="operand" draggable="true" style="padding: 0 .3em">' + $operand.html() + '</span>');
+		    e.originalEvent.dataTransfer.setData('Text', '<span class="operand" draggable="true">' + $operand.html() + '</span>');
 		});
 		
 	};

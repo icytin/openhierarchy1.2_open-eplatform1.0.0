@@ -10,8 +10,8 @@ Specific style for the admin part of the CalculationBasisQuery.
 Operand */
 #operandsSection { border-left: .1em solid #ededed; }
 #operandsSection h4 { line-height: 2; }
-.operand[draggable] { text-align: center; border-radius: .5em; border: .1em solid #e8e8e8; /*padding: 0.2em;*/ margin-bottom: .2em; font-weight: bold; font-size: 1.5em; }
-.operand[draggable]:hover { background-color: #e5ffdd; border-color: #668c05; cursor: move; }
+#operandsSection .operand[draggable] { text-align: center; border-radius: .5em; border: .1em solid #e8e8e8; /*padding: 0.2em;*/ margin-bottom: .2em; font-weight: bold; font-size: 1.5em; }
+#operandsSection .operand[draggable]:hover { background-color: #e5ffdd; border-color: #668c05; cursor: move; }
 
 
 /****************************************************
@@ -20,8 +20,8 @@ Parameter */
 #parameterSection table tbody tr:hover { background-color: #e5ffdd; border-color: #668c05; cursor: move; padding-bottom: .3em; }
 #parameterSection table tbody tr td .glyphicon-remove { font-size: 1.4em;margin-top: .1em;margin-right: .1em;color: #d43f3a; }
 #parameterSection table tbody tr td .glyphicon-remove:hover { cursor: pointer; }
-.parameter[draggable] { text-align: center; border-radius: .5em; border: .1em solid #e8e8e8; /*padding: 0.2em;*/ margin-bottom: .2em; font-weight: bold; font-size: 1.5em; }
-.parameter[draggable]:hover { background-color: #e5ffdd; border-color: #668c05; cursor: move; }
+#parameterSection .parameter[draggable] { text-align: center; border-radius: .5em; border: .1em solid #e8e8e8; /*padding: 0.2em;*/ margin-bottom: .2em; font-weight: bold; font-size: 1.5em; }
+#parameterSection .parameter[draggable]:hover { background-color: #e5ffdd; border-color: #668c05; cursor: move; }
 
 
 
@@ -38,8 +38,15 @@ Formula */
 #formulasSection .formulas .formula { border: .1em solid #e8e8e8; margin-left: 0; margin-right: 0; padding: .4em; }
 #formulasSection .formulas .formula strong { margin-right: .3em; }
 #formulasSection .formulas .formula:hover { background-color: #e5ffdd; border-color: #668c05; cursor: move; }
-.formula-operand {   text-align: center; border-radius: .5em; margin-bottom: .2em; font-weight: bold; font-size: 1.5em;  }
-.formula-parameter {  }
+
+.formula-operand { text-align: center; border-radius: .5em; margin-bottom: .2em; font-weight: bold; font-size: 1.5em;  }
+#formulasSection .formulas .editBox .formula { text-align: center; border-radius: .5em; border: .1em solid #adadad; margin-bottom: .2em; margin-left: .1em; margin-right: .1em; font-weight: bold; background: #d7e2d3; }
+#formulasSection .formulas .editBox .parameter { text-align: center; border-radius: .5em; border: .1em solid #e8e8e8; margin-bottom: .2em; margin-left: .1em; margin-right: .1em; font-weight: bold; padding: .45em; }
+#formulasSection .formulas .editBox .operand { text-align: center; border-radius: .5em; border: .1em solid #e8e8e8; margin-bottom: .2em; margin-left: .1em; margin-right: .1em; font-weight: bold; padding: .4em 1.5em; }
+#formulasSection .formulas .editBox .formula:hover,
+#formulasSection .formulas .editBox .parameter:hover,
+#formulasSection .formulas .editBox .operand:hover { background-color: #e5ffdd; border-color: #668c05; cursor: move; }
+
 
 
 /****************************************************
