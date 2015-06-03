@@ -91,7 +91,7 @@ var ViewHandler = function() {
 		    }
 		    
 		    if($transferObj.hasClass('formula')) {
-		    	_addFormulaToView($transferObj);
+		    	_addFormulaToView($target, $transferObj);
 		    }
 		    
 		    $transferObj.html('');
@@ -120,8 +120,10 @@ var ViewHandler = function() {
 		}).bind('dragover', false);
 	};
 	
-	var _addFormulaToView = function($transferObject) {
-		alert('TODO');
+	var _addFormulaToView = function($contentArea, $transferObject) {
+		var $formulaSection = $('<div>');
+		
+		$contentArea.append($formulaSection);
 	};
 	
 	var _handleDropOfCol = function($target) {
