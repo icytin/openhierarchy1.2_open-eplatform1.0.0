@@ -13,6 +13,12 @@ var ParameterHandler = function() {
 		
 		_handleDragOfParameters();
 		
+		_initParamaterChangeEvents();
+	
+		_initParameterClickEvents();
+	};
+	
+	var _initParameterClickEvents = function() {
 		$('#parameterSection').on('click', function(e) {
 			
 			var $target = $(e.target);
@@ -62,6 +68,12 @@ var ParameterHandler = function() {
 			// ...
 			
 		});
+	};
+	
+	var _initParamaterChangeEvents = function() {
+		$('#parameterSection #parameter_query').change(function(e) {
+			$target = $(e.target);
+		})
 	};
 	
 	var _handleDragOfParameters = function() {
