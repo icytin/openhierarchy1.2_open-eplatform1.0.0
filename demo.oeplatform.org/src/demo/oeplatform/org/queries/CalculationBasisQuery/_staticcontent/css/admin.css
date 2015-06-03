@@ -20,6 +20,8 @@ Parameter */
 #parameterSection table tbody tr:hover { background-color: #e5ffdd; border-color: #668c05; cursor: move; padding-bottom: .3em; }
 #parameterSection table tbody tr td .glyphicon-remove { font-size: 1.4em;margin-top: .1em;margin-right: .1em;color: red; }
 #parameterSection table tbody tr td .glyphicon-remove:hover { cursor: pointer; }
+.parameter[draggable] { text-align: center; border-radius: .5em; border: .1em solid #e8e8e8; /*padding: 0.2em;*/ margin-bottom: .2em; font-weight: bold; font-size: 1.5em; }
+.parameter[draggable]:hover { background-color: #e5ffdd; border-color: #668c05; cursor: move; }
 
 
 
@@ -27,7 +29,7 @@ Parameter */
 Formula */
 #formulasSection .link-section { padding-top: 0; }
 #formulasSection .formulas input { width: 100%; margin-bottom: .1em; }
-#formulasSection .formulas .row.editBox { min-height: 5em; border: 1px dashed #000; margin: 0 .3em .3em .3em;  }
+#formulasSection .formulas .row.editBox { min-height: 5em; border: 1px dashed #000; margin: 0 .3em .3em .3em; padding: .7em; }
 #formulasSection .formulas .row .glyphicon-remove { font-size: 1.4em; margin-top: .1em; margin-right: .1em; color: red; }
 #formulasSection .formulas .row .glyphicon-remove:hover { cursor: pointer; }
 #formulasSection [data-removable] { text-align: center; padding-top: 1.6em; color: #999 }

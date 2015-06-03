@@ -15,7 +15,8 @@ var OperandHandler = function() {
 		    	classSelector += '.' + val;
 		    });
 		    
-		    e.originalEvent.dataTransfer.setData('Text', '#operandsSection [draggable]' + classSelector);
+		    $operand = $('#operandsSection [draggable]' + classSelector);
+		    e.originalEvent.dataTransfer.setData('Text', '<span class="operand" draggable="true" style="padding: 0 .3em">' + $operand.html() + '</span>');
 		});
 		
 	};

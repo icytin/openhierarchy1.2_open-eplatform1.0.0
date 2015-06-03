@@ -13,6 +13,7 @@
 	
 	<xsl:variable name="scripts">
 		/js/lib/Lib.js
+		/js/admin/StorageHandler.js
 		/js/admin/OperandHandler.js
 		/js/admin/ParameterHandler.js
 		/js/admin/FormulaHandler.js

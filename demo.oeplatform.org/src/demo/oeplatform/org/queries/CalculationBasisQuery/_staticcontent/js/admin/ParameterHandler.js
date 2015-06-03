@@ -9,6 +9,10 @@ var ParameterHandler = function() {
 		//Start by populating the query select list
 		_populateQuerySelectList();
 		
+		_loadParameters();
+		
+		_handleDragOfParameters();
+		
 		$('#parameterSection').on('click', function(e) {
 			
 			var $target = $(e.target);
@@ -49,16 +53,28 @@ var ParameterHandler = function() {
 		});
 	};
 	
+	var _handleDragOfParameters = function() {
+		
+		$('#addedParametersTable [draggable]')
+		.bind('dragstart', function(e) {
+			var $target = $(e.target),
+				name = $target.find('td:first').html(),
+				id = $target.attr('id');
+			
+		    e.originalEvent.dataTransfer.effectAllowed = 'copy';
+		    e.originalEvent.dataTransfer.setData('Text', '<span data-name="' + name + '" data-id="' + id + '" class="parameter" draggable="true">' + name + '</span>'); // '#operandsSection [draggable]' + classSelector
+		});
+		
+	};
+	
+	var _loadParameters = function() {
+		
+	};
+	
 	var _populateQuerySelectList = function(){
 		$.post(GET_REF_QUERIES_PATH, {}, function (data, rq, ro) {
 			if(rq === 'success') {
 				//generate select list
-				var selectList = $('#parameter_query');
-				selectList.empty().append('<option value="-1">Ej vald</option>');
-				$.each(data, function(name, value)
-				{
-					selectList.append('<option value=' + value + '>' + name + '</option>');
-				});
 			}
 			else {
 				ErrorHandler.showError();
@@ -81,10 +97,12 @@ var ParameterHandler = function() {
 	var _addParameterRow = function(data) {
 		
 		// TODO: Fill with data.. add Id to the row.. 
-		
+		var id= 1; 
+			
+			
 		var $table = $('#addedParametersTable');
 		$table.find('thead').show();
-		$tr = $('<tr>');
+		$tr = $('<tr id="' + id + '" draggable="true">');
 		$tr.append('<td>' + $('#parameter_name').val() + '</td>')
 		var query = $('#parameter_query option:selected').val() === '-1' ? '-' : $('#parameter_query option:selected').html(); 
 		$tr.append('<td>' + query + '</td>');
@@ -93,6 +111,8 @@ var ParameterHandler = function() {
 		$tr.append('<td><i class="glyphicon glyphicon-remove pull-right"></i></td>');
 		
 		$table.find('tbody').append($tr);
+		
+		_handleDragOfParameters();
 	};
 	
 	var _isValidParameter = function() {

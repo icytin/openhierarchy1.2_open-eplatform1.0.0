@@ -52,27 +52,37 @@ var FormulaHandler = function() {
 		    e.preventDefault();
 		    e.stopPropagation();
 		    
-		    var $transferObj = $(e.originalEvent.dataTransfer.getData('Text')).clone(),
-		    	$target = $(e.target);
+		    var $target = $(e.target);
 		    
-		    if(($target.hasClass('editBox') || $target.parents('.editBox').length !== 0) && $transferObj.hasClass('operand')) {
-		    	
-		    	if(!$target.hasClass('editBox')) { // make sure the target always is the box
-		    		$target = $target.parents('.editBox');
-		    	}
+	    	if(!$target.hasClass('editBox')) { // make sure the target always is the box
+	    		$target = $target.parents('.editBox');
+	    	}
+		    
+		    var $transferObj = $(e.originalEvent.dataTransfer.getData('Text')).clone(),
+		    	isEditBox = $target.hasClass('editBox');
+		    
+		    if(isEditBox) {
 		    	
 			    if($target.find('[data-removable]')) { // Clean info if exist
 			    	$target.find('[data-removable]').remove();
 			    }
 		    	
-		    	// Manipulate the transfered object..
-			    $transferObj.removeClass (function (index, css) {
-			        return (css.match (/(^|\s)col-lg-\S+/g) || []).join(' ');
-			    });
-			    
-			    $transferObj.addClass('col-lg-1');
-		    	
-		    	$target.append($transferObj);
+		    	if($transferObj.hasClass('operand')) { // Operands case
+		    			    	
+			    	// Manipulate the transfered object..
+		    		/*
+				    $transferObj.removeClass (function (index, css) {
+				        return (css.match (/(^|\s)col-lg-\S+/g) || []).join(' ');
+				    });
+				    
+				    $transferObj.addClass('col-lg-1');
+				    */
+			    	
+			    	$target.append($transferObj);
+		    	}
+		    	else if($transferObj.hasClass('parameter')) {
+		    		$target.append($transferObj);
+		    	}
 		    }
 
 		    return false;
