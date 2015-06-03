@@ -2,7 +2,8 @@ var ParameterHandler = function() {
 
 	var ADD_PARAM_PATH = '/demo.oeplatform.org/CalculationBasisProvider/AddParameter',
 		DELETE_PARAM_PATH = '/demo.oeplatform.org/CalculationBasisProvider/DeleteParameter',
-		GET_REF_QUERIES_PATH = '/demo.oeplatform.org/CalculationBasisProvider/GetRefQueries'
+		GET_REF_QUERIES_PATH = '/demo.oeplatform.org/CalculationBasisProvider/GetRefQueries',
+		GET_PARAM_LIST_PATH = '/demo.oeplatform.org/CalculationBasisProvider/GetParameterList'
 	
 	var _init = function() {
 		
@@ -48,7 +49,7 @@ var ParameterHandler = function() {
 			else if($target.hasClass('glyphicon-remove')) { // Remove param
 				
 				var $tr = $target.parents('tr:first'),
-					paramId = $tr.attr('data-id');
+					paramId = $tr.attr('id');
 				
 				$.post(DELETE_PARAM_PATH, {id: paramId }, function (data, rq, ro) {
 					if(rq === 'success') {
@@ -98,7 +99,23 @@ var ParameterHandler = function() {
 	};
 	
 	var _loadParameters = function() {
-		
+		$.post(GET_PARAM_LIST_PATH, { queryId: $('#queryId').val()}, function (data, rq, ro) {
+			if(rq === 'success') {
+				if (data.success===1){
+					//generate all parameter rows
+					$.each(data.parameters, function(i,parameter){
+						_addParameterRow(parameter); // Add the parameter to the table
+					});
+					_resetElements();
+				}
+				else{
+					alert(data.message);
+				}
+			}
+			else {
+				ErrorHandler.showError();
+			}
+		}, "json");
 	};
 	
 	var _populateQuerySelectList = function(){
